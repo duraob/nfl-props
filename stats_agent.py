@@ -46,10 +46,11 @@ def load_data(week_number: int = 1) -> Tuple[pd.DataFrame, pd.DataFrame, pd.Data
     # Load historical game data (all seasons)
     historical_stats = []
     data_dir = "data"
+    game_data_dir = os.path.join(data_dir, "game_data")
     
-    for file in os.listdir(data_dir):
+    for file in os.listdir(game_data_dir):
         if file.startswith("game_data_") and file.endswith(".csv"):
-            file_path = os.path.join(data_dir, file)
+            file_path = os.path.join(game_data_dir, file)
             try:
                 df = pd.read_csv(file_path)
                 historical_stats.append(df)

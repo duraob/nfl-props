@@ -50,17 +50,56 @@ def setup_undetected_driver() -> Optional[uc.Chrome]:
     try:
         logging.info("Setting up undetected Chrome driver...")
         
-        # Use minimal options for stability
+        # Enhanced options for better anti-detection
         options = uc.ChromeOptions()
+        
+        # Basic stability options
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
+        options.add_argument('--disable-blink-features=AutomationControlled')
+        options.add_argument('--disable-extensions')
+        options.add_argument('--disable-plugins')
+        options.add_argument('--disable-images')  # Faster loading
+        options.add_argument('--disable-javascript')  # Reduce detection surface
         
-        # Create driver with minimal configuration
-        driver = uc.Chrome(options=options, version_main=None)
+        # Anti-detection options
+        options.add_argument('--disable-web-security')
+        options.add_argument('--disable-features=VizDisplayCompositor')
+        options.add_argument('--disable-ipc-flooding-protection')
+        options.add_argument('--disable-renderer-backgrounding')
+        options.add_argument('--disable-backgrounding-occluded-windows')
+        options.add_argument('--disable-client-side-phishing-detection')
+        options.add_argument('--disable-sync')
+        options.add_argument('--disable-translate')
+        options.add_argument('--hide-scrollbars')
+        options.add_argument('--mute-audio')
+        options.add_argument('--no-first-run')
+        options.add_argument('--disable-default-apps')
+        options.add_argument('--disable-popup-blocking')
         
-        # Set basic timeouts
-        driver.set_page_load_timeout(30)
-        driver.implicitly_wait(5)
+        # Set realistic viewport
+        options.add_argument('--window-size=1920,1080')
+        
+        # Create driver with enhanced configuration
+        driver = uc.Chrome(
+            options=options, 
+            version_main=None,
+            driver_executable_path=None,
+            browser_executable_path=None,
+            user_data_dir=None,
+            headless=False,  # Keep visible for debugging
+            use_subprocess=True
+        )
+        
+        # Enhanced timeout configuration
+        driver.set_page_load_timeout(120)  # Increased timeout for slower pages
+        driver.implicitly_wait(15)  # Increased implicit wait
+        
+        # Execute stealth scripts
+        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        driver.execute_cdp_cmd('Network.setUserAgentOverride', {
+            "userAgent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        })
         
         logging.info("Undetected Chrome driver setup complete")
         return driver
@@ -150,7 +189,7 @@ def save_to_cache(cache_key: str, data: Any) -> bool:
 
 def get_soup_with_undetected(driver: uc.Chrome, url: str, cache_hours: int = CACHE_HOURS, max_retries: int = 3) -> Tuple[Optional[BeautifulSoup], bool]:
     """
-    Get BeautifulSoup object using undetected Chrome driver with retry logic.
+    Get BeautifulSoup object using undetected Chrome driver with enhanced retry logic.
     
     Args:
         driver: Configured Chrome driver
@@ -178,61 +217,117 @@ def get_soup_with_undetected(driver: uc.Chrome, url: str, cache_hours: int = CAC
                 logging.error(f"Driver is no longer valid: {e}")
                 return None, False
             
-            # Navigate to the page
-            driver.get(url)
+            # Add random delay before navigation
+            time.sleep(random.uniform(1, 3))
             
-            # Wait for page to load (human-like delay)
-            time.sleep(random.uniform(2, 4))
+            # Navigate to the page with enhanced error handling
+            try:
+                driver.get(url)
+                logging.info(f"Successfully navigated to {url}")
+            except Exception as e:
+                logging.error(f"Navigation failed: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(5 + attempt * 2)
+                    continue
+                else:
+                    return None, False
             
-            # Check for Cloudflare protection
+            # Wait for page to load with progressive delays
+            initial_wait = random.uniform(5, 8)  # Longer initial wait for 2024 pages
+            logging.info(f"Waiting {initial_wait:.1f} seconds for page load...")
+            time.sleep(initial_wait)
+            
+            # Check for Cloudflare protection and other blocking mechanisms
             try:
                 page_title = driver.title.lower()
+                current_url = driver.current_url
+                logging.info(f"Page title: '{page_title}', Current URL: '{current_url}'")
+                
                 if "just a moment" in page_title or "checking your browser" in page_title:
                     logging.warning("Cloudflare protection detected, waiting...")
-                    time.sleep(random.uniform(10, 15))  # Wait longer for Cloudflare
+                    time.sleep(random.uniform(15, 25))  # Longer wait for Cloudflare
                     
                     # Refresh and wait again
                     driver.refresh()
-                    time.sleep(random.uniform(5, 8))
+                    time.sleep(random.uniform(8, 12))
                     
                     # Check if still blocked
                     page_title = driver.title.lower()
                     if "just a moment" in page_title or "checking your browser" in page_title:
                         if attempt < max_retries - 1:
-                            logging.warning(f"Still blocked by Cloudflare, retrying in {5 + attempt * 2} seconds...")
-                            time.sleep(5 + attempt * 2)
+                            logging.warning(f"Still blocked by Cloudflare, retrying in {10 + attempt * 5} seconds...")
+                            time.sleep(10 + attempt * 5)
                             continue
                         else:
                             logging.error("Still blocked by Cloudflare protection after all retries")
                             return None, False
+                
+                # Check for other blocking mechanisms
+                if "access denied" in page_title or "blocked" in page_title:
+                    logging.warning(f"Access denied detected: {page_title}")
+                    if attempt < max_retries - 1:
+                        time.sleep(10 + attempt * 3)
+                        continue
+                    else:
+                        return None, False
+                        
             except Exception as e:
-                logging.warning(f"Error checking page title: {e}")
+                logging.warning(f"Error checking page status: {e}")
+            
+            # Additional wait for dynamic content - longer for 2024 pages
+            additional_wait = random.uniform(3, 6) if "2024" in url else random.uniform(2, 4)
+            time.sleep(additional_wait)
             
             # Get page source and create BeautifulSoup object
-            page_source = driver.page_source
+            try:
+                page_source = driver.page_source
+                logging.info(f"Retrieved page source: {len(page_source)} characters")
+            except Exception as e:
+                logging.error(f"Failed to get page source: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(3 + attempt)
+                    continue
+                else:
+                    return None, False
+            
             soup = BeautifulSoup(page_source, 'html.parser')
             
-            # Verify we got valid content
+            # Enhanced content validation
             if not soup or len(page_source) < 1000:
+                logging.warning(f"Invalid content: soup={bool(soup)}, length={len(page_source)}")
                 if attempt < max_retries - 1:
-                    logging.warning(f"Got invalid content, retrying in {2 + attempt} seconds...")
-                    time.sleep(2 + attempt)
+                    logging.warning(f"Retrying in {3 + attempt * 2} seconds...")
+                    time.sleep(3 + attempt * 2)
                     continue
                 else:
                     logging.error("Got invalid content after all retries")
                     return None, False
             
+            # Check for specific content that indicates successful loading
+            if "pro-football-reference" not in page_source.lower() and "nfl" not in page_source.lower():
+                logging.warning("Page doesn't appear to contain NFL data")
+                if attempt < max_retries - 1:
+                    time.sleep(3 + attempt)
+                    continue
+                else:
+                    logging.error("Page content validation failed after all retries")
+                    return None, False
+            
             # Save to cache
             save_to_cache(cache_key, soup)
+            logging.info(f"Successfully loaded and cached content from {url}")
             
             return soup, False
             
         except Exception as e:
             logging.error(f"Error fetching data from {url} (attempt {attempt + 1}): {e}")
             if attempt < max_retries - 1:
-                time.sleep(2 + attempt)
+                retry_delay = 5 + attempt * 3
+                logging.info(f"Retrying in {retry_delay} seconds...")
+                time.sleep(retry_delay)
                 continue
             else:
+                logging.error(f"All retry attempts failed for {url}")
                 return None, False
     
     return None, False
@@ -240,7 +335,7 @@ def get_soup_with_undetected(driver: uc.Chrome, url: str, cache_hours: int = CAC
 
 def get_season_schedule(year: int, driver: uc.Chrome) -> List[Dict]:
     """
-    Get completed games from the season schedule page.
+    Get completed games from the season schedule page with enhanced error handling.
     
     Args:
         year: NFL season year
@@ -250,6 +345,8 @@ def get_season_schedule(year: int, driver: uc.Chrome) -> List[Dict]:
         List[Dict]: List of completed game dictionaries with metadata
     """
     url = f"{BASE_URL}/years/{year}/games.htm"
+    logging.info(f"Attempting to scrape schedule from: {url}")
+    
     soup, from_cache = get_soup_with_undetected(driver, url)
     
     if not soup:
@@ -257,18 +354,50 @@ def get_season_schedule(year: int, driver: uc.Chrome) -> List[Dict]:
         return []
     
     try:
-        # Find games table
+        # Enhanced table finding with multiple strategies
+        games_table = None
+        
+        # Strategy 1: Look for the main games table
         games_table = soup.find("table", {"id": "games"})
+        if games_table:
+            logging.info("Found games table using ID 'games'")
+        else:
+            # Strategy 2: Look for table with games class or similar
+            games_table = soup.find("table", {"class": "sortable stats_table"})
+            if games_table:
+                logging.info("Found games table using class 'sortable stats_table'")
+            else:
+                # Strategy 3: Look for any table containing game data
+                all_tables = soup.find_all("table")
+                logging.info(f"Found {len(all_tables)} total tables on page")
+                
+                for i, table in enumerate(all_tables):
+                    table_text = table.get_text().lower()
+                    if "week" in table_text and ("home" in table_text or "away" in table_text):
+                        games_table = table
+                        logging.info(f"Found potential games table #{i+1} by content analysis")
+                        break
+        
         if not games_table:
-            logging.error("Could not find games table")
+            logging.error("Could not find games table using any strategy")
+            # Log page structure for debugging
+            logging.info("Page structure analysis:")
+            logging.info(f"Page title: {soup.title.string if soup.title else 'No title'}")
+            logging.info(f"Total tables found: {len(soup.find_all('table'))}")
             return []
         
-        logging.info(f"Found games table for year {year}")
+        logging.info(f"Successfully found games table for year {year}")
         
-        completed_games = []
-        game_rows = games_table.tbody.find_all("tr")
+        # Find table body
+        tbody = games_table.find("tbody")
+        if not tbody:
+            logging.warning("No tbody found, using table directly")
+            tbody = games_table
+        
+        game_rows = tbody.find_all("tr")
         logging.info(f"Found {len(game_rows)} total game rows")
         
+        completed_games = []
         for i, row in enumerate(game_rows):
             try:
                 # Extract game metadata
@@ -276,6 +405,8 @@ def get_season_schedule(year: int, driver: uc.Chrome) -> List[Dict]:
                 if game_data:
                     completed_games.append(game_data)
                     logging.debug(f"Added completed game: Week {game_data['week']}, {game_data['away_team']} @ {game_data['home_team']}")
+                else:
+                    logging.debug(f"Row {i+1}: No valid game data extracted")
                     
             except Exception as e:
                 logging.warning(f"Error processing game row {i+1}: {e}")
@@ -1288,7 +1419,7 @@ def save_to_csv(df: pd.DataFrame, year: int) -> str:
         os.makedirs('data', exist_ok=True)
         
         # Create filename
-        filename = f"data/game_data_{year}.csv"
+        filename = f"data/game_data/game_data_{year}.csv"
         
         # Save to CSV with proper formatting
         df.to_csv(filename, index=False)
@@ -1486,12 +1617,99 @@ def test_basic_functionality():
                     pass
 
 
+def test_schedule_page_access():
+    """
+    Test specifically the schedule page access to debug the timeout issue.
+    """
+    driver = None
+    try:
+        logging.info("Testing schedule page access specifically...")
+        
+        # Test driver setup
+        driver = setup_undetected_driver()
+        if not driver:
+            logging.error("Failed to setup driver")
+            return False
+        
+        # Test direct navigation to schedule page
+        test_url = "https://www.pro-football-reference.com/years/2024/games.htm"
+        logging.info(f"Testing direct navigation to: {test_url}")
+        
+        try:
+            driver.get(test_url)
+            logging.info("Successfully navigated to schedule page")
+            
+            # Wait and check page status
+            time.sleep(5)
+            page_title = driver.title
+            current_url = driver.current_url
+            logging.info(f"Page title: '{page_title}'")
+            logging.info(f"Current URL: '{current_url}'")
+            
+            # Check if we got the expected page
+            if "games" in page_title.lower() or "schedule" in page_title.lower():
+                logging.info("Successfully loaded schedule page")
+                
+                # Get page source and analyze
+                page_source = driver.page_source
+                logging.info(f"Page source length: {len(page_source)} characters")
+                
+                # Look for key elements
+                if "games" in page_source.lower():
+                    logging.info("Found 'games' content in page source")
+                else:
+                    logging.warning("No 'games' content found")
+                
+                # Try to find the games table
+                soup = BeautifulSoup(page_source, 'html.parser')
+                games_table = soup.find("table", {"id": "games"})
+                if games_table:
+                    logging.info("Found games table in HTML")
+                else:
+                    logging.warning("Games table not found in HTML")
+                    # Log available tables
+                    tables = soup.find_all("table")
+                    logging.info(f"Found {len(tables)} tables on page")
+                    for i, table in enumerate(tables[:5]):  # Show first 5 tables
+                        table_id = table.get("id", "no-id")
+                        table_class = table.get("class", "no-class")
+                        logging.info(f"Table {i+1}: id='{table_id}', class='{table_class}'")
+                
+                return True
+            else:
+                logging.error(f"Unexpected page title: '{page_title}'")
+                return False
+                
+        except Exception as e:
+            logging.error(f"Error accessing schedule page: {e}")
+            return False
+        
+    except Exception as e:
+        logging.error(f"Test failed: {e}")
+        return False
+    finally:
+        if driver:
+            try:
+                driver.close()
+                driver.quit()
+                logging.info("Driver closed successfully")
+            except Exception as e:
+                logging.warning(f"Error closing driver: {e}")
+            finally:
+                try:
+                    del driver
+                except:
+                    pass
+
+
 if __name__ == "__main__":
     import sys
     
     # Check if test mode is requested
     if len(sys.argv) > 1 and sys.argv[1] == "test":
         test_basic_functionality()
+    elif len(sys.argv) > 1 and sys.argv[1] == "test-schedule":
+        test_schedule_page_access()
     else:
         main()
 

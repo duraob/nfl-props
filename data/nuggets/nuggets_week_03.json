@@ -1,0 +1,222 @@
+[
+  {
+    "player": "Najee Harris",
+    "opponent": "Denver Broncos vs Los Angeles Chargers",
+    "stat": "rush_yds",
+    "sample_size": 219,
+    "average": 57.0,
+    "line": 27.5,
+    "delta_pct": 107.2,
+    "week": 3,
+    "nugget": "Najee Harris averages 57.0 rush_yds in 219 games, +107.2% vs Week 3 line of 27.5."
+  },
+  {
+    "player": "Jake Browning",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "pass_yds",
+    "sample_size": 27,
+    "average": 8.9,
+    "line": 240.5,
+    "delta_pct": -96.3,
+    "week": 3,
+    "nugget": "Jake Browning averages 8.9 pass_yds in 27 games, -96.3% vs Week 3 line of 240.5."
+  },
+  {
+    "player": "Jake Browning",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "pass_tds",
+    "sample_size": 27,
+    "average": 0.1,
+    "line": 1.5,
+    "delta_pct": -95.1,
+    "week": 3,
+    "nugget": "Jake Browning averages 0.1 pass_tds in 27 games, -95.1% vs Week 3 line of 1.5."
+  },
+  {
+    "player": "Stefon Diggs",
+    "opponent": "Pittsburgh Steelers vs New England Patriots",
+    "stat": "reception_yds",
+    "sample_size": 138,
+    "average": 76.4,
+    "line": 42.5,
+    "delta_pct": 79.7,
+    "week": 3,
+    "nugget": "Stefon Diggs averages 76.4 reception_yds in 138 games, +79.7% vs Week 3 line of 42.5."
+  },
+  {
+    "player": "Alvin Kamara",
+    "opponent": "New Orleans Saints vs Seattle Seahawks",
+    "stat": "reception_yds",
+    "sample_size": 176,
+    "average": 40.3,
+    "line": 22.5,
+    "delta_pct": 79.2,
+    "week": 3,
+    "nugget": "Alvin Kamara averages 40.3 reception_yds in 176 games, +79.2% vs Week 3 line of 22.5."
+  },
+  {
+    "player": "Kareem Hunt",
+    "opponent": "Kansas City Chiefs vs New York Giants",
+    "stat": "rush_yds",
+    "sample_size": 167,
+    "average": 48.9,
+    "line": 27.5,
+    "delta_pct": 77.8,
+    "week": 3,
+    "nugget": "Kareem Hunt averages 48.9 rush_yds in 167 games, +77.8% vs Week 3 line of 27.5."
+  },
+  {
+    "player": "Noah Fant",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "reception_yds",
+    "sample_size": 184,
+    "average": 34.6,
+    "line": 19.5,
+    "delta_pct": 77.3,
+    "week": 3,
+    "nugget": "Noah Fant averages 34.6 reception_yds in 184 games, +77.3% vs Week 3 line of 19.5."
+  },
+  {
+    "player": "Jordan Mason",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "receptions",
+    "sample_size": 142,
+    "average": 0.8,
+    "line": 2.5,
+    "delta_pct": -69.0,
+    "week": 3,
+    "nugget": "Jordan Mason averages 0.8 receptions in 142 games, -69.0% vs Week 3 line of 2.5."
+  },
+  {
+    "player": "Dak Prescott",
+    "opponent": "Dallas Cowboys vs Chicago Bears",
+    "stat": "pass_interceptions",
+    "sample_size": 138,
+    "average": 0.8,
+    "line": 0.5,
+    "delta_pct": 63.8,
+    "week": 3,
+    "nugget": "Dak Prescott averages 0.8 pass_interceptions in 138 games, +63.8% vs Week 3 line of 0.5."
+  },
+  {
+    "player": "Mike Gesicki",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "reception_yds",
+    "sample_size": 218,
+    "average": 33.5,
+    "line": 20.5,
+    "delta_pct": 63.3,
+    "week": 3,
+    "nugget": "Mike Gesicki averages 33.5 reception_yds in 218 games, +63.3% vs Week 3 line of 20.5."
+  },
+  {
+    "player": "Andrei Iosivas",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "reception_yds",
+    "sample_size": 178,
+    "average": 24.9,
+    "line": 15.5,
+    "delta_pct": 60.7,
+    "week": 3,
+    "nugget": "Andrei Iosivas averages 24.9 reception_yds in 178 games, +60.7% vs Week 3 line of 15.5."
+  },
+  {
+    "player": "Michael Penix",
+    "opponent": "Atlanta Falcons vs Carolina Panthers",
+    "stat": "pass_tds",
+    "sample_size": 47,
+    "average": 0.6,
+    "line": 1.5,
+    "delta_pct": -60.3,
+    "week": 3,
+    "nugget": "Michael Penix averages 0.6 pass_tds in 47 games, -60.3% vs Week 3 line of 1.5."
+  },
+  {
+    "player": "Spencer Rattler",
+    "opponent": "New Orleans Saints vs Seattle Seahawks",
+    "stat": "pass_tds",
+    "sample_size": 65,
+    "average": 0.6,
+    "line": 1.5,
+    "delta_pct": -60.0,
+    "week": 3,
+    "nugget": "Spencer Rattler averages 0.6 pass_tds in 65 games, -60.0% vs Week 3 line of 1.5."
+  },
+  {
+    "player": "Tyrod Taylor",
+    "opponent": "New York Jets vs Tampa Bay Buccaneers",
+    "stat": "pass_yds",
+    "sample_size": 67,
+    "average": 86.0,
+    "line": 205.5,
+    "delta_pct": -58.2,
+    "week": 3,
+    "nugget": "Tyrod Taylor averages 86.0 pass_yds in 67 games, -58.2% vs Week 3 line of 205.5."
+  },
+  {
+    "player": "Troy Franklin",
+    "opponent": "Denver Broncos vs Los Angeles Chargers",
+    "stat": "reception_yds",
+    "sample_size": 146,
+    "average": 17.1,
+    "line": 40.5,
+    "delta_pct": -57.7,
+    "week": 3,
+    "nugget": "Troy Franklin averages 17.1 reception_yds in 146 games, -57.7% vs Week 3 line of 40.5."
+  },
+  {
+    "player": "Tyrod Taylor",
+    "opponent": "New York Jets vs Tampa Bay Buccaneers",
+    "stat": "pass_attempts",
+    "sample_size": 67,
+    "average": 13.5,
+    "line": 30.5,
+    "delta_pct": -55.7,
+    "week": 3,
+    "nugget": "Tyrod Taylor averages 13.5 pass_attempts in 67 games, -55.7% vs Week 3 line of 30.5."
+  },
+  {
+    "player": "T.J. Hockenson",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "reception_yds",
+    "sample_size": 164,
+    "average": 51.8,
+    "line": 33.5,
+    "delta_pct": 54.7,
+    "week": 3,
+    "nugget": "T.J. Hockenson averages 51.8 reception_yds in 164 games, +54.7% vs Week 3 line of 33.5."
+  },
+  {
+    "player": "Daniel Jones",
+    "opponent": "Indianapolis Colts vs Tennessee Titans",
+    "stat": "pass_tds",
+    "sample_size": 132,
+    "average": 0.7,
+    "line": 1.5,
+    "delta_pct": -54.5,
+    "week": 3,
+    "nugget": "Daniel Jones averages 0.7 pass_tds in 132 games, -54.5% vs Week 3 line of 1.5."
+  },
+  {
+    "player": "Jordan Mason",
+    "opponent": "Cincinnati Bengals vs Minnesota Vikings",
+    "stat": "reception_yds",
+    "sample_size": 142,
+    "average": 6.6,
+    "line": 14.5,
+    "delta_pct": -54.4,
+    "week": 3,
+    "nugget": "Jordan Mason averages 6.6 reception_yds in 142 games, -54.4% vs Week 3 line of 14.5."
+  },
+  {
+    "player": "Drake Maye",
+    "opponent": "Pittsburgh Steelers vs New England Patriots",
+    "stat": "pass_interceptions",
+    "sample_size": 119,
+    "average": 0.8,
+    "line": 0.5,
+    "delta_pct": 52.9,
+    "week": 3,
+    "nugget": "Drake Maye averages 0.8 pass_interceptions in 119 games, +52.9% vs Week 3 line of 0.5."
+  }
+]

@@ -1,0 +1,222 @@
+[
+  {
+    "player": "Matthew Stafford",
+    "opponent": "San Francisco 49ers vs Los Angeles Rams",
+    "stat": "rush_yds",
+    "sample_size": 53,
+    "average": 2.9,
+    "line": 0.5,
+    "delta_pct": 484.9,
+    "week": 5,
+    "nugget": "Matthew Stafford averages 2.9 rush_yds in 53 games, +484.9% vs Week 5 line of 0.5."
+  },
+  {
+    "player": "Tutu Atwell",
+    "opponent": "San Francisco 49ers vs Los Angeles Rams",
+    "stat": "reception_yds",
+    "sample_size": 55,
+    "average": 34.3,
+    "line": 10.5,
+    "delta_pct": 226.9,
+    "week": 5,
+    "nugget": "Tutu Atwell averages 34.3 reception_yds in 55 games, +226.9% vs Week 5 line of 10.5."
+  },
+  {
+    "player": "Brian Robinson Jr.",
+    "opponent": "San Francisco 49ers vs Los Angeles Rams",
+    "stat": "rush_yds",
+    "sample_size": 53,
+    "average": 55.4,
+    "line": 18.5,
+    "delta_pct": 199.6,
+    "week": 5,
+    "nugget": "Brian Robinson Jr. averages 55.4 rush_yds in 53 games, +199.6% vs Week 5 line of 18.5."
+  },
+  {
+    "player": "Jordan Whittington",
+    "opponent": "San Francisco 49ers vs Los Angeles Rams",
+    "stat": "reception_yds",
+    "sample_size": 16,
+    "average": 40.1,
+    "line": 15.5,
+    "delta_pct": 158.9,
+    "week": 5,
+    "nugget": "Jordan Whittington averages 40.1 reception_yds in 16 games, +158.9% vs Week 5 line of 15.5."
+  },
+  {
+    "player": "Josh Reynolds",
+    "opponent": "Dallas Cowboys vs New York Jets",
+    "stat": "reception_yds",
+    "sample_size": 37,
+    "average": 34.6,
+    "line": 15.5,
+    "delta_pct": 123.5,
+    "week": 5,
+    "nugget": "Josh Reynolds averages 34.6 reception_yds in 37 games, +123.5% vs Week 5 line of 15.5."
+  },
+  {
+    "player": "Jordan Whittington",
+    "opponent": "San Francisco 49ers vs Los Angeles Rams",
+    "stat": "receptions",
+    "sample_size": 16,
+    "average": 3.1,
+    "line": 1.5,
+    "delta_pct": 104.2,
+    "week": 5,
+    "nugget": "Jordan Whittington averages 3.1 receptions in 16 games, +104.2% vs Week 5 line of 1.5."
+  },
+  {
+    "player": "Jaxson Dart",
+    "opponent": "New York Giants vs New Orleans Saints",
+    "stat": "pass_interceptions",
+    "sample_size": 3,
+    "average": 0.0,
+    "line": 0.5,
+    "delta_pct": -100.0,
+    "week": 5,
+    "nugget": "Jaxson Dart averages 0.0 pass_interceptions in 3 games, -100.0% vs Week 5 line of 0.5."
+  },
+  {
+    "player": "Alvin Kamara",
+    "opponent": "New York Giants vs New Orleans Saints",
+    "stat": "reception_yds",
+    "sample_size": 53,
+    "average": 35.8,
+    "line": 18.5,
+    "delta_pct": 93.5,
+    "week": 5,
+    "nugget": "Alvin Kamara averages 35.8 reception_yds in 53 games, +93.5% vs Week 5 line of 18.5."
+  },
+  {
+    "player": "Jaxson Dart",
+    "opponent": "New York Giants vs New Orleans Saints",
+    "stat": "pass_yds",
+    "sample_size": 3,
+    "average": 37.0,
+    "line": 172.5,
+    "delta_pct": -78.6,
+    "week": 5,
+    "nugget": "Jaxson Dart averages 37.0 pass_yds in 3 games, -78.6% vs Week 5 line of 172.5."
+  },
+  {
+    "player": "Jaxson Dart",
+    "opponent": "New York Giants vs New Orleans Saints",
+    "stat": "pass_attempts",
+    "sample_size": 3,
+    "average": 6.7,
+    "line": 26.5,
+    "delta_pct": -74.8,
+    "week": 5,
+    "nugget": "Jaxson Dart averages 6.7 pass_attempts in 3 games, -74.8% vs Week 5 line of 26.5."
+  },
+  {
+    "player": "Jaxson Dart",
+    "opponent": "New York Giants vs New Orleans Saints",
+    "stat": "pass_completions",
+    "sample_size": 3,
+    "average": 4.3,
+    "line": 16.5,
+    "delta_pct": -73.7,
+    "week": 5,
+    "nugget": "Jaxson Dart averages 4.3 pass_completions in 3 games, -73.7% vs Week 5 line of 16.5."
+  },
+  {
+    "player": "Jake Browning",
+    "opponent": "Detroit Lions vs Cincinnati Bengals",
+    "stat": "pass_yds",
+    "sample_size": 8,
+    "average": 63.2,
+    "line": 214.5,
+    "delta_pct": -70.5,
+    "week": 5,
+    "nugget": "Jake Browning averages 63.2 pass_yds in 8 games, -70.5% vs Week 5 line of 214.5."
+  },
+  {
+    "player": "T.J. Hockenson",
+    "opponent": "Minnesota Vikings vs Cleveland Browns",
+    "stat": "reception_yds",
+    "sample_size": 50,
+    "average": 49.7,
+    "line": 29.5,
+    "delta_pct": 68.5,
+    "week": 5,
+    "nugget": "T.J. Hockenson averages 49.7 reception_yds in 50 games, +68.5% vs Week 5 line of 29.5."
+  },
+  {
+    "player": "Ashton Jeanty",
+    "opponent": "Las Vegas Raiders vs Indianapolis Colts",
+    "stat": "reception_yds",
+    "sample_size": 4,
+    "average": 5.0,
+    "line": 15.5,
+    "delta_pct": -67.7,
+    "week": 5,
+    "nugget": "Ashton Jeanty averages 5.0 reception_yds in 4 games, -67.7% vs Week 5 line of 15.5."
+  },
+  {
+    "player": "Rhamondre Stevenson",
+    "opponent": "New England Patriots vs Buffalo Bills",
+    "stat": "rush_yds",
+    "sample_size": 60,
+    "average": 52.7,
+    "line": 32.5,
+    "delta_pct": 62.1,
+    "week": 5,
+    "nugget": "Rhamondre Stevenson averages 52.7 rush_yds in 60 games, +62.1% vs Week 5 line of 32.5."
+  },
+  {
+    "player": "Josh Reynolds",
+    "opponent": "Dallas Cowboys vs New York Jets",
+    "stat": "receptions",
+    "sample_size": 37,
+    "average": 2.4,
+    "line": 1.5,
+    "delta_pct": 58.6,
+    "week": 5,
+    "nugget": "Josh Reynolds averages 2.4 receptions in 37 games, +58.6% vs Week 5 line of 1.5."
+  },
+  {
+    "player": "Stefon Diggs",
+    "opponent": "New England Patriots vs Buffalo Bills",
+    "stat": "reception_yds",
+    "sample_size": 44,
+    "average": 76.9,
+    "line": 48.5,
+    "delta_pct": 58.5,
+    "week": 5,
+    "nugget": "Stefon Diggs averages 76.9 reception_yds in 44 games, +58.5% vs Week 5 line of 48.5."
+  },
+  {
+    "player": "David Njoku",
+    "opponent": "Minnesota Vikings vs Cleveland Browns",
+    "stat": "reception_yds",
+    "sample_size": 48,
+    "average": 43.4,
+    "line": 28.5,
+    "delta_pct": 52.4,
+    "week": 5,
+    "nugget": "David Njoku averages 43.4 reception_yds in 48 games, +52.4% vs Week 5 line of 28.5."
+  },
+  {
+    "player": "Calvin Ridley",
+    "opponent": "Tennessee Titans vs Arizona Cardinals",
+    "stat": "reception_yds",
+    "sample_size": 46,
+    "average": 57.1,
+    "line": 37.5,
+    "delta_pct": 52.2,
+    "week": 5,
+    "nugget": "Calvin Ridley averages 57.1 reception_yds in 46 games, +52.2% vs Week 5 line of 37.5."
+  },
+  {
+    "player": "Jaxson Dart",
+    "opponent": "New York Giants vs New Orleans Saints",
+    "stat": "rush_yds",
+    "sample_size": 3,
+    "average": 18.0,
+    "line": 37.5,
+    "delta_pct": -52.0,
+    "week": 5,
+    "nugget": "Jaxson Dart averages 18.0 rush_yds in 3 games, -52.0% vs Week 5 line of 37.5."
+  }
+]
