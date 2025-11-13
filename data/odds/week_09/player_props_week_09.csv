@@ -1,0 +1,736 @@
+event_id,sport_key,commence_time,home_team,away_team,bookmaker_key,bookmaker_title,market_key,outcome_name,price,point,player_name,prop_type
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,-225,,Derrick Henry,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,-165,,De'Von Achane,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,120,,Zay Flowers,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,130,,Jaylen Waddle,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,155,,Lamar Jackson,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,180,,Mark Andrews,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,230,,Isaiah Likely,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,320,,Rashod Bateman,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,330,,Malik Washington,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,400,,Ollie Gordon II,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,450,,DeAndre Hopkins,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,450,,Justice Hill,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,500,,Nick Westbrook-Ikhine,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,500,,Baltimore Ravens D/ST,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,550,,Tanner Conner,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,550,,Miami Dolphins D/ST,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,700,,Greg Dulcich,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,750,,Keaton Mitchell,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,800,,Cedrick Wilson Jr.,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,800,,Charlie Kolar,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,1200,,Jaylen Wright,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,1500,,Dee Eskridge,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,1600,,Tahj Washington,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,1800,,Tylan Wallace,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,1900,,Devontez Walker,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,2200,,Tua Tagovailoa,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,2200,,Alec Ingold,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,2200,,Rasheen Ali,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,2200,,LaJohntay Wester,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_anytime_td,Yes,3000,,Patrick Ricard,anytime_td
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_attempts,Over,-111,32.5,Tua Tagovailoa,pass_attempts
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_attempts,Under,-115,32.5,Tua Tagovailoa,pass_attempts
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_attempts,Over,-124,27.5,Lamar Jackson,pass_attempts
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_attempts,Under,-103,27.5,Lamar Jackson,pass_attempts
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_completions,Over,-125,21.5,Tua Tagovailoa,pass_completions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_completions,Under,-102,21.5,Tua Tagovailoa,pass_completions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_completions,Over,-119,19.5,Lamar Jackson,pass_completions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_completions,Under,-107,19.5,Lamar Jackson,pass_completions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_interceptions,Over,169,0.5,Lamar Jackson,pass_interceptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_interceptions,Under,-219,0.5,Lamar Jackson,pass_interceptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_interceptions,Over,-133,0.5,Tua Tagovailoa,pass_interceptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_interceptions,Under,105,0.5,Tua Tagovailoa,pass_interceptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_tds,Over,-190,1.5,Lamar Jackson,pass_tds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_tds,Under,148,1.5,Lamar Jackson,pass_tds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_tds,Over,112,1.5,Tua Tagovailoa,pass_tds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_tds,Under,-143,1.5,Tua Tagovailoa,pass_tds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_yds,Over,-113,236.5,Lamar Jackson,pass_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_yds,Under,-111,236.5,Lamar Jackson,pass_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_yds,Over,-112,218.5,Tua Tagovailoa,pass_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_pass_yds,Under,-112,218.5,Tua Tagovailoa,pass_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-110,67.5,Zay Flowers,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-114,67.5,Zay Flowers,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-110,66.5,Jaylen Waddle,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-114,66.5,Jaylen Waddle,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-110,32.5,Rashod Bateman,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-114,32.5,Rashod Bateman,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-113,31.5,De'Von Achane,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-111,31.5,De'Von Achane,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-109,29.5,Malik Washington,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-115,29.5,Malik Washington,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-113,28.5,Mark Andrews,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-111,28.5,Mark Andrews,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-114,21.5,Isaiah Likely,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-110,21.5,Isaiah Likely,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-107,18.5,Nick Westbrook-Ikhine,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-117,18.5,Nick Westbrook-Ikhine,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-112,16.5,DeAndre Hopkins,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-112,16.5,DeAndre Hopkins,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-111,16.5,Justice Hill,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-113,16.5,Justice Hill,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-112,15.5,Tanner Conner,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-112,15.5,Tanner Conner,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Over,-104,6.5,Derrick Henry,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_reception_yds,Under,-120,6.5,Derrick Henry,reception_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,105,5.5,Zay Flowers,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,-134,5.5,Zay Flowers,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,118,5.5,De'Von Achane,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,-150,5.5,De'Von Achane,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,-149,4.5,Jaylen Waddle,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,117,4.5,Jaylen Waddle,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,-131,3.5,Malik Washington,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,103,3.5,Malik Washington,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,-157,2.5,Mark Andrews,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,123,2.5,Mark Andrews,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,-103,2.5,Justice Hill,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,-123,2.5,Justice Hill,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,118,2.5,Rashod Bateman,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,-150,2.5,Rashod Bateman,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,126,2.5,Isaiah Likely,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,-161,2.5,Isaiah Likely,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,-160,1.5,Tanner Conner,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,125,1.5,Tanner Conner,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,-159,1.5,Nick Westbrook-Ikhine,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,125,1.5,Nick Westbrook-Ikhine,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,114,1.5,DeAndre Hopkins,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,-145,1.5,DeAndre Hopkins,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Over,-240,0.5,Derrick Henry,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_receptions,Under,185,0.5,Derrick Henry,receptions
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Over,-113,90.5,Derrick Henry,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Under,-111,90.5,Derrick Henry,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Over,-110,57.5,De'Von Achane,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Under,-114,57.5,De'Von Achane,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Over,-112,36.5,Lamar Jackson,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Under,-112,36.5,Lamar Jackson,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Over,-113,18.5,Ollie Gordon II,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Under,-111,18.5,Ollie Gordon II,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Over,-114,13.5,Keaton Mitchell,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Under,-110,13.5,Keaton Mitchell,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Over,-119,2.5,Tua Tagovailoa,rush_yds
+677dbbb6ad96fc5f5b36bb20b43139dd,americanfootball_nfl,2025-10-31T00:15:00Z,Miami Dolphins,Baltimore Ravens,draftkings,DraftKings,player_rush_yds,Under,-106,2.5,Tua Tagovailoa,rush_yds
+6dd3b8a705ed0db85d59fa19b9062cc8,americanfootball_nfl,2025-11-02T18:00:00Z,New England Patriots,Atlanta Falcons,draftkings,DraftKings,player_anytime_td,Yes,-130,,Bijan Robinson,anytime_td
+6dd3b8a705ed0db85d59fa19b9062cc8,americanfootball_nfl,2025-11-02T18:00:00Z,New England Patriots,Atlanta Falcons,draftkings,DraftKings,player_anytime_td,Yes,155,,Stefon Diggs,anytime_td
+6dd3b8a705ed0db85d59fa19b9062cc8,americanfootball_nfl,2025-11-02T18:00:00Z,New England Patriots,Atlanta Falcons,draftkings,DraftKings,player_anytime_td,Yes,165,,Drake London,anytime_td
+6dd3b8a705ed0db85d59fa19b9062cc8,americanfootball_nfl,2025-11-02T18:00:00Z,New England Patriots,Atlanta Falcons,draftkings,DraftKings,player_anytime_td,Yes,205,,Kayshon Boutte,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,-150,,Josh Jacobs,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,-115,,Tucker Kraft,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,130,,Romeo Doubs,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,150,,Emanuel Wilson,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,215,,Matthew Golden,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,220,,Tetairoa McMillan,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,235,,Christian Watson,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,260,,Rico Dowdle,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,390,,Xavier Legette,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,425,,Chuba Hubbard,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,500,,Luke Musgrave,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,500,,Green Bay Packers D/ST,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,550,,Jalen Coker,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,700,,Ja'Tavion Sanders,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,750,,Dontayvion Wicks,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,750,,Tommy Tremble,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,800,,Jordan Love,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,800,,Malik Heath,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,900,,Hunter Renfrow,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,1200,,Savion Williams,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,1300,,John FitzPatrick,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,1300,,Mitchell Evans,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,1500,,Bryce Young,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,1600,,Brycen Tremayne,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,1700,,Chris Brooks,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,1800,,Jimmy Horn Jr.,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,2800,,Trevor Etienne,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_anytime_td,Yes,3500,,DeeJay Dallas,anytime_td
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_attempts,Over,-117,29.5,Jordan Love,pass_attempts
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_attempts,Under,-109,29.5,Jordan Love,pass_attempts
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_completions,Over,-105,20.5,Jordan Love,pass_completions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_completions,Under,-122,20.5,Jordan Love,pass_completions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_completions,Over,-101,20.5,Bryce Young,pass_completions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_completions,Under,-126,20.5,Bryce Young,pass_completions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_interceptions,Over,135,0.5,Jordan Love,pass_interceptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_interceptions,Under,-173,0.5,Jordan Love,pass_interceptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_interceptions,Over,-136,0.5,Bryce Young,pass_interceptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_interceptions,Under,106,0.5,Bryce Young,pass_interceptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_tds,Over,-213,1.5,Jordan Love,pass_tds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_tds,Under,165,1.5,Jordan Love,pass_tds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_tds,Over,201,1.5,Bryce Young,pass_tds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_tds,Under,-262,1.5,Bryce Young,pass_tds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_yds,Over,-113,233.5,Jordan Love,pass_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_yds,Under,-111,233.5,Jordan Love,pass_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_yds,Over,-112,194.5,Bryce Young,pass_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_pass_yds,Under,-112,194.5,Bryce Young,pass_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-111,57.5,Tucker Kraft,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-113,57.5,Tucker Kraft,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-114,55.5,Tetairoa McMillan,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-110,55.5,Tetairoa McMillan,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-111,46.5,Romeo Doubs,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-113,46.5,Romeo Doubs,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-114,36.5,Christian Watson,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-110,36.5,Christian Watson,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-112,26.5,Jalen Coker,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-112,26.5,Jalen Coker,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-111,23.5,Xavier Legette,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-113,23.5,Xavier Legette,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-114,13.5,Rico Dowdle,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-110,13.5,Rico Dowdle,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-106,13.5,Josh Jacobs,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-118,13.5,Josh Jacobs,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Over,-117,7.5,Chuba Hubbard,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_reception_yds,Under,-107,7.5,Chuba Hubbard,reception_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,-133,4.5,Tucker Kraft,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,104,4.5,Tucker Kraft,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,-130,4.5,Tetairoa McMillan,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,102,4.5,Tetairoa McMillan,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,125,4.5,Romeo Doubs,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,-160,4.5,Romeo Doubs,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,-146,2.5,Jalen Coker,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,114,2.5,Jalen Coker,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,-122,2.5,Xavier Legette,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,-105,2.5,Xavier Legette,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,105,2.5,Christian Watson,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,-134,2.5,Christian Watson,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,119,2.5,Rico Dowdle,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,-153,2.5,Rico Dowdle,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Over,132,2.5,Josh Jacobs,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_receptions,Under,-169,2.5,Josh Jacobs,receptions
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Over,-115,62.5,Josh Jacobs,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Under,-109,62.5,Josh Jacobs,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Over,-112,53.5,Rico Dowdle,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Under,-112,53.5,Rico Dowdle,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Over,-114,30.5,Emanuel Wilson,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Under,-110,30.5,Emanuel Wilson,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Over,-113,23.5,Chuba Hubbard,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Under,-111,23.5,Chuba Hubbard,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Over,-115,10.5,Jordan Love,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Under,-109,10.5,Jordan Love,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Over,-119,5.5,Bryce Young,rush_yds
+6031b513e188fc19a2311499566c9258,americanfootball_nfl,2025-11-02T18:00:00Z,Green Bay Packers,Carolina Panthers,draftkings,DraftKings,player_rush_yds,Under,-106,5.5,Bryce Young,rush_yds
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_anytime_td,Yes,-165,,D'Andre Swift,anytime_td
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_anytime_td,Yes,-140,,Chase Brown,anytime_td
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_anytime_td,Yes,-125,,Ja'Marr Chase,anytime_td
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_anytime_td,Yes,-105,,Rome Odunze,anytime_td
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_pass_tds,Over,-150,1.5,Caleb Williams,pass_tds
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_pass_tds,Under,117,1.5,Caleb Williams,pass_tds
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_pass_yds,Over,-113,231.5,Caleb Williams,pass_yds
+016f76d8237e8d4eb62b9c2ef68381bb,americanfootball_nfl,2025-11-02T18:00:00Z,Cincinnati Bengals,Chicago Bears,draftkings,DraftKings,player_pass_yds,Under,-111,231.5,Caleb Williams,pass_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,150,,Nico Collins,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,175,,J.K. Dobbins,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,185,,Woody Marks,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,200,,Courtland Sutton,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,225,,Nick Chubb,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,250,,Troy Franklin,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,340,,Xavier Hutchinson,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,340,,Evan Engram,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,360,,RJ Harvey,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,390,,Dalton Schultz,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,450,,Marvin Mims Jr.,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,450,,Pat Bryant,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,475,,Harrison Bryant,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,475,,Houston Texans D/ST,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,500,,Jayden Higgins,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,500,,Bo Nix,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,500,,Denver Broncos D/ST,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,650,,Jaylin Noel,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,850,,C.J. Stroud,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,850,,Adam Trautman,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,1600,,Braxton Berrios,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,2000,,Trent Sherfield Sr.,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,2200,,Dare Ogunbowale,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,2200,,Dameon Pierce,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_anytime_td,Yes,4000,,British Brooks,anytime_td
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_attempts,Over,-106,34.5,Bo Nix,pass_attempts
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_attempts,Under,-120,34.5,Bo Nix,pass_attempts
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_attempts,Over,-118,32.5,C.J. Stroud,pass_attempts
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_attempts,Under,-108,32.5,C.J. Stroud,pass_attempts
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_completions,Over,-103,21.5,Bo Nix,pass_completions
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_completions,Under,-124,21.5,Bo Nix,pass_completions
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_completions,Over,-121,20.5,C.J. Stroud,pass_completions
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_completions,Under,-105,20.5,C.J. Stroud,pass_completions
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_tds,Over,142,1.5,C.J. Stroud,pass_tds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_tds,Under,-182,1.5,C.J. Stroud,pass_tds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_tds,Over,152,1.5,Bo Nix,pass_tds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_tds,Under,-195,1.5,Bo Nix,pass_tds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_yds,Over,-113,221.5,C.J. Stroud,pass_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_yds,Under,-111,221.5,C.J. Stroud,pass_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_yds,Over,-111,209.5,Bo Nix,pass_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_pass_yds,Under,-113,209.5,Bo Nix,pass_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Over,-112,62.5,Nico Collins,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Under,-113,62.5,Nico Collins,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Over,-114,54.5,Courtland Sutton,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Under,-110,54.5,Courtland Sutton,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Over,-110,27.5,Evan Engram,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Under,-114,27.5,Evan Engram,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Over,-117,5.5,Nick Chubb,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Under,-107,5.5,Nick Chubb,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Over,-119,3.5,J.K. Dobbins,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_reception_yds,Under,-105,3.5,J.K. Dobbins,reception_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_receptions,Over,-115,4.5,Courtland Sutton,receptions
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_receptions,Under,-111,4.5,Courtland Sutton,receptions
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Over,-111,58.5,J.K. Dobbins,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Under,-113,58.5,J.K. Dobbins,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Over,-110,36.5,Nick Chubb,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Under,-114,36.5,Nick Chubb,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Over,-115,35.5,Woody Marks,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Under,-110,35.5,Woody Marks,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Over,-109,21.5,Bo Nix,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Under,-115,21.5,Bo Nix,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Over,-108,20.5,RJ Harvey,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Under,-116,20.5,RJ Harvey,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Over,-117,15.5,C.J. Stroud,rush_yds
+72e2ce6652bbb3901f60b38bec05bf5f,americanfootball_nfl,2025-11-02T18:00:00Z,Houston Texans,Denver Broncos,draftkings,DraftKings,player_rush_yds,Under,-107,15.5,C.J. Stroud,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,-210,,Jahmyr Gibbs,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,-140,,David Montgomery,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,-115,,Amon-Ra St. Brown,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,155,,Justin Jefferson,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,170,,Sam LaPorta,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,180,,Jameson Williams,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,190,,Jordan Mason,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,225,,Aaron Jones,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,250,,Jordan Addison,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,320,,T.J. Hockenson,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,500,,Detroit Lions D/ST,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,500,,J.J. McCarthy,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,550,,Minnesota Vikings D/ST,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,600,,Kalif Raymond,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,600,,Isaac TeSlaa,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,650,,Jalen Nailor,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,900,,Brock Wright,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,1100,,Josh Oliver,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,1300,,Jared Goff,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,1700,,Adam Thielen,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,1700,,Zavier Scott,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,1900,,Ross Dwelley,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,2000,,Dominic Lovett,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,2200,,Jacob Saylors,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,2200,,Myles Price,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,2500,,Craig Reynolds,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,2500,,Tai Felton,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,3000,,Ben Yurosek,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_anytime_td,Yes,3500,,Ben Sims,anytime_td
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_attempts,Over,-116,30.5,J.J. McCarthy,pass_attempts
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_attempts,Under,-110,30.5,J.J. McCarthy,pass_attempts
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_attempts,Over,-112,28.5,Jared Goff,pass_attempts
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_attempts,Under,-113,28.5,Jared Goff,pass_attempts
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_completions,Over,-122,21.5,Jared Goff,pass_completions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_completions,Under,-104,21.5,Jared Goff,pass_completions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_completions,Over,-129,18.5,J.J. McCarthy,pass_completions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_completions,Under,101,18.5,J.J. McCarthy,pass_completions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_interceptions,Over,127,0.5,Jared Goff,pass_interceptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_interceptions,Under,-162,0.5,Jared Goff,pass_interceptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_interceptions,Over,-150,0.5,J.J. McCarthy,pass_interceptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_interceptions,Under,117,0.5,J.J. McCarthy,pass_interceptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_tds,Over,-190,1.5,Jared Goff,pass_tds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_tds,Under,147,1.5,Jared Goff,pass_tds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_tds,Over,170,1.5,J.J. McCarthy,pass_tds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_tds,Under,-220,1.5,J.J. McCarthy,pass_tds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_yds,Over,-112,239.5,Jared Goff,pass_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_yds,Under,-112,239.5,Jared Goff,pass_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_yds,Over,-113,208.5,J.J. McCarthy,pass_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_pass_yds,Under,-111,208.5,J.J. McCarthy,pass_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-114,75.5,Amon-Ra St. Brown,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-110,75.5,Amon-Ra St. Brown,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-110,74.5,Justin Jefferson,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-114,74.5,Justin Jefferson,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-111,45.5,Jameson Williams,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-113,45.5,Jameson Williams,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-113,43.5,Sam LaPorta,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-111,43.5,Sam LaPorta,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-112,43.5,Jordan Addison,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-112,43.5,Jordan Addison,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-110,30.5,T.J. Hockenson,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-114,30.5,T.J. Hockenson,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-108,23.5,Jahmyr Gibbs,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-116,23.5,Jahmyr Gibbs,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-111,18.5,Jalen Nailor,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-113,18.5,Jalen Nailor,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Over,-112,14.5,Aaron Jones,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_reception_yds,Under,-112,14.5,Aaron Jones,reception_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,-120,6.5,Amon-Ra St. Brown,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,-106,6.5,Amon-Ra St. Brown,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,-104,5.5,Justin Jefferson,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,-122,5.5,Justin Jefferson,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,108,4.5,Sam LaPorta,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,-137,4.5,Sam LaPorta,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,-139,3.5,T.J. Hockenson,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,109,3.5,T.J. Hockenson,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,-130,3.5,Jordan Addison,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,102,3.5,Jordan Addison,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,103,3.5,Jahmyr Gibbs,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,-132,3.5,Jahmyr Gibbs,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,139,3.5,Jameson Williams,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,-178,3.5,Jameson Williams,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,110,2.5,Aaron Jones,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,-140,2.5,Aaron Jones,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Over,-108,1.5,Jalen Nailor,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_receptions,Under,-118,1.5,Jalen Nailor,receptions
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Over,-111,73.5,Jahmyr Gibbs,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Under,-113,73.5,Jahmyr Gibbs,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Over,-110,48.5,David Montgomery,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Under,-114,48.5,David Montgomery,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Over,-115,36.5,Jordan Mason,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Under,-109,36.5,Jordan Mason,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Over,-114,32.5,Aaron Jones,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Under,-110,32.5,Aaron Jones,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Over,-117,19.5,J.J. McCarthy,rush_yds
+cf95657d78ab3e515203df1d19c3b0c2,americanfootball_nfl,2025-11-02T18:00:00Z,Detroit Lions,Minnesota Vikings,draftkings,DraftKings,player_rush_yds,Under,-108,19.5,J.J. McCarthy,rush_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_anytime_td,Yes,-250,,Jonathan Taylor,anytime_td
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_anytime_td,Yes,110,,Jaylen Warren,anytime_td
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_anytime_td,Yes,135,,DK Metcalf,anytime_td
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_anytime_td,Yes,135,,Tyler Warren,anytime_td
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_attempts,Over,-109,33.5,Aaron Rodgers,pass_attempts
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_attempts,Under,-117,33.5,Aaron Rodgers,pass_attempts
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_attempts,Over,-101,32.5,Daniel Jones,pass_attempts
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_attempts,Under,-127,32.5,Daniel Jones,pass_attempts
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_completions,Over,-113,22.5,Aaron Rodgers,pass_completions
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_completions,Under,-113,22.5,Aaron Rodgers,pass_completions
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_completions,Over,-105,22.5,Daniel Jones,pass_completions
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_completions,Under,-121,22.5,Daniel Jones,pass_completions
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_tds,Over,-145,1.5,Daniel Jones,pass_tds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_tds,Under,114,1.5,Daniel Jones,pass_tds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_tds,Over,-123,1.5,Aaron Rodgers,pass_tds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_tds,Under,-103,1.5,Aaron Rodgers,pass_tds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_yds,Over,-112,246.5,Daniel Jones,pass_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_yds,Under,-112,246.5,Daniel Jones,pass_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_yds,Over,-111,237.5,Aaron Rodgers,pass_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_pass_yds,Under,-113,237.5,Aaron Rodgers,pass_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Over,-113,60.5,DK Metcalf,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Under,-111,60.5,DK Metcalf,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Over,-115,55.5,Tyler Warren,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Under,-110,55.5,Tyler Warren,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Over,-114,54.5,Michael Pittman Jr.,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Under,-110,54.5,Michael Pittman Jr.,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Over,-114,41.5,Alec Pierce,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_reception_yds,Under,-110,41.5,Alec Pierce,reception_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_rush_yds,Over,-113,96.5,Jonathan Taylor,rush_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_rush_yds,Under,-111,96.5,Jonathan Taylor,rush_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_rush_yds,Over,-109,52.5,Jaylen Warren,rush_yds
+2340a6e0794d5688996dcf8aaf634742,americanfootball_nfl,2025-11-02T18:00:00Z,Pittsburgh Steelers,Indianapolis Colts,draftkings,DraftKings,player_rush_yds,Under,-115,52.5,Jaylen Warren,rush_yds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_anytime_td,Yes,-115,,Kimani Vidal,anytime_td
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_anytime_td,Yes,135,,Ladd McConkey,anytime_td
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_anytime_td,Yes,135,,Oronde Gadsden II,anytime_td
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_anytime_td,Yes,160,,Quentin Johnston,anytime_td
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_anytime_td,Yes,190,,Tony Pollard,anytime_td
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_attempts,Over,-113,34.5,Cameron Ward,pass_attempts
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_attempts,Under,-113,34.5,Cameron Ward,pass_attempts
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_attempts,Over,-122,32.5,Justin Herbert,pass_attempts
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_attempts,Under,-105,32.5,Justin Herbert,pass_attempts
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_completions,Over,-120,22.5,Justin Herbert,pass_completions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_completions,Under,-107,22.5,Justin Herbert,pass_completions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_completions,Over,100,21.5,Cameron Ward,pass_completions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_completions,Under,-128,21.5,Cameron Ward,pass_completions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_interceptions,Over,131,0.5,Justin Herbert,pass_interceptions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_interceptions,Under,-167,0.5,Justin Herbert,pass_interceptions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_interceptions,Over,-169,0.5,Cameron Ward,pass_interceptions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_interceptions,Under,132,0.5,Cameron Ward,pass_interceptions
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_tds,Over,-191,1.5,Justin Herbert,pass_tds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_tds,Under,149,1.5,Justin Herbert,pass_tds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_tds,Over,-222,0.5,Cameron Ward,pass_tds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_tds,Under,172,0.5,Cameron Ward,pass_tds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_yds,Over,-111,243.5,Justin Herbert,pass_yds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_yds,Under,-113,243.5,Justin Herbert,pass_yds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_yds,Over,-111,224.5,Cameron Ward,pass_yds
+b60025aea576e2e89ef7bc7303f847ec,americanfootball_nfl,2025-11-02T18:00:00Z,Tennessee Titans,Los Angeles Chargers,draftkings,DraftKings,player_pass_yds,Under,-113,224.5,Cameron Ward,pass_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_anytime_td,Yes,-245,,Christian McCaffrey,anytime_td
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_anytime_td,Yes,-105,,Tyrone Tracy Jr.,anytime_td
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_anytime_td,Yes,145,,George Kittle,anytime_td
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_anytime_td,Yes,180,,Jaxson Dart,anytime_td
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_attempts,Over,-119,30.5,Jaxson Dart,pass_attempts
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_attempts,Under,-107,30.5,Jaxson Dart,pass_attempts
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_completions,Over,-132,19.5,Jaxson Dart,pass_completions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_completions,Under,103,19.5,Jaxson Dart,pass_completions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_tds,Over,125,1.5,Jaxson Dart,pass_tds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_tds,Under,-160,1.5,Jaxson Dart,pass_tds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_yds,Over,-111,207.5,Jaxson Dart,pass_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_pass_yds,Under,-113,207.5,Jaxson Dart,pass_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Over,-112,55.5,George Kittle,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Under,-112,55.5,George Kittle,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Over,-114,51.5,Wan'Dale Robinson,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Under,-110,51.5,Wan'Dale Robinson,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Over,-110,51.5,Christian McCaffrey,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Under,-114,51.5,Christian McCaffrey,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Over,-111,40.5,Theo Johnson,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Under,-113,40.5,Theo Johnson,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Over,-115,39.5,Darius Slayton,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Under,-109,39.5,Darius Slayton,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Over,-112,18.5,Tyrone Tracy Jr.,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_reception_yds,Under,-112,18.5,Tyrone Tracy Jr.,reception_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Over,-101,5.5,Wan'Dale Robinson,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Under,-126,5.5,Wan'Dale Robinson,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Over,128,3.5,Darius Slayton,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Under,-164,3.5,Darius Slayton,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Over,134,3.5,Theo Johnson,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Under,-172,3.5,Theo Johnson,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Over,-138,2.5,Tyrone Tracy Jr.,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_receptions,Under,108,2.5,Tyrone Tracy Jr.,receptions
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_rush_yds,Over,-112,69.5,Christian McCaffrey,rush_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_rush_yds,Under,-112,69.5,Christian McCaffrey,rush_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_rush_yds,Over,-110,51.5,Tyrone Tracy Jr.,rush_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_rush_yds,Under,-114,51.5,Tyrone Tracy Jr.,rush_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_rush_yds,Over,-111,37.5,Jaxson Dart,rush_yds
+a788e7cebff4b5fe10034710090e4529,americanfootball_nfl,2025-11-02T18:00:00Z,New York Giants,San Francisco 49ers,draftkings,DraftKings,player_rush_yds,Under,-113,37.5,Jaxson Dart,rush_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,-110,,Ashton Jeanty,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,-110,,Travis Etienne Jr.,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,140,,Brian Thomas Jr,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,165,,Jakobi Meyers,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,175,,Tre Tucker,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,180,,Brock Bowers,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,220,,Travis Hunter,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,320,,Dyami Brown,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,330,,Trevor Lawrence,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,360,,Bhayshul Tuten,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,380,,Jack Bech,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,380,,Hunter Long,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,450,,Jacksonville Jaguars D/ST,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,475,,Las Vegas Raiders D/ST,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,500,,Parker Washington,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,550,,Michael Mayer,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,650,,Dont'e Thornton Jr.,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,800,,Zamir White,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,850,,Raheem Mostert,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,850,,Ian Thomas,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,850,,Johnny Mundt,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,1000,,Tim Patrick,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,1400,,Geno Smith,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,1900,,LeQuint Allen Jr.,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,2000,,Justin Shorter,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,2000,,Alex Bachman,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,2000,,Cody Schrader,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_anytime_td,Yes,2200,,Dylan Laube,anytime_td
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_attempts,Over,-120,33.5,Trevor Lawrence,pass_attempts
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_attempts,Under,-107,33.5,Trevor Lawrence,pass_attempts
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_attempts,Over,-101,33.5,Geno Smith,pass_attempts
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_attempts,Under,-127,33.5,Geno Smith,pass_attempts
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_completions,Over,-123,21.5,Trevor Lawrence,pass_completions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_completions,Under,-103,21.5,Trevor Lawrence,pass_completions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_completions,Over,-122,21.5,Geno Smith,pass_completions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_completions,Under,-104,21.5,Geno Smith,pass_completions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_interceptions,Over,-122,0.5,Trevor Lawrence,pass_interceptions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_interceptions,Under,-105,0.5,Trevor Lawrence,pass_interceptions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_interceptions,Over,-145,0.5,Geno Smith,pass_interceptions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_interceptions,Under,114,0.5,Geno Smith,pass_interceptions
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_tds,Over,-104,1.5,Trevor Lawrence,pass_tds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_tds,Under,-123,1.5,Trevor Lawrence,pass_tds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_tds,Over,103,1.5,Geno Smith,pass_tds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_tds,Under,-131,1.5,Geno Smith,pass_tds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_yds,Over,-111,230.5,Trevor Lawrence,pass_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_yds,Under,-113,230.5,Trevor Lawrence,pass_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_yds,Over,-113,228.5,Geno Smith,pass_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_pass_yds,Under,-111,228.5,Geno Smith,pass_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_rush_yds,Over,-114,62.5,Travis Etienne Jr.,rush_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_rush_yds,Under,-110,62.5,Travis Etienne Jr.,rush_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_rush_yds,Over,-114,58.5,Ashton Jeanty,rush_yds
+d0bf341e7959d69b55f1a8ff09065234,americanfootball_nfl,2025-11-02T21:05:00Z,Las Vegas Raiders,Jacksonville Jaguars,draftkings,DraftKings,player_rush_yds,Under,-111,58.5,Ashton Jeanty,rush_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,-160,,Kyren Williams,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,-120,,Puka Nacua,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,-110,,Davante Adams,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,175,,Alvin Kamara,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,260,,Chris Olave,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,270,,Jordan Whittington,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,270,,Blake Corum,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,340,,Tyler Higbee,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,370,,Rashid Shaheed,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,400,,Taysom Hill,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,450,,Juwan Johnson,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,450,,Los Angeles Rams D/ST,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,550,,New Orleans Saints D/ST,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,550,,Tyler Shough,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,700,,Konata Mumpfield,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,750,,Jarquez Hunter,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,750,,Devin Neal,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,800,,Colby Parkinson,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,900,,Davis Allen,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,900,,Xavier Smith,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,1000,,Brandin Cooks,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,1100,,Matthew Stafford,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,1200,,Devaughn Vele,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,1500,,Terrance Ferguson,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,1500,,Foster Moreau,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,2200,,Mason Tipton,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,2200,,Zaire Mitchell-Paden,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_anytime_td,Yes,2500,,Jack Stoll,anytime_td
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_tds,Over,-218,1.5,Matthew Stafford,pass_tds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_tds,Under,168,1.5,Matthew Stafford,pass_tds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_tds,Over,-174,0.5,Tyler Shough,pass_tds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_tds,Under,135,0.5,Tyler Shough,pass_tds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_yds,Over,-111,256.5,Matthew Stafford,pass_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_yds,Under,-113,256.5,Matthew Stafford,pass_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_yds,Over,-113,186.5,Tyler Shough,pass_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_pass_yds,Under,-112,186.5,Tyler Shough,pass_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Over,-110,91.5,Puka Nacua,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Under,-114,91.5,Puka Nacua,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Over,-111,61.5,Davante Adams,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Under,-113,61.5,Davante Adams,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Over,-112,58.5,Chris Olave,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Under,-112,58.5,Chris Olave,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Over,-113,39.5,Rashid Shaheed,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_reception_yds,Under,-111,39.5,Rashid Shaheed,reception_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_rush_yds,Over,-110,74.5,Kyren Williams,rush_yds
+b08df670a95f1809707b335dc75081c6,americanfootball_nfl,2025-11-02T21:05:00Z,Los Angeles Rams,New Orleans Saints,draftkings,DraftKings,player_rush_yds,Under,-114,74.5,Kyren Williams,rush_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,-145,,James Cook,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,-110,,Rashee Rice,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,-105,,Josh Allen,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,105,,Travis Kelce,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,115,,Kareem Hunt,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,195,,Khalil Shakir,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,195,,Xavier Worthy,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,230,,Dalton Kincaid,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,240,,Brashard Smith,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,260,,Keon Coleman,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,370,,Patrick Mahomes,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,450,,Marquise Brown,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,550,,Dawson Knox,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,550,,Noah Gray,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,550,,Tyquan Thornton,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,550,,Kansas City Chiefs D/ST,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,600,,Joshua Palmer,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,650,,Elijah Moore,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,650,,Tyrell Shavers,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,650,,Buffalo Bills D/ST,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,700,,JuJu Smith-Schuster,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,750,,Curtis Samuel,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,850,,Jackson Hawes,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,900,,Ty Johnson,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,1300,,Ray Davis,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,2200,,Jalen Royals,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,2500,,Robert Tonyan,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,2800,,Reggie Gilliam,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,3500,,Nikko Remigio,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_anytime_td,Yes,3500,,Jared Wiley,anytime_td
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_attempts,Over,-117,35.5,Patrick Mahomes,pass_attempts
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_attempts,Under,-109,35.5,Patrick Mahomes,pass_attempts
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_attempts,Over,-104,31.5,Josh Allen,pass_attempts
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_attempts,Under,-123,31.5,Josh Allen,pass_attempts
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_completions,Over,-129,23.5,Patrick Mahomes,pass_completions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_completions,Under,102,23.5,Patrick Mahomes,pass_completions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_completions,Over,-105,21.5,Josh Allen,pass_completions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_completions,Under,-121,21.5,Josh Allen,pass_completions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_tds,Over,170,2.5,Patrick Mahomes,pass_tds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_tds,Under,-220,2.5,Patrick Mahomes,pass_tds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_tds,Over,-115,1.5,Josh Allen,pass_tds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_tds,Under,-111,1.5,Josh Allen,pass_tds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_yds,Over,-113,270.5,Patrick Mahomes,pass_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_yds,Under,-111,270.5,Patrick Mahomes,pass_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_yds,Over,-112,231.5,Josh Allen,pass_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_pass_yds,Under,-112,231.5,Josh Allen,pass_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-110,70.5,Rashee Rice,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-114,70.5,Rashee Rice,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-111,49.5,Khalil Shakir,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-113,49.5,Khalil Shakir,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-114,46.5,Xavier Worthy,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-110,46.5,Xavier Worthy,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-113,45.5,Travis Kelce,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-111,45.5,Travis Kelce,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-110,37.5,Keon Coleman,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-114,37.5,Keon Coleman,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-113,36.5,Dalton Kincaid,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-111,36.5,Dalton Kincaid,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-111,16.5,Marquise Brown,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-113,16.5,Marquise Brown,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-110,12.5,JuJu Smith-Schuster,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-114,12.5,JuJu Smith-Schuster,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Over,-112,11.5,James Cook,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_reception_yds,Under,-112,11.5,James Cook,reception_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,-117,6.5,Rashee Rice,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,-109,6.5,Rashee Rice,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,-145,4.5,Khalil Shakir,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,114,4.5,Khalil Shakir,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,100,4.5,Travis Kelce,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,-128,4.5,Travis Kelce,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,-153,3.5,Xavier Worthy,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,120,3.5,Xavier Worthy,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,-104,3.5,Keon Coleman,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,-123,3.5,Keon Coleman,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,112,3.5,Dalton Kincaid,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,-143,3.5,Dalton Kincaid,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,-193,1.5,Marquise Brown,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,150,1.5,Marquise Brown,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,-151,1.5,James Cook,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,118,1.5,James Cook,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Over,117,1.5,JuJu Smith-Schuster,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_receptions,Under,-150,1.5,JuJu Smith-Schuster,receptions
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_rush_yds,Over,-110,74.5,James Cook,rush_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_rush_yds,Under,-114,74.5,James Cook,rush_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_rush_yds,Over,-114,37.5,Josh Allen,rush_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_rush_yds,Under,-110,37.5,Josh Allen,rush_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_rush_yds,Over,-113,27.5,Patrick Mahomes,rush_yds
+61531628516decd1ee8116da5f6f9056,americanfootball_nfl,2025-11-02T21:25:00Z,Buffalo Bills,Kansas City Chiefs,draftkings,DraftKings,player_rush_yds,Under,-111,27.5,Patrick Mahomes,rush_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,105,,Jaxon Smith-Njigba,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,115,,Jacory Croskey-Merritt,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,115,,Zach Charbonnet,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,125,,Kenneth Walker III,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,150,,Zach Ertz,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,170,,Deebo Samuel Sr.,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,195,,Cooper Kupp,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,195,,AJ Barner,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,280,,Jayden Daniels,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,400,,Luke McCaffrey,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,400,,Tory Horton,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,450,,Elijah Arroyo,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,500,,Washington Commanders D/ST,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,500,,Seattle Seahawks D/ST,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,600,,Chris Moore,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,600,,Jaylin Lane,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,600,,Jeremy McNichols,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,750,,Chris Rodriguez Jr.,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,900,,Sam Darnold,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,1100,,John Bates,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,1500,,Jake Bobo,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,1500,,Eric Saubert,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,1700,,Colson Yankoff,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,1700,,George Holani,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,2000,,Ben Sinnott,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_anytime_td,Yes,2200,,Dareke Young,anytime_td
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_attempts,Over,-124,31.5,Jayden Daniels,pass_attempts
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_attempts,Under,-103,31.5,Jayden Daniels,pass_attempts
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_completions,Over,-130,19.5,Jayden Daniels,pass_completions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_completions,Under,102,19.5,Jayden Daniels,pass_completions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_interceptions,Over,110,0.5,Jayden Daniels,pass_interceptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_interceptions,Under,-140,0.5,Jayden Daniels,pass_interceptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_tds,Over,-159,1.5,Sam Darnold,pass_tds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_tds,Under,124,1.5,Sam Darnold,pass_tds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_tds,Over,117,1.5,Jayden Daniels,pass_tds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_tds,Under,-150,1.5,Jayden Daniels,pass_tds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_yds,Over,-111,247.5,Sam Darnold,pass_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_yds,Under,-113,247.5,Sam Darnold,pass_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_yds,Over,-112,223.5,Jayden Daniels,pass_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_pass_yds,Under,-112,223.5,Jayden Daniels,pass_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_reception_yds,Over,-114,48.5,Deebo Samuel Sr.,reception_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_reception_yds,Under,-110,48.5,Deebo Samuel Sr.,reception_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_reception_yds,Over,-111,33.5,Zach Ertz,reception_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_reception_yds,Under,-113,33.5,Zach Ertz,reception_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_reception_yds,Over,-113,26.5,Luke McCaffrey,reception_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_reception_yds,Under,-111,26.5,Luke McCaffrey,reception_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_receptions,Over,106,5.5,Deebo Samuel Sr.,receptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_receptions,Under,-135,5.5,Deebo Samuel Sr.,receptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_receptions,Over,-139,3.5,Zach Ertz,receptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_receptions,Under,109,3.5,Zach Ertz,receptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_receptions,Over,-116,2.5,Luke McCaffrey,receptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_receptions,Under,-110,2.5,Luke McCaffrey,receptions
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_rush_yds,Over,-113,46.5,Jacory Croskey-Merritt,rush_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_rush_yds,Under,-111,46.5,Jacory Croskey-Merritt,rush_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_rush_yds,Over,-112,38.5,Jayden Daniels,rush_yds
+c2fd8a23091a954fb21ff6d3537db826,americanfootball_nfl,2025-11-03T01:20:00Z,Washington Commanders,Seattle Seahawks,draftkings,DraftKings,player_rush_yds,Under,-112,38.5,Jayden Daniels,rush_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_anytime_td,Yes,-145,,Javonte Williams,anytime_td
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_anytime_td,Yes,105,,CeeDee Lamb,anytime_td
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_anytime_td,Yes,115,,Trey McBride,anytime_td
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_anytime_td,Yes,115,,Marvin Harrison Jr.,anytime_td
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_tds,Over,165,2.5,Dak Prescott,pass_tds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_tds,Under,-213,2.5,Dak Prescott,pass_tds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_tds,Over,-150,1.5,Kyler Murray,pass_tds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_tds,Under,117,1.5,Kyler Murray,pass_tds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_yds,Over,-113,264.5,Dak Prescott,pass_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_yds,Under,-111,264.5,Dak Prescott,pass_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_yds,Over,-111,251.5,Kyler Murray,pass_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_pass_yds,Under,-113,251.5,Kyler Murray,pass_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Over,-112,77.5,CeeDee Lamb,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Under,-112,77.5,CeeDee Lamb,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Over,-112,67.5,Trey McBride,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Under,-112,67.5,Trey McBride,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Over,-113,59.5,George Pickens,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Under,-111,59.5,George Pickens,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Over,-110,57.5,Marvin Harrison Jr.,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Under,-114,57.5,Marvin Harrison Jr.,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Over,-115,12.5,Javonte Williams,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_reception_yds,Under,-109,12.5,Javonte Williams,reception_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_rush_yds,Over,-110,61.5,Javonte Williams,rush_yds
+f3dfb574e0a542375a480534525ee6cf,americanfootball_nfl,2025-11-04T01:15:00Z,Dallas Cowboys,Arizona Cardinals,draftkings,DraftKings,player_rush_yds,Under,-114,61.5,Javonte Williams,rush_yds

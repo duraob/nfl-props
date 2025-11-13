@@ -7,12 +7,12 @@ This document provides step-by-step instructions for running each core module in
 1. python nfl_data.py 2025 --- Scrape 2025 season data (run weekly after games complete)
 2. python roster_scraper.py --- Update active player roster [ DO THIS END OF DAY WEDNESDAY ]
 3. python injuries.py --- Scrape current injury data [ DO THIS END OF DAY WEDNESDAY ]
-4. python projection.py (CURRENT WEEK NUMBER) --- Week + player projections (uses available 2025 weeks + 2024 fill)
-5. python enhanced_season_projector.py (CURRENT WEEK NUMBER) --- Team projections and standings
+4. python run_projections.py (CURRENT WEEK NUMBER) --- Week + player projections (uses available 2025 weeks + 2024 fill)
+5. python run_season_projections.py (CURRENT WEEK NUMBER) --- Team projections and standings
 6. python odds.py (CURRENT WEEK NUMBER) --- Scrape specific week odds
 7. python picks_agent.py --- Analyze current week (automatically detects available weeks)
 8. python stats_agent.py (CURRENT WEEK NUMBER) --- Generate insights for any week
-9. python insights_formatter.py (CURRENT WEEK NUMBER) --csv
+9. python utils/insights_formatter.py (CURRENT WEEK NUMBER) --csv
 
 ## Overview
 
@@ -22,7 +22,7 @@ The pipeline consists of 8 core modules that work together to provide comprehens
 2. **roster_scraper.py** - Updates active player roster from ESPN
 3. **injuries.py** - Scrapes current injury data from ESPN NFL injuries page
 4. **projection.py** - Generates player projections using time-weighted historical data
-5. **enhanced_season_projector.py** - Generates team projections, standings, and playoff probabilities
+5. **run_season_projections.py** - Generates team projections, standings, and playoff probabilities
 6. **odds.py** - Scrapes current week odds and player props from The Odds API
 7. **picks_agent.py** - Analyzes projections vs odds to identify betting opportunities
 8. **stats_agent.py** - Generates statistical insights and betting nuggets
@@ -148,20 +148,20 @@ python projection.py 3
 
 ---
 
-### 5. Team Projection Generation (enhanced_season_projector.py)
+### 5. Team Projection Generation (run_season_projections.py)
 
 **Purpose**: Generate team projections, standings, and playoff probabilities using enhanced methodology
 
 **Usage**:
 ```bash
 # Week 1 team projections (uses 10 games from 2024)
-python enhanced_season_projector.py 1
+python run_season_projections.py 1
 
 # Week 2 team projections (uses 9 games from 2024 + 1 from 2025)
-python enhanced_season_projector.py 2
+python run_season_projections.py 2
 
 # Week 3+ team projections (uses available 2025 weeks + 2024 fill)
-python enhanced_season_projector.py 3
+python run_season_projections.py 3
 ```
 
 **Output**:
@@ -283,7 +283,7 @@ python injuries.py
 python projection.py 2  # Replace 2 with current week + 1
 
 # 5. Generate team projections and standings
-python enhanced_season_projector.py 2  # Replace 2 with current week + 1
+python run_season_projections.py 2  # Replace 2 with current week + 1
 ```
 
 ### Wednesday-Thursday (When Odds Posted)
@@ -375,7 +375,7 @@ python -c "from picks_agent import call_grok_api; print('Grok API test')"
 - **roster_scraper.py**: Takes 3-5 minutes for all 32 teams
 - **injuries.py**: Takes 2-3 minutes for all 32 teams
 - **projection.py**: Takes 1-2 minutes for player projections
-- **enhanced_season_projector.py**: Takes 2-3 minutes for team projections
+- **run_season_projections.py**: Takes 2-3 minutes for team projections
 - **odds.py**: Takes 2-3 minutes (rate limited)
 - **picks_agent.py**: Takes 3-5 minutes (includes AI analysis)
 - **stats_agent.py**: Takes 1-2 minutes

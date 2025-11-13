@@ -1,0 +1,222 @@
+[
+  {
+    "player": "Aaron Rodgers",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "rush_yds",
+    "sample_size": 57,
+    "average": 5.6,
+    "line": 0.5,
+    "delta_pct": 1022.8,
+    "week": 7,
+    "nugget": "Aaron Rodgers averages 5.6 rush_yds in 57 games, +1022.8% vs Week 7 line of 0.5."
+  },
+  {
+    "player": "Joe Flacco",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "rush_yds",
+    "sample_size": 24,
+    "average": 3.0,
+    "line": 0.5,
+    "delta_pct": 491.7,
+    "week": 7,
+    "nugget": "Joe Flacco averages 3.0 rush_yds in 24 games, +491.7% vs Week 7 line of 0.5."
+  },
+  {
+    "player": "Pat Freiermuth",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "reception_yds",
+    "sample_size": 57,
+    "average": 38.0,
+    "line": 12.5,
+    "delta_pct": 204.1,
+    "week": 7,
+    "nugget": "Pat Freiermuth averages 38.0 reception_yds in 57 games, +204.1% vs Week 7 line of 12.5."
+  },
+  {
+    "player": "Geno Smith",
+    "opponent": "Las Vegas Raiders vs Kansas City Chiefs",
+    "stat": "pass_tds",
+    "sample_size": 65,
+    "average": 1.4,
+    "line": 0.5,
+    "delta_pct": 170.8,
+    "week": 7,
+    "nugget": "Geno Smith averages 1.4 pass_tds in 65 games, +170.8% vs Week 7 line of 0.5."
+  },
+  {
+    "player": "Dillon Gabriel",
+    "opponent": "Miami Dolphins vs Cleveland Browns",
+    "stat": "pass_interceptions",
+    "sample_size": 4,
+    "average": 0.0,
+    "line": 0.5,
+    "delta_pct": -100.0,
+    "week": 7,
+    "nugget": "Dillon Gabriel averages 0.0 pass_interceptions in 4 games, -100.0% vs Week 7 line of 0.5."
+  },
+  {
+    "player": "Samaje Perine",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "reception_yds",
+    "sample_size": 63,
+    "average": 18.8,
+    "line": 9.5,
+    "delta_pct": 98.2,
+    "week": 7,
+    "nugget": "Samaje Perine averages 18.8 reception_yds in 63 games, +98.2% vs Week 7 line of 9.5."
+  },
+  {
+    "player": "Dak Prescott",
+    "opponent": "Washington Commanders vs Dallas Cowboys",
+    "stat": "rush_yds",
+    "sample_size": 42,
+    "average": 10.9,
+    "line": 5.5,
+    "delta_pct": 97.8,
+    "week": 7,
+    "nugget": "Dak Prescott averages 10.9 rush_yds in 42 games, +97.8% vs Week 7 line of 5.5."
+  },
+  {
+    "player": "Daniel Jones",
+    "opponent": "Indianapolis Colts vs Los Angeles Chargers",
+    "stat": "rush_yds",
+    "sample_size": 47,
+    "average": 32.1,
+    "line": 16.5,
+    "delta_pct": 94.8,
+    "week": 7,
+    "nugget": "Daniel Jones averages 32.1 rush_yds in 47 games, +94.8% vs Week 7 line of 16.5."
+  },
+  {
+    "player": "Joe Flacco",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "pass_interceptions",
+    "sample_size": 24,
+    "average": 1.0,
+    "line": 0.5,
+    "delta_pct": 91.7,
+    "week": 7,
+    "nugget": "Joe Flacco averages 1.0 pass_interceptions in 24 games, +91.7% vs Week 7 line of 0.5."
+  },
+  {
+    "player": "Nick Chubb",
+    "opponent": "Houston Texans vs Seattle Seahawks",
+    "stat": "rush_yds",
+    "sample_size": 40,
+    "average": 65.2,
+    "line": 36.5,
+    "delta_pct": 78.6,
+    "week": 7,
+    "nugget": "Nick Chubb averages 65.2 rush_yds in 40 games, +78.6% vs Week 7 line of 36.5."
+  },
+  {
+    "player": "Rhamondre Stevenson",
+    "opponent": "New England Patriots vs Tennessee Titans",
+    "stat": "reception_yds",
+    "sample_size": 62,
+    "average": 18.2,
+    "line": 10.5,
+    "delta_pct": 73.0,
+    "week": 7,
+    "nugget": "Rhamondre Stevenson averages 18.2 reception_yds in 62 games, +73.0% vs Week 7 line of 10.5."
+  },
+  {
+    "player": "Jerry Jeudy",
+    "opponent": "Miami Dolphins vs Cleveland Browns",
+    "stat": "reception_yds",
+    "sample_size": 62,
+    "average": 64.6,
+    "line": 37.5,
+    "delta_pct": 72.3,
+    "week": 7,
+    "nugget": "Jerry Jeudy averages 64.6 reception_yds in 62 games, +72.3% vs Week 7 line of 37.5."
+  },
+  {
+    "player": "Andrei Iosivas",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "reception_yds",
+    "sample_size": 41,
+    "average": 26.7,
+    "line": 15.5,
+    "delta_pct": 72.0,
+    "week": 7,
+    "nugget": "Andrei Iosivas averages 26.7 reception_yds in 41 games, +72.0% vs Week 7 line of 15.5."
+  },
+  {
+    "player": "Evan Engram",
+    "opponent": "New York Giants vs Denver Broncos",
+    "stat": "reception_yds",
+    "sample_size": 48,
+    "average": 43.1,
+    "line": 26.5,
+    "delta_pct": 62.5,
+    "week": 7,
+    "nugget": "Evan Engram averages 43.1 reception_yds in 48 games, +62.5% vs Week 7 line of 26.5."
+  },
+  {
+    "player": "Jonnu Smith",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "reception_yds",
+    "sample_size": 59,
+    "average": 42.8,
+    "line": 26.5,
+    "delta_pct": 61.4,
+    "week": 7,
+    "nugget": "Jonnu Smith averages 42.8 reception_yds in 59 games, +61.4% vs Week 7 line of 26.5."
+  },
+  {
+    "player": "Jaxson Dart",
+    "opponent": "New York Giants vs Denver Broncos",
+    "stat": "pass_tds",
+    "sample_size": 5,
+    "average": 0.8,
+    "line": 0.5,
+    "delta_pct": 60.0,
+    "week": 7,
+    "nugget": "Jaxson Dart averages 0.8 pass_tds in 5 games, +60.0% vs Week 7 line of 0.5."
+  },
+  {
+    "player": "Cam Skattebo",
+    "opponent": "New York Giants vs Denver Broncos",
+    "stat": "reception_yds",
+    "sample_size": 6,
+    "average": 25.8,
+    "line": 16.5,
+    "delta_pct": 56.6,
+    "week": 7,
+    "nugget": "Cam Skattebo averages 25.8 reception_yds in 6 games, +56.6% vs Week 7 line of 16.5."
+  },
+  {
+    "player": "Kenneth Gainwell",
+    "opponent": "Pittsburgh Steelers vs Cincinnati Bengals",
+    "stat": "reception_yds",
+    "sample_size": 62,
+    "average": 8.9,
+    "line": 19.5,
+    "delta_pct": -54.2,
+    "week": 7,
+    "nugget": "Kenneth Gainwell averages 8.9 reception_yds in 62 games, -54.2% vs Week 7 line of 19.5."
+  },
+  {
+    "player": "Spencer Rattler",
+    "opponent": "New Orleans Saints vs Chicago Bears",
+    "stat": "pass_tds",
+    "sample_size": 20,
+    "average": 0.7,
+    "line": 1.5,
+    "delta_pct": -53.3,
+    "week": 7,
+    "nugget": "Spencer Rattler averages 0.7 pass_tds in 20 games, -53.3% vs Week 7 line of 1.5."
+  },
+  {
+    "player": "Stefon Diggs",
+    "opponent": "New England Patriots vs Tennessee Titans",
+    "stat": "reception_yds",
+    "sample_size": 46,
+    "average": 77.3,
+    "line": 50.5,
+    "delta_pct": 53.1,
+    "week": 7,
+    "nugget": "Stefon Diggs averages 77.3 reception_yds in 46 games, +53.1% vs Week 7 line of 50.5."
+  }
+]

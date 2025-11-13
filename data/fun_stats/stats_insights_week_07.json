@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "insights": [
+    {
+      "player": "Aaron Rodgers",
+      "insight": "Aaron Rodgers scrambles for 5.6 rushing yards on average across 57 games, crushing his Week 7 line of just 0.5!"
+    },
+    {
+      "player": "Joe Flacco",
+      "insight": "Joe Flacco averages 3.0 rushing yards over 24 games, easily surpassing his Week 7 prop line of 0.5!"
+    },
+    {
+      "player": "Pat Freiermuth",
+      "insight": "Pat Freiermuth racks up 38.0 receiving yards per game over 57 games, towering over his Week 7 line of 12.5!"
+    },
+    {
+      "player": "Geno Smith",
+      "insight": "Geno Smith averages 1.4 passing TDs across 65 games, making his Week 7 line of 0.5 look like a steal!"
+    },
+    {
+      "player": "Dillon Gabriel",
+      "insight": "Dillon Gabriel has yet to throw an interception in 4 games, falling short of his Week 7 line of 0.5."
+    },
+    {
+      "player": "Samaje Perine",
+      "insight": "Samaje Perine averages 18.8 receiving yards over 63 games, nearly doubling his Week 7 prop line of 9.5!"
+    },
+    {
+      "player": "Dak Prescott",
+      "insight": "Dak Prescott rushes for 10.9 yards per game across 42 games, almost twice his Week 7 line of 5.5!"
+    },
+    {
+      "player": "Daniel Jones",
+      "insight": "Daniel Jones averages 32.1 rushing yards over 47 games, nearly doubling his Week 7 prop line of 16.5!"
+    },
+    {
+      "player": "Joe Flacco",
+      "insight": "Joe Flacco averages 1.0 interception per game in 24 starts, doubling his Week 7 line of 0.5!"
+    },
+    {
+      "player": "Nick Chubb",
+      "insight": "Nick Chubb bulldozes for 65.2 rushing yards per game over 40 games, well above his Week 7 line of 36.5!"
+    },
+    {
+      "player": "Rhamondre Stevenson",
+      "insight": "Rhamondre Stevenson averages 18.2 receiving yards across 62 games, smashing his Week 7 line of 10.5!"
+    },
+    {
+      "player": "Jerry Jeudy",
+      "insight": "Jerry Jeudy hauls in 64.6 receiving yards per game over 62 games, soaring past his Week 7 line of 37.5!"
+    },
+    {
+      "player": "Andrei Iosivas",
+      "insight": "Andrei Iosivas averages 26.7 receiving yards over 41 games, handily beating his Week 7 line of 15.5!"
+    },
+    {
+      "player": "Evan Engram",
+      "insight": "Evan Engram posts 43.1 receiving yards per game across 48 games, outpacing his Week 7 line of 26.5!"
+    },
+    {
+      "player": "Jonnu Smith",
+      "insight": "Jonnu Smith averages 42.8 receiving yards over 59 games, comfortably topping his Week 7 line of 26.5!"
+    },
+    {
+      "player": "Jaxson Dart",
+      "insight": "Jaxson Dart averages 0.8 passing TDs in 5 games, edging out his Week 7 prop line of 0.5!"
+    },
+    {
+      "player": "Cam Skattebo",
+      "insight": "Cam Skattebo averages 25.8 receiving yards across 6 games, clearing his Week 7 line of 16.5 with ease!"
+    },
+    {
+      "player": "Kenneth Gainwell",
+      "insight": "Kenneth Gainwell averages just 8.9 receiving yards over 62 games, falling well short of his Week 7 line of 19.5."
+    },
+    {
+      "player": "Spencer Rattler",
+      "insight": "Spencer Rattler averages only 0.7 passing TDs across 20 games, struggling to hit his Week 7 line of 1.5."
+    },
+    {
+      "player": "Stefon Diggs",
+      "insight": "Stefon Diggs torches defenses for 77.3 receiving yards per game over 46 games, blowing past his Week 7 line of 50.5!"
+    }
+  ],
+  "raw_response": "[\n  {\n    \"player\": \"Aaron Rodgers\",\n    \"insight\": \"Aaron Rodgers scrambles for 5.6 rushing yards on average across 57 games, crushing his Week 7 line of just 0.5!\"\n  },\n  {\n    \"player\": \"Joe Flacco\",\n    \"insight\": \"Joe Flacco averages 3.0 rushing yards over 24 games, easily surpassing his Week 7 prop line of 0.5!\"\n  },\n  {\n    \"player\": \"Pat Freiermuth\",\n    \"insight\": \"Pat Freiermuth racks up 38.0 receiving yards per game over 57 games, towering over his Week 7 line of 12.5!\"\n  },\n  {\n    \"player\": \"Geno Smith\",\n    \"insight\": \"Geno Smith averages 1.4 passing TDs across 65 games, making his Week 7 line of 0.5 look like a steal!\"\n  },\n  {\n    \"player\": \"Dillon Gabriel\",\n    \"insight\": \"Dillon Gabriel has yet to throw an interception in 4 games, falling short of his Week 7 line of 0.5.\"\n  },\n  {\n    \"player\": \"Samaje Perine\",\n    \"insight\": \"Samaje Perine averages 18.8 receiving yards over 63 games, nearly doubling his Week 7 prop line of 9.5!\"\n  },\n  {\n    \"player\": \"Dak Prescott\",\n    \"insight\": \"Dak Prescott rushes for 10.9 yards per game across 42 games, almost twice his Week 7 line of 5.5!\"\n  },\n  {\n    \"player\": \"Daniel Jones\",\n    \"insight\": \"Daniel Jones averages 32.1 rushing yards over 47 games, nearly doubling his Week 7 prop line of 16.5!\"\n  },\n  {\n    \"player\": \"Joe Flacco\",\n    \"insight\": \"Joe Flacco averages 1.0 interception per game in 24 starts, doubling his Week 7 line of 0.5!\"\n  },\n  {\n    \"player\": \"Nick Chubb\",\n    \"insight\": \"Nick Chubb bulldozes for 65.2 rushing yards per game over 40 games, well above his Week 7 line of 36.5!\"\n  },\n  {\n    \"player\": \"Rhamondre Stevenson\",\n    \"insight\": \"Rhamondre Stevenson averages 18.2 receiving yards across 62 games, smashing his Week 7 line of 10.5!\"\n  },\n  {\n    \"player\": \"Jerry Jeudy\",\n    \"insight\": \"Jerry Jeudy hauls in 64.6 receiving yards per game over 62 games, soaring past his Week 7 line of 37.5!\"\n  },\n  {\n    \"player\": \"Andrei Iosivas\",\n    \"insight\": \"Andrei Iosivas averages 26.7 receiving yards over 41 games, handily beating his Week 7 line of 15.5!\"\n  },\n  {\n    \"player\": \"Evan Engram\",\n    \"insight\": \"Evan Engram posts 43.1 receiving yards per game across 48 games, outpacing his Week 7 line of 26.5!\"\n  },\n  {\n    \"player\": \"Jonnu Smith\",\n    \"insight\": \"Jonnu Smith averages 42.8 receiving yards over 59 games, comfortably topping his Week 7 line of 26.5!\"\n  },\n  {\n    \"player\": \"Jaxson Dart\",\n    \"insight\": \"Jaxson Dart averages 0.8 passing TDs in 5 games, edging out his Week 7 prop line of 0.5!\"\n  },\n  {\n    \"player\": \"Cam Skattebo\",\n    \"insight\": \"Cam Skattebo averages 25.8 receiving yards across 6 games, clearing his Week 7 line of 16.5 with ease!\"\n  },\n  {\n    \"player\": \"Kenneth Gainwell\",\n    \"insight\": \"Kenneth Gainwell averages just 8.9 receiving yards over 62 games, falling well short of his Week 7 line of 19.5.\"\n  },\n  {\n    \"player\": \"Spencer Rattler\",\n    \"insight\": \"Spencer Rattler averages only 0.7 passing TDs across 20 games, struggling to hit his Week 7 line of 1.5.\"\n  },\n  {\n    \"player\": \"Stefon Diggs\",\n    \"insight\": \"Stefon Diggs torches defenses for 77.3 receiving yards per game over 46 games, blowing past his Week 7 line of 50.5!\"\n  }\n]"
+}

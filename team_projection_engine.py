@@ -25,10 +25,12 @@ class TeamDataLoader:
     1. Load team data using 10-game sample + time decay
     2. Apply time weighting to team performance
     3. Create team performance baselines
+    4. Load current team records for normalization
     """
     
     def __init__(self):
         self.team_data: pd.DataFrame = pd.DataFrame()
+        self.current_records: Dict[str, Dict] = {}
         
     def load_time_weighted_team_data(self, week_2025_file: str, weeks_2024_file: str, 
                                    target_weeks_2024: list, projection_week: int, 
@@ -145,6 +147,122 @@ class TeamDataLoader:
         
         print(f"Extracted baselines for {len(team_stats)} teams")
         return team_stats
+    
+    def load_current_team_records(self, week_2025_file: str, projection_week: int) -> Dict[str, Dict]:
+        """
+        Load current team records from completed games.
+        
+        Args:
+            week_2025_file: Path to 2025 season data
+            projection_week: Current week for projections
+            
+        Returns:
+            Dictionary with current team records
+        """
+        print(f"Loading current team records through week {projection_week - 1}...")
+        
+        try:
+            df = pd.read_csv(week_2025_file)
+            
+            # Filter to completed weeks only
+            completed_weeks = [w for w in df['week'].unique() if w < projection_week]
+            
+            if not completed_weeks:
+                print("No completed games found")
+                return {}
+            
+            team_records = {}
+            
+            for week in completed_weeks:
+                week_data = df[df['week'] == week]
+                # Get unique games by grouping by home_team and away_team
+                games = week_data.groupby(['home_team', 'away_team']).first().reset_index()
+                
+                for _, game in games.iterrows():
+                    home_team = game['home_team']
+                    away_team = game['away_team']
+                    home_score = game['team_score']
+                    away_score = game['opp_score']
+                    
+                    # Convert full team names to abbreviations
+                    home_team_abbr = self._get_team_abbreviation(home_team)
+                    away_team_abbr = self._get_team_abbreviation(away_team)
+                    
+                    # Initialize team records if not exists
+                    if home_team_abbr not in team_records:
+                        team_records[home_team_abbr] = {'wins': 0, 'losses': 0, 'games_played': 0}
+                    if away_team_abbr not in team_records:
+                        team_records[away_team_abbr] = {'wins': 0, 'losses': 0, 'games_played': 0}
+                    
+                    # Update records
+                    if home_score > away_score:
+                        team_records[home_team_abbr]['wins'] += 1
+                        team_records[away_team_abbr]['losses'] += 1
+                    else:
+                        team_records[away_team_abbr]['wins'] += 1
+                        team_records[home_team_abbr]['losses'] += 1
+                    
+                    team_records[home_team_abbr]['games_played'] += 1
+                    team_records[away_team_abbr]['games_played'] += 1
+            
+            self.current_records = team_records
+            print(f"Loaded current records for {len(team_records)} teams")
+            
+            # Print summary
+            for team, record in sorted(team_records.items()):
+                print(f"{team}: {record['wins']}-{record['losses']} ({record['games_played']} games)")
+            
+            return team_records
+            
+        except Exception as e:
+            print(f"Error loading current records: {e}")
+            return {}
+    
+    def _get_team_abbreviation(self, full_team_name: str) -> str:
+        """
+        Convert full team name to abbreviation.
+        
+        Args:
+            full_team_name: Full team name (e.g., "New York Jets")
+            
+        Returns:
+            Team abbreviation (e.g., "NYJ")
+        """
+        team_mapping = {
+            'Arizona Cardinals': 'ARI',
+            'Atlanta Falcons': 'ATL',
+            'Baltimore Ravens': 'BAL',
+            'Buffalo Bills': 'BUF',
+            'Carolina Panthers': 'CAR',
+            'Chicago Bears': 'CHI',
+            'Cincinnati Bengals': 'CIN',
+            'Cleveland Browns': 'CLE',
+            'Dallas Cowboys': 'DAL',
+            'Denver Broncos': 'DEN',
+            'Detroit Lions': 'DET',
+            'Green Bay Packers': 'GNB',
+            'Houston Texans': 'HOU',
+            'Indianapolis Colts': 'IND',
+            'Jacksonville Jaguars': 'JAX',
+            'Kansas City Chiefs': 'KAN',
+            'Las Vegas Raiders': 'LVR',
+            'Los Angeles Chargers': 'LAC',
+            'Los Angeles Rams': 'LAR',
+            'Miami Dolphins': 'MIA',
+            'Minnesota Vikings': 'MIN',
+            'New England Patriots': 'NWE',
+            'New Orleans Saints': 'NOR',
+            'New York Giants': 'NYG',
+            'New York Jets': 'NYJ',
+            'Philadelphia Eagles': 'PHI',
+            'Pittsburgh Steelers': 'PIT',
+            'San Francisco 49ers': 'SFO',
+            'Seattle Seahawks': 'SEA',
+            'Tampa Bay Buccaneers': 'TAM',
+            'Tennessee Titans': 'TEN',
+            'Washington Commanders': 'WAS'
+        }
+        return team_mapping.get(full_team_name, full_team_name)
     
     def _calculate_home_away_split(self, team_group: pd.DataFrame) -> Dict:
         """
@@ -475,14 +593,16 @@ class TeamSimulationEngine:
         
     def run_team_simulations(self, df_team_projections: pd.DataFrame, 
                            team_variance: Dict, 
-                           game_predictions: pd.DataFrame) -> Dict:
+                           game_predictions: pd.DataFrame,
+                           current_records: Dict[str, Dict] = None) -> Dict:
         """
-        Run Monte Carlo simulations for team outcomes.
+        Run Monte Carlo simulations for team outcomes with normalization.
         
         Args:
             df_team_projections: Team projections DataFrame
             team_variance: Team variance metrics
             game_predictions: Game predictions DataFrame
+            current_records: Current team records from completed games
             
         Returns:
             Dictionary with simulation results
@@ -495,6 +615,12 @@ class TeamSimulationEngine:
             team_proj = df_team_projections[df_team_projections['team'] == team].iloc[0]
             team_var = team_variance.get(team, {})
             
+            # Get current record if available
+            current_record = current_records.get(team, {'wins': 0, 'losses': 0, 'games_played': 0})
+            current_wins = current_record['wins']
+            current_losses = current_record['losses']
+            games_played = current_record['games_played']
+            
             # Get team's remaining games
             team_games = game_predictions[
                 (game_predictions['home_team'] == team) | 
@@ -504,7 +630,7 @@ class TeamSimulationEngine:
             if team_games.empty:
                 continue
             
-            # Run simulations for each game
+            # Run simulations for each remaining game
             game_simulations = []
             for _, game in team_games.iterrows():
                 is_home = game['home_team'] == team
@@ -522,15 +648,44 @@ class TeamSimulationEngine:
                 )
                 game_simulations.append(game_sims)
             
-            # Aggregate results
+            # Normalize results to 17-game season
             if game_simulations:
+                # Calculate projected wins/losses for remaining games
+                remaining_games = len(game_simulations)
+                projected_remaining_wins = sum(sim['wins'] for sim in game_simulations) / self.n_simulations
+                projected_remaining_losses = remaining_games - projected_remaining_wins
+                
+                # Add current record to projected remaining games
+                total_projected_wins = current_wins + projected_remaining_wins
+                total_projected_losses = current_losses + projected_remaining_losses
+                
+                # Ensure we don't exceed 17 games total
+                total_games = total_projected_wins + total_projected_losses
+                if total_games > 17:
+                    # Scale down proportionally
+                    scale_factor = 17 / total_games
+                    total_projected_wins *= scale_factor
+                    total_projected_losses *= scale_factor
+                elif total_games < 17:
+                    # Add remaining games as neutral (50/50)
+                    remaining_neutral = 17 - total_games
+                    total_projected_wins += remaining_neutral * 0.5
+                    total_projected_losses += remaining_neutral * 0.5
+                
                 simulation_results[team] = {
                     'game_simulations': game_simulations,
-                    'total_wins': sum(sim['wins'] for sim in game_simulations),
-                    'total_losses': sum(sim['losses'] for sim in game_simulations),
+                    'current_wins': current_wins,
+                    'current_losses': current_losses,
+                    'games_played': games_played,
+                    'remaining_games': remaining_games,
+                    'projected_remaining_wins': projected_remaining_wins,
+                    'projected_remaining_losses': projected_remaining_losses,
+                    'total_projected_wins': total_projected_wins,
+                    'total_projected_losses': total_projected_losses,
                     'avg_points_scored': np.mean([sim['points_scored'] for sim in game_simulations]),
                     'avg_points_allowed': np.mean([sim['points_allowed'] for sim in game_simulations])
                 }
+                
         
         print(f"Completed simulations for {len(simulation_results)} teams")
         return simulation_results
@@ -842,61 +997,67 @@ class TeamProjectionEngine:
         print("=" * 60)
         
         try:
-            # Step 1: Load and filter team data (10-game sample + time decay)
-            print("\nStep 1: Loading and filtering team data...")
+            # Step 1: Load current team records
+            print("\nStep 1: Loading current team records...")
+            current_records = self.team_data_loader.load_current_team_records(
+                week_2025_file, projection_week
+            )
+            
+            # Step 2: Load and filter team data (10-game sample + time decay)
+            print("\nStep 2: Loading and filtering team data...")
             df_team_data = self.team_data_loader.load_time_weighted_team_data(
                 week_2025_file, weeks_2024_file, target_weeks_2024, 
                 projection_week, decay_coefficient
             )
             
-            # Step 2: Extract team performance baselines
-            print("\nStep 2: Extracting team performance baselines...")
+            # Step 3: Extract team performance baselines
+            print("\nStep 3: Extracting team performance baselines...")
             self.team_baselines = self.team_data_loader.extract_team_performance_baseline(df_team_data)
             
-            # Step 3: Schedule strength analysis
-            print("\nStep 3: Analyzing team schedule strength...")
+            # Step 4: Schedule strength analysis
+            print("\nStep 4: Analyzing team schedule strength...")
             df_team_with_schedule = self.team_schedule_analyzer.calculate_team_schedule_strength(
                 self.team_baselines, schedule_file
             )
             
-            # Step 4: Opponent analysis
-            print("\nStep 4: Analyzing team opponent strength...")
+            # Step 5: Opponent analysis
+            print("\nStep 5: Analyzing team opponent strength...")
             opponent_adjustments = self.team_opponent_analyzer.analyze_team_opponent_strength(
                 df_team_with_schedule, df_team_data, self.team_schedule_analyzer.league_averages
             )
             
-            # Step 5: Generate team projections
-            print("\nStep 5: Generating team projections...")
+            # Step 6: Generate team projections
+            print("\nStep 6: Generating team projections...")
             self.team_projections = self._generate_team_projections(
                 df_team_with_schedule, opponent_adjustments
             )
             
-            # Step 6: Analyze team variance
-            print("\nStep 6: Analyzing team performance variance...")
+            # Step 7: Analyze team variance
+            print("\nStep 7: Analyzing team performance variance...")
             team_variance = self.team_variance_analyzer.analyze_team_variance(
                 df_team_data, self.team_projections
             )
             
-            # Step 7: Predict game outcomes
-            print("\nStep 7: Predicting game outcomes...")
+            # Step 8: Predict game outcomes
+            print("\nStep 8: Predicting game outcomes...")
             self.game_predictions = self._predict_game_outcomes(
                 self.team_projections, schedule_file, projection_week
             )
             
-            # Step 8: Run Monte Carlo simulations
-            print("\nStep 8: Running Monte Carlo simulations...")
+            # Step 9: Run Monte Carlo simulations with normalization
+            print("\nStep 9: Running Monte Carlo simulations with normalization...")
             simulation_results = self.team_simulation_engine.run_team_simulations(
-                self.team_projections, team_variance, self.game_predictions
+                self.team_projections, team_variance, self.game_predictions, current_records
             )
             
-            # Step 9: Generate probability distributions
-            print("\nStep 9: Generating probability distributions...")
+            # Step 10: Generate probability distributions
+            print("\nStep 10: Generating probability distributions...")
             probability_distributions = self.team_probability_engine.generate_team_probability_distributions(
                 simulation_results
             )
             
-            # Step 10: Generate enhanced team totals
-            print("\nStep 10: Generating enhanced team totals...")
+            # Step 11: Generate enhanced team totals
+            print("\nStep 11: Generating enhanced team totals...")
             enhanced_totals = self._generate_enhanced_team_totals(
                 self.team_projections, self.game_predictions, projection_week, simulation_results, probability_distributions
             )
@@ -1062,21 +1223,36 @@ class TeamProjectionEngine:
             team_proj = team_projections[team_projections['team'] == team].iloc[0]
             team_sims = simulation_results.get(team, {})
             
-            # Use simulation results if available, otherwise fallback to simple calculation
+            # Use normalized simulation results if available, otherwise fallback to simple calculation
             if team_sims:
-                proj_wins = team_sims.get('total_wins', 0)
-                proj_losses = team_sims.get('total_losses', 0)
+                # Use normalized totals that account for current record
+                proj_wins = team_sims.get('total_projected_wins', 0)
+                proj_losses = team_sims.get('total_projected_losses', 0)
+                current_wins = team_sims.get('current_wins', 0)
+                current_losses = team_sims.get('current_losses', 0)
+                remaining_wins = team_sims.get('projected_remaining_wins', 0)
+                remaining_losses = team_sims.get('projected_remaining_losses', 0)
                 points_scored = team_sims.get('avg_points_scored', team_proj.get('points_per_game', 0))
                 points_allowed = team_sims.get('avg_points_allowed', team_proj.get('points_allowed_per_game', 0))
             else:
+                # Fallback: get current record from data loader
+                current_record = self.team_data_loader.current_records.get(team, {'wins': 0, 'losses': 0, 'games_played': 0})
+                current_wins = current_record['wins']
+                current_losses = current_record['losses']
                 proj_wins, proj_losses = self._calculate_projected_record(team, game_predictions)
+                remaining_wins = proj_wins
+                remaining_losses = proj_losses
                 points_scored = team_proj.get('points_per_game', 0)
                 points_allowed = team_proj.get('points_allowed_per_game', 0)
             
             team_totals.append({
                 'team': team,
-                'projected_wins': proj_wins,
-                'projected_losses': proj_losses,
+                'current_wins': current_wins,
+                'current_losses': current_losses,
+                'projected_remaining_wins': remaining_wins,
+                'projected_remaining_losses': remaining_losses,
+                'total_projected_wins': proj_wins,
+                'total_projected_losses': proj_losses,
                 'points_scored_avg': points_scored,
                 'points_allowed_avg': points_allowed,
                 'offensive_yards_avg': team_proj.get('total_yards_per_game', 0),

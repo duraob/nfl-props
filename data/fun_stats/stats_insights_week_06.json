@@ -1,0 +1,86 @@
+{
+  "success": true,
+  "insights": [
+    {
+      "player": "Jahan Dotson",
+      "insight": "Jahan Dotson has been a hidden gem, averaging 26.6 receiving yards per game across 53 games\u2014smashing his Week 6 prop line of 10.5!"
+    },
+    {
+      "player": "Kenneth Walker III",
+      "insight": "Kenneth Walker III racks up 3.2 catches per game over 19 contests, more than doubling his Week 6 receptions line of 1.5!"
+    },
+    {
+      "player": "Andrei Iosivas",
+      "insight": "Andrei Iosivas consistently delivers, averaging 27.2 receiving yards in 40 games\u2014easily topping his Week 6 line of 13.5!"
+    },
+    {
+      "player": "Tyrone Tracy Jr.",
+      "insight": "Tyrone Tracy Jr. powers through with 47.2 rushing yards per game over 37 outings, doubling his Week 6 prop line of 23.5!"
+    },
+    {
+      "player": "Dillon Gabriel",
+      "insight": "Dillon Gabriel has yet to throw a pick in 3 games, making the under a tempting bet against his Week 6 interception line of 0.5!"
+    },
+    {
+      "player": "Dillon Gabriel",
+      "insight": "Dillon Gabriel averages 1.0 passing TD per game in 3 starts, doubling his Week 6 prop line of 0.5\u2014smash the over!"
+    },
+    {
+      "player": "Evan Engram",
+      "insight": "Evan Engram hauls in 4.9 receptions per game across 47 matchups, nearly doubling his Week 6 line of 2.5\u2014bet the over!"
+    },
+    {
+      "player": "Kenneth Walker III",
+      "insight": "Kenneth Walker III posts 21.6 receiving yards per game in 19 contests, cruising past his Week 6 prop line of 11.5!"
+    },
+    {
+      "player": "Dillon Gabriel",
+      "insight": "Dillon Gabriel averages just 1.7 rushing yards in 3 games, nowhere near his Week 6 line of 11.5\u2014take the under!"
+    },
+    {
+      "player": "Evan Engram",
+      "insight": "Evan Engram stacks up 43.1 receiving yards per game over 47 games, blowing past his Week 6 line of 23.5\u2014bet big!"
+    },
+    {
+      "player": "Cam Skattebo",
+      "insight": "Cam Skattebo averages 28.6 receiving yards in 5 games, soaring over his Week 6 prop line of 16.5\u2014take the over!"
+    },
+    {
+      "player": "Hassan Haskins",
+      "insight": "Hassan Haskins struggles with just 9.5 rushing yards per game in 30 outings, way below his Week 6 line of 34.5\u2014bet the under!"
+    },
+    {
+      "player": "Jerry Jeudy",
+      "insight": "Jerry Jeudy torches defenses for 65.0 receiving yards per game over 61 starts, crushing his Week 6 line of 39.5\u2014go over!"
+    },
+    {
+      "player": "Jonnu Smith",
+      "insight": "Jonnu Smith averages a solid 43.2 receiving yards in 58 games, clearing his Week 6 prop line of 26.5 with ease!"
+    },
+    {
+      "player": "Hunter Long",
+      "insight": "Hunter Long limps to 9.1 receiving yards per game in 18 appearances, falling short of his Week 6 line of 24.5\u2014bet under!"
+    },
+    {
+      "player": "Dillon Gabriel",
+      "insight": "Dillon Gabriel averages only 7.3 completions in 3 games, well shy of his Week 6 line of 19.5\u2014take the under!"
+    },
+    {
+      "player": "Dillon Gabriel",
+      "insight": "Dillon Gabriel throws just 12.3 attempts per game in 3 starts, far below his Week 6 line of 32.5\u2014bet the under!"
+    },
+    {
+      "player": "Dillon Gabriel",
+      "insight": "Dillon Gabriel manages only 69.7 passing yards per game in 3 outings, nowhere near his Week 6 line of 182.5\u2014under all day!"
+    },
+    {
+      "player": "Zach Charbonnet",
+      "insight": "Zach Charbonnet averages 16.6 receiving yards over 45 games, comfortably beating his Week 6 prop line of 10.5\u2014bet over!"
+    },
+    {
+      "player": "Cooper Kupp",
+      "insight": "Cooper Kupp dominates with 65.5 receiving yards per game in 43 matchups, soaring past his Week 6 line of 41.5\u2014smash the over!"
+    }
+  ],
+  "raw_response": "[\n  {\n    \"player\": \"Jahan Dotson\",\n    \"insight\": \"Jahan Dotson has been a hidden gem, averaging 26.6 receiving yards per game across 53 games\u2014smashing his Week 6 prop line of 10.5!\"\n  },\n  {\n    \"player\": \"Kenneth Walker III\",\n    \"insight\": \"Kenneth Walker III racks up 3.2 catches per game over 19 contests, more than doubling his Week 6 receptions line of 1.5!\"\n  },\n  {\n    \"player\": \"Andrei Iosivas\",\n    \"insight\": \"Andrei Iosivas consistently delivers, averaging 27.2 receiving yards in 40 games\u2014easily topping his Week 6 line of 13.5!\"\n  },\n  {\n    \"player\": \"Tyrone Tracy Jr.\",\n    \"insight\": \"Tyrone Tracy Jr. powers through with 47.2 rushing yards per game over 37 outings, doubling his Week 6 prop line of 23.5!\"\n  },\n  {\n    \"player\": \"Dillon Gabriel\",\n    \"insight\": \"Dillon Gabriel has yet to throw a pick in 3 games, making the under a tempting bet against his Week 6 interception line of 0.5!\"\n  },\n  {\n    \"player\": \"Dillon Gabriel\",\n    \"insight\": \"Dillon Gabriel averages 1.0 passing TD per game in 3 starts, doubling his Week 6 prop line of 0.5\u2014smash the over!\"\n  },\n  {\n    \"player\": \"Evan Engram\",\n    \"insight\": \"Evan Engram hauls in 4.9 receptions per game across 47 matchups, nearly doubling his Week 6 line of 2.5\u2014bet the over!\"\n  },\n  {\n    \"player\": \"Kenneth Walker III\",\n    \"insight\": \"Kenneth Walker III posts 21.6 receiving yards per game in 19 contests, cruising past his Week 6 prop line of 11.5!\"\n  },\n  {\n    \"player\": \"Dillon Gabriel\",\n    \"insight\": \"Dillon Gabriel averages just 1.7 rushing yards in 3 games, nowhere near his Week 6 line of 11.5\u2014take the under!\"\n  },\n  {\n    \"player\": \"Evan Engram\",\n    \"insight\": \"Evan Engram stacks up 43.1 receiving yards per game over 47 games, blowing past his Week 6 line of 23.5\u2014bet big!\"\n  },\n  {\n    \"player\": \"Cam Skattebo\",\n    \"insight\": \"Cam Skattebo averages 28.6 receiving yards in 5 games, soaring over his Week 6 prop line of 16.5\u2014take the over!\"\n  },\n  {\n    \"player\": \"Hassan Haskins\",\n    \"insight\": \"Hassan Haskins struggles with just 9.5 rushing yards per game in 30 outings, way below his Week 6 line of 34.5\u2014bet the under!\"\n  },\n  {\n    \"player\": \"Jerry Jeudy\",\n    \"insight\": \"Jerry Jeudy torches defenses for 65.0 receiving yards per game over 61 starts, crushing his Week 6 line of 39.5\u2014go over!\"\n  },\n  {\n    \"player\": \"Jonnu Smith\",\n    \"insight\": \"Jonnu Smith averages a solid 43.2 receiving yards in 58 games, clearing his Week 6 prop line of 26.5 with ease!\"\n  },\n  {\n    \"player\": \"Hunter Long\",\n    \"insight\": \"Hunter Long limps to 9.1 receiving yards per game in 18 appearances, falling short of his Week 6 line of 24.5\u2014bet under!\"\n  },\n  {\n    \"player\": \"Dillon Gabriel\",\n    \"insight\": \"Dillon Gabriel averages only 7.3 completions in 3 games, well shy of his Week 6 line of 19.5\u2014take the under!\"\n  },\n  {\n    \"player\": \"Dillon Gabriel\",\n    \"insight\": \"Dillon Gabriel throws just 12.3 attempts per game in 3 starts, far below his Week 6 line of 32.5\u2014bet the under!\"\n  },\n  {\n    \"player\": \"Dillon Gabriel\",\n    \"insight\": \"Dillon Gabriel manages only 69.7 passing yards per game in 3 outings, nowhere near his Week 6 line of 182.5\u2014under all day!\"\n  },\n  {\n    \"player\": \"Zach Charbonnet\",\n    \"insight\": \"Zach Charbonnet averages 16.6 receiving yards over 45 games, comfortably beating his Week 6 prop line of 10.5\u2014bet over!\"\n  },\n  {\n    \"player\": \"Cooper Kupp\",\n    \"insight\": \"Cooper Kupp dominates with 65.5 receiving yards per game in 43 matchups, soaring past his Week 6 line of 41.5\u2014smash the over!\"\n  }\n]"
+}

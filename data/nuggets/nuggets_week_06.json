@@ -1,0 +1,222 @@
+[
+  {
+    "player": "Jahan Dotson",
+    "opponent": "Philadelphia Eagles vs New York Giants",
+    "stat": "reception_yds",
+    "sample_size": 53,
+    "average": 26.6,
+    "line": 10.5,
+    "delta_pct": 153.2,
+    "week": 6,
+    "nugget": "Jahan Dotson averages 26.6 reception_yds in 53 games, +153.2% vs Week 6 line of 10.5."
+  },
+  {
+    "player": "Kenneth Walker III",
+    "opponent": "Seattle Seahawks vs Jacksonville Jaguars",
+    "stat": "receptions",
+    "sample_size": 19,
+    "average": 3.2,
+    "line": 1.5,
+    "delta_pct": 114.0,
+    "week": 6,
+    "nugget": "Kenneth Walker III averages 3.2 receptions in 19 games, +114.0% vs Week 6 line of 1.5."
+  },
+  {
+    "player": "Andrei Iosivas",
+    "opponent": "Cincinnati Bengals vs Green Bay Packers",
+    "stat": "reception_yds",
+    "sample_size": 40,
+    "average": 27.2,
+    "line": 13.5,
+    "delta_pct": 101.5,
+    "week": 6,
+    "nugget": "Andrei Iosivas averages 27.2 reception_yds in 40 games, +101.5% vs Week 6 line of 13.5."
+  },
+  {
+    "player": "Tyrone Tracy Jr.",
+    "opponent": "Philadelphia Eagles vs New York Giants",
+    "stat": "rush_yds",
+    "sample_size": 37,
+    "average": 47.2,
+    "line": 23.5,
+    "delta_pct": 100.8,
+    "week": 6,
+    "nugget": "Tyrone Tracy Jr. averages 47.2 rush_yds in 37 games, +100.8% vs Week 6 line of 23.5."
+  },
+  {
+    "player": "Dillon Gabriel",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "pass_interceptions",
+    "sample_size": 3,
+    "average": 0.0,
+    "line": 0.5,
+    "delta_pct": -100.0,
+    "week": 6,
+    "nugget": "Dillon Gabriel averages 0.0 pass_interceptions in 3 games, -100.0% vs Week 6 line of 0.5."
+  },
+  {
+    "player": "Dillon Gabriel",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "pass_tds",
+    "sample_size": 3,
+    "average": 1.0,
+    "line": 0.5,
+    "delta_pct": 100.0,
+    "week": 6,
+    "nugget": "Dillon Gabriel averages 1.0 pass_tds in 3 games, +100.0% vs Week 6 line of 0.5."
+  },
+  {
+    "player": "Evan Engram",
+    "opponent": "Denver Broncos vs New York Jets",
+    "stat": "receptions",
+    "sample_size": 47,
+    "average": 4.9,
+    "line": 2.5,
+    "delta_pct": 95.7,
+    "week": 6,
+    "nugget": "Evan Engram averages 4.9 receptions in 47 games, +95.7% vs Week 6 line of 2.5."
+  },
+  {
+    "player": "Kenneth Walker III",
+    "opponent": "Seattle Seahawks vs Jacksonville Jaguars",
+    "stat": "reception_yds",
+    "sample_size": 19,
+    "average": 21.6,
+    "line": 11.5,
+    "delta_pct": 87.6,
+    "week": 6,
+    "nugget": "Kenneth Walker III averages 21.6 reception_yds in 19 games, +87.6% vs Week 6 line of 11.5."
+  },
+  {
+    "player": "Dillon Gabriel",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "rush_yds",
+    "sample_size": 3,
+    "average": 1.7,
+    "line": 11.5,
+    "delta_pct": -85.5,
+    "week": 6,
+    "nugget": "Dillon Gabriel averages 1.7 rush_yds in 3 games, -85.5% vs Week 6 line of 11.5."
+  },
+  {
+    "player": "Evan Engram",
+    "opponent": "Denver Broncos vs New York Jets",
+    "stat": "reception_yds",
+    "sample_size": 47,
+    "average": 43.1,
+    "line": 23.5,
+    "delta_pct": 83.3,
+    "week": 6,
+    "nugget": "Evan Engram averages 43.1 reception_yds in 47 games, +83.3% vs Week 6 line of 23.5."
+  },
+  {
+    "player": "Cam Skattebo",
+    "opponent": "Philadelphia Eagles vs New York Giants",
+    "stat": "reception_yds",
+    "sample_size": 5,
+    "average": 28.6,
+    "line": 16.5,
+    "delta_pct": 73.3,
+    "week": 6,
+    "nugget": "Cam Skattebo averages 28.6 reception_yds in 5 games, +73.3% vs Week 6 line of 16.5."
+  },
+  {
+    "player": "Hassan Haskins",
+    "opponent": "Los Angeles Chargers vs Miami Dolphins",
+    "stat": "rush_yds",
+    "sample_size": 30,
+    "average": 9.5,
+    "line": 34.5,
+    "delta_pct": -72.6,
+    "week": 6,
+    "nugget": "Hassan Haskins averages 9.5 rush_yds in 30 games, -72.6% vs Week 6 line of 34.5."
+  },
+  {
+    "player": "Jerry Jeudy",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "reception_yds",
+    "sample_size": 61,
+    "average": 65.0,
+    "line": 39.5,
+    "delta_pct": 64.5,
+    "week": 6,
+    "nugget": "Jerry Jeudy averages 65.0 reception_yds in 61 games, +64.5% vs Week 6 line of 39.5."
+  },
+  {
+    "player": "Jonnu Smith",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "reception_yds",
+    "sample_size": 58,
+    "average": 43.2,
+    "line": 26.5,
+    "delta_pct": 63.0,
+    "week": 6,
+    "nugget": "Jonnu Smith averages 43.2 reception_yds in 58 games, +63.0% vs Week 6 line of 26.5."
+  },
+  {
+    "player": "Hunter Long",
+    "opponent": "Seattle Seahawks vs Jacksonville Jaguars",
+    "stat": "reception_yds",
+    "sample_size": 18,
+    "average": 9.1,
+    "line": 24.5,
+    "delta_pct": -62.8,
+    "week": 6,
+    "nugget": "Hunter Long averages 9.1 reception_yds in 18 games, -62.8% vs Week 6 line of 24.5."
+  },
+  {
+    "player": "Dillon Gabriel",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "pass_completions",
+    "sample_size": 3,
+    "average": 7.3,
+    "line": 19.5,
+    "delta_pct": -62.4,
+    "week": 6,
+    "nugget": "Dillon Gabriel averages 7.3 pass_completions in 3 games, -62.4% vs Week 6 line of 19.5."
+  },
+  {
+    "player": "Dillon Gabriel",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "pass_attempts",
+    "sample_size": 3,
+    "average": 12.3,
+    "line": 32.5,
+    "delta_pct": -62.1,
+    "week": 6,
+    "nugget": "Dillon Gabriel averages 12.3 pass_attempts in 3 games, -62.1% vs Week 6 line of 32.5."
+  },
+  {
+    "player": "Dillon Gabriel",
+    "opponent": "Cleveland Browns vs Pittsburgh Steelers",
+    "stat": "pass_yds",
+    "sample_size": 3,
+    "average": 69.7,
+    "line": 182.5,
+    "delta_pct": -61.8,
+    "week": 6,
+    "nugget": "Dillon Gabriel averages 69.7 pass_yds in 3 games, -61.8% vs Week 6 line of 182.5."
+  },
+  {
+    "player": "Zach Charbonnet",
+    "opponent": "Seattle Seahawks vs Jacksonville Jaguars",
+    "stat": "reception_yds",
+    "sample_size": 45,
+    "average": 16.6,
+    "line": 10.5,
+    "delta_pct": 58.5,
+    "week": 6,
+    "nugget": "Zach Charbonnet averages 16.6 reception_yds in 45 games, +58.5% vs Week 6 line of 10.5."
+  },
+  {
+    "player": "Cooper Kupp",
+    "opponent": "Seattle Seahawks vs Jacksonville Jaguars",
+    "stat": "reception_yds",
+    "sample_size": 43,
+    "average": 65.5,
+    "line": 41.5,
+    "delta_pct": 57.9,
+    "week": 6,
+    "nugget": "Cooper Kupp averages 65.5 reception_yds in 43 games, +57.9% vs Week 6 line of 41.5."
+  }
+]

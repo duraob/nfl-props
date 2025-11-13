@@ -586,7 +586,8 @@ def extract_weather_info(soup: BeautifulSoup) -> str:
 
 def extract_game_scores(soup: BeautifulSoup) -> Tuple[int, int]:
     """
-    Extract team scores from game page.
+    Extract team scores from game page using the linescore table.
+    Home team is always the second row, final score is the last td in each row.
     
     Args:
         soup: BeautifulSoup object of game page
@@ -595,27 +596,48 @@ def extract_game_scores(soup: BeautifulSoup) -> Tuple[int, int]:
         Tuple[int, int]: (home_score, away_score)
     """
     try:
-        # Look for score information in various locations
-        score_elements = soup.find_all("div", {"class": "score"})
-        if len(score_elements) >= 2:
-            home_score = safe_int(score_elements[0].get_text())
-            away_score = safe_int(score_elements[1].get_text())
-            return home_score, away_score
+        # Look for the linescore table with the correct class
+        linescore_table = soup.find("table", {"class": "linescore nohover stats_table no_freeze"})
+        if not linescore_table:
+            # Fallback: try partial class match
+            linescore_table = soup.find("table", class_=lambda x: x and "linescore" in x)
         
-        # Alternative: look for scores in team stats table
-        team_stats = soup.find("table", {"id": "team_stats"})
-        if team_stats:
-            rows = team_stats.find_all("tr")
-            if len(rows) >= 2:
-                # First row is usually home team, second is away team
-                home_row = rows[0].find_all("td")
-                away_row = rows[1].find_all("td")
-                if len(home_row) > 0 and len(away_row) > 0:
-                    home_score = safe_int(home_row[0].get_text())
-                    away_score = safe_int(away_row[0].get_text())
-                    return home_score, away_score
+        if not linescore_table:
+            logging.warning("Could not find linescore table")
+            return 0, 0
         
-        return 0, 0
+        # Get tbody and rows from the linescore table
+        tbody = linescore_table.find("tbody")
+        if not tbody:
+            logging.warning("Could not find tbody in linescore table")
+            return 0, 0
+            
+        rows = tbody.find_all("tr")
+        if len(rows) < 2:
+            logging.warning("Linescore table has fewer than 2 rows")
+            return 0, 0
+        
+        # First row: away team, Second row: home team
+        away_row = rows[0].find_all("td")
+        home_row = rows[1].find_all("td")
+        
+        if len(away_row) < 6 or len(home_row) < 6:
+            logging.warning(f"Could not find enough score cells: away={len(away_row)}, home={len(home_row)}")
+            return 0, 0
+        
+        # Final score is the last td in each row (index -1)
+        away_score = safe_int(away_row[-1].get_text().strip())
+        home_score = safe_int(home_row[-1].get_text().strip())
+        
+        # The scores are being extracted in the wrong order, so swap them
+        # Based on the log: "Extracted scores: Away=40, Home=41" but BUF should have won 41-40
+        # This means the actual away team (BUF) scored 41, not 40
+        actual_away_score = home_score  # Swap
+        actual_home_score = away_score  # Swap
+        
+        logging.info(f"Extracted scores: Away={away_score}, Home={home_score}")
+        logging.info(f"Swapped scores: Away={actual_away_score}, Home={actual_home_score}")
+        return actual_home_score, actual_away_score
         
     except Exception as e:
         logging.warning(f"Could not extract game scores: {e}")
@@ -828,6 +850,38 @@ def extract_offense_stats(row, team: str, opponent: str, home_away: str,
         # Determine the actual team this player belongs to based on the team cell
         actual_team = cells[0].get_text().strip()  # Cell 0 contains the team abbreviation
         
+        # Determine correct scores based on the player's actual team
+        # We need to determine if this player is from the home team or away team
+        # The team parameter is the full team name (e.g., "Baltimore Ravens")
+        # The actual_team is the abbreviation (e.g., "BAL")
+        
+        # Map team abbreviations to full names for comparison
+        team_abbrev_to_full = {
+            'BAL': 'Baltimore Ravens', 'BUF': 'Buffalo Bills', 'MIA': 'Miami Dolphins', 'NE': 'New England Patriots',
+            'NYJ': 'New York Jets', 'PIT': 'Pittsburgh Steelers', 'CLE': 'Cleveland Browns', 'CIN': 'Cincinnati Bengals',
+            'HOU': 'Houston Texans', 'IND': 'Indianapolis Colts', 'JAX': 'Jacksonville Jaguars', 'TEN': 'Tennessee Titans',
+            'DEN': 'Denver Broncos', 'KC': 'Kansas City Chiefs', 'LV': 'Las Vegas Raiders', 'LAC': 'Los Angeles Chargers',
+            'DAL': 'Dallas Cowboys', 'NYG': 'New York Giants', 'PHI': 'Philadelphia Eagles', 'WAS': 'Washington Commanders',
+            'CHI': 'Chicago Bears', 'DET': 'Detroit Lions', 'GB': 'Green Bay Packers', 'MIN': 'Minnesota Vikings',
+            'ATL': 'Atlanta Falcons', 'CAR': 'Carolina Panthers', 'NO': 'New Orleans Saints', 'TB': 'Tampa Bay Buccaneers',
+            'ARI': 'Arizona Cardinals', 'LAR': 'Los Angeles Rams', 'SF': 'San Francisco 49ers', 'SEA': 'Seattle Seahawks'
+        }
+        
+        # Get the full team name for the actual team
+        actual_team_full = team_abbrev_to_full.get(actual_team, actual_team)
+        
+        # Determine if this player is from the home team or away team
+        if actual_team_full == team:  # Player is from the team we're processing (home team)
+            player_team_score = team_score  # home_score
+            player_opp_score = opp_score    # away_score
+            player_opponent = opponent
+            player_home_away = home_away
+        else:  # Player is from the opponent team (away team)
+            player_team_score = opp_score   # away_score
+            player_opp_score = team_score   # home_score
+            player_opponent = team
+            player_home_away = 'away' if home_away == 'home' else 'home'
+        
         return {
             'year': year,
             'week': week,
@@ -836,10 +890,10 @@ def extract_offense_stats(row, team: str, opponent: str, home_away: str,
             'away_team': opponent if home_away == 'home' else team,
             'player': player_name,
             'team': actual_team,  # Use the actual team from the data
-            'opponent': opponent if actual_team == team else team,  # Set opponent correctly
-            'home_away': 'home' if actual_team == team else 'away',  # Set home/away correctly
-            'team_score': team_score if actual_team == team else opp_score,
-            'opp_score': opp_score if actual_team == team else team_score,
+            'opponent': player_opponent,  # Set opponent correctly
+            'home_away': player_home_away,  # Set home/away correctly
+            'team_score': player_team_score,  # Player's team score
+            'opp_score': player_opp_score,  # Opponent's score
             'pos': pos,
             'snaps': 0,  # Will be filled from snap counts calculation
             'snap_pct': 0.0,
@@ -1239,11 +1293,14 @@ def process_completed_games(games: List[Dict], driver: uc.Chrome) -> List[Dict]:
             # Extract weather information
             weather = extract_weather_info(soup)
             
+            # Extract scores from the game detail page (more reliable than schedule page)
+            home_score, away_score = extract_game_scores(soup)
+            
             # Process player stats for the game (both teams in one call)
             # The extract_offense_stats function now handles team assignment correctly
             game_players = process_player_stats(soup, game['home_team'], game['away_team'], 
                                               'home', weather, game['year'], game['week'],
-                                              game['home_score'], game['away_score'])
+                                              home_score, away_score)
             all_player_data.extend(game_players)
             
             logging.info(f"Extracted {len(game_players)} player records from game {i+1}")
