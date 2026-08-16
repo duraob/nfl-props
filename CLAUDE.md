@@ -28,63 +28,71 @@ nflverse package, which works and is already pinned in `requirements.txt`.
 `.env` at repo root (gitignored):
 
 ```
-ODDS_API_KEY=...   # The Odds API — free tier: 3 req/min, 500 req/month
-GROK_API_KEY=...   # xAI; being demoted, see "Direction" below
+ODDS_API=...      # The Odds API — free tier: 500 req/month. See dk_capture.py.
+KALSHI_API=...    # Kalshi API key id. Market data needs no auth; this is unused
+                  # until/unless the project starts placing Kalshi trades.
+GROK_API_KEY=...  # xAI, used by picks_agent.py / stats_agent.py (legacy, see below)
 ```
+
+`xai-sdk` (required by `picks_agent.py` / `stats_agent.py`) is **not** in
+`requirements.txt` and not installed in the venv. Those two files predate the rebuild
+and are not wired to `projections.py`'s output — see "Legacy agents" below before
+touching them.
 
 ### Tests
 
-`tests/test_data_source.py` guards the nflverse schema contract (target_share, snap
-coverage, star players present). It should always pass; a failure means upstream
-nflverse changed and the model's inputs moved underneath it.
+`python -m pytest tests/ -q` — all pass. `tests/test_data_source.py` and
+`tests/test_nfl_source.py` guard the nflverse contract (should always pass; a failure
+means upstream nflverse changed under us). `tests/test_projections.py` guards the
+model, including `test_no_future_leakage`, which has already caught one real bug — see
+its docstring before changing anything in `projections.py`'s prior-computation
+functions. `tests/test_capture.py` guards the Kalshi orderbook parse and the Odds API
+credit-budget guard with mocked network calls; it costs nothing to run.
 
-`tests/test_pool_health.py` **is expected to fail** until the engine rebuild lands. It
-encodes the bug described below and is the definition of done for that work.
+## Running things
 
-## Weekly pipeline
-
-All commands run **from the repo root** (every path in the codebase is CWD-relative). `RUN.md` has the full narrative; the canonical order is:
-
-Data is no longer scraped. `nfl_source.py` fetches it from nflverse on demand; there
-is no scrape step to run first.
+All commands run **from the repo root** (every path in the codebase is CWD-relative).
 
 ```bash
-python run_projections.py <week>           # player projections - LEGACY, see Known-broken
-python run_season_projections.py           # team projections + standings (no week arg)
-python odds.py <week>                      # The Odds API -> data/odds/week_NN/
-python picks_agent.py <week> [--live-search]   # projections vs odds + Grok analysis
-python stats_agent.py <week>               # statistical nuggets + Grok insights
-python utils/insights_formatter.py <week> --csv --html
+python -m pytest tests/ -q                      # full suite
+python backtest.py                               # tuning + holdout scorecard (the gate)
+python odds_capture.py                            # Kalshi snapshot, append-only, free
+python dk_capture.py 6 --dry-run                  # DK cost estimate, spends nothing
+python dk_capture.py 6                            # DK closing lines, games within 6h
 ```
 
-Backtesting (run from repo root, not from `backtesting/`):
-
-```bash
-python backtesting/backtester.py <test_season> <ref_season> <start_week> <end_week> [decay] [scenario]
-python backtesting/backtester.py 2024 2023 1 17 0.7 historical
+```python
+import projections as P, nfl_source as src
+stats = src.weekly_stats([2025, 2026])
+sched = src.schedule([2025, 2026])
+proj  = P.project(season=2026, week=1, seasons=[2025, 2026])
 ```
 
-`scenario` is `historical` (no roster filter, min 2 games / 10% snaps) or `current` (roster filter, min 3 games / 20% snaps) — see [backtesting/backtest_config.py](backtesting/backtest_config.py). Note the default report path is `../backtest_results/`, which lands **outside** the repo; pass an explicit `output_file` to `generate_csv_report()` if that matters.
+There is no single "run the week" entry point yet — `projections.py` and the capture
+scripts are run independently. `RUN.md` describes the pre-rebuild pipeline and is
+retained only as a historical record; do not follow it.
 
 ## Architecture
 
-The system is a linear file-passing pipeline — modules communicate only through CSV/JSON/XLSX under `data/`, never through imports. Changing an output schema breaks every downstream stage silently.
+```
+nfl_source.py (nflverse)  ─┬─>  projections.py  ─>  backtest.py  (tuning + holdout gate)
+                            │
+odds_capture.py (Kalshi)   ┤
+dk_capture.py (DK closing) ┘
+        │
+        └─> data/odds_history/{kalshi,draftkings}.csv  (append-only, never regenerated)
+```
 
-```
-source                   engines                          agents
-──────                   ───────                          ──────
-nfl_source.py ─┬─> run_projections.py             ─> data/projections/
- (nflverse)    │     (projection_engine/)              nfl25_proj_week{N}.csv
-               │      LEGACY - being replaced          monte_carlo_week{N}.json
-               │
-               └─> run_season_projections.py      ─> data/season_projections/
-                     (team_projection_engine.py)
-                      LEGACY - being replaced
-                                                           ↓
-odds.py ─────────────────────────> picks_agent.py / stats_agent.py ─> data/insights/
- (The Odds API)                                            ↓           data/nuggets/
-                                   utils/insights_formatter.py         data/fun_stats/
-```
+Three independent pieces, not a pipeline: `projections.py` needs only `nfl_source.py`.
+The two capture scripts need only network access and write straight to history files —
+neither depends on the projection engine, and nothing currently joins projections
+against captured odds. That join (compute model edge vs. market price) doesn't exist
+yet; it's the natural next module once Kalshi's weekly prop liquidity is known.
+
+`odds.py`, `picks_agent.py`, `stats_agent.py`, `utils/insights_formatter.py` are a
+**separate, older stack** — see "Legacy agents" below. They still run, but they consume
+`data/roster.xlsx` / `data/team_map.xlsx` / `data/player_name_mapping.csv`, not
+anything `projections.py` produces.
 
 ### `nfl_source.py` — the data layer
 
@@ -175,48 +183,34 @@ Two things to carry forward:
   meaningful). It is no longer virgin. Use 2026 in-season results as the next clean
   test rather than re-grading on 2025.
 
-### The 10-game rolling window
+### Legacy agents — `odds.py`, `picks_agent.py`, `stats_agent.py`, `utils/insights_formatter.py`
 
-Both engines share one non-obvious data-selection rule, duplicated in [projection_engine/core/data_loader.py:157](projection_engine/core/data_loader.py#L157) and [team_projection_engine.py:33](team_projection_engine.py#L33). **Change one, change the other.**
+Pre-rebuild code, kept because nothing has replaced its functionality yet — not
+because it's been reviewed or endorsed. Treat it as a separate, older system that
+happens to live in the same repo:
 
-- Week 1: 10 games from 2024 (`target_weeks_2024`, default `[9..17]`)
-- Week 2: 1 game from 2025 + 9 from 2024
-- Week 3+: all completed 2025 weeks, backfilled from 2024 to reach 10
+- **Not wired to `projections.py`.** `picks_agent.py` reads
+  `data/projections/nfl25_proj_week{N}.csv`, a file format the current engine does not
+  write. Running it against the new pipeline's output will not work.
+- **Depends on files the rebuild left in place on purpose**: `data/roster.xlsx`,
+  `data/team_map.xlsx`, `data/player_name_mapping.csv`,
+  `data/nfl-2025-EasternStandardTime.csv`. These carry the three-abbreviation problem
+  described under Landmines below — `nfl_source.py` does not have this problem, these
+  files do.
+- **Needs `xai-sdk`**, not installed (see Environment above).
+- `picks_agent` calls `grok-4` with live search plus `grok-3`; `stats_agent` calls
+  `grok-3`. Both write JSON that `insights_formatter.py` renders to CSV/HTML.
 
-Weights are exponential decay across the combined ordering: most recent 2025 game = 1.0, each older game × `decay_coefficient` (default 0.7), with the 2024 block continuing the same decay chain. Every downstream aggregation is a `np.average(..., weights=df['time_weight'])`.
-
-### `projection_engine/` (player-level)
-
-`ProjectionEngine.run_projections()` in [projection_engine/projection_engine.py](projection_engine/projection_engine.py) is a 9-step orchestrator over single-responsibility components:
-
-`DataLoader` (roster + injury + snap-count filtering) → team/player dataset construction (inside the orchestrator, not a component) → `ScheduleAnalyzer` (league-normalized schedule strength) → `OpponentAnalyzer` (defensive matchup adjustments) → `BaseProjections` → `VarianceAnalyzer` → `SimulationEngine` (10,000 Monte Carlo runs, `random_seed=42`) → export.
-
-Defensive team stats are *derived*, not scraped: `_build_team_statistics()` groups game data by `opponent` and relabels the opponent's offensive columns as `def_*`.
-
-Player filtering is three-stage and cumulative — roster `is_injured` flag, then `data/injuries.csv` status in `{Out, Injured Reserve}`, then `data/snap_filtering_report.csv` at a 20% recent-snap threshold. A player silently absent from projections is usually stage three.
-
-### `team_projection_engine.py` (team-level)
-
-A parallel, class-based reimplementation (`TeamDataLoader`, `TeamScheduleAnalyzer`, `TeamVarianceAnalyzer`, `TeamProbabilityEngine`, `TeamSimulationEngine`, `TeamOpponentAnalyzer`, `TeamProjectionEngine`) that mirrors the player engine's methodology for win/loss, standings, and playoff probabilities. It shares no code with `projection_engine/` — improvements to one must be ported by hand.
-
-### Agents
-
-`picks_agent.py` and `stats_agent.py` both join projections against odds, build a prompt, and call Grok via `xai_sdk`. `picks_agent` uses `grok-4` with `SearchParameters` live search for injury/news context and `grok-3` for the main analysis; `stats_agent` uses `grok-3`. Both write JSON that `utils/insights_formatter.py` renders.
+Whether to rebuild this layer, retire it, or replace the LLM step with a narrow
+injury/news lookup feeding `projections.py` is an open decision, not yet made — do
+not assume any direction here without asking.
 
 ### `utils/`
 
-Only `insights_formatter.py` remains, invoked as a CLI script. Eight unreferenced
-experimental modules (`ml_models`, `bayesian_updater`, `advanced_time_weighting`,
-`enhanced_projections`, `historical_analyzer`, `injury_integration`,
-`monte_carlo_processor`, `variance_tracker`) and `season_projector.py` were deleted —
-all had zero external imports. Recover any of them from history if an idea is needed:
-
-```bash
-git show c71c61c:utils/bayesian_updater.py
-```
-
-[docs/ML.md](docs/ML.md) describes their intended role but is aspirational, not a
-description of shipped behavior.
+Only `insights_formatter.py` remains. Eight experimental modules and
+`season_projector.py` were removed in the rebuild (zero external imports each);
+recover any from history if needed: `git show c71c61c:utils/bayesian_updater.py`.
+[docs/ML.md](docs/ML.md) describes their intended role but was always aspirational.
 
 ### `odds_capture.py` — Kalshi capture
 
@@ -294,70 +288,70 @@ That ~2-point gap is often larger than the entire model edge. Prefer Kalshi when
 market has liquidity; DK otherwise. Weekly Kalshi prop liquidity is still unknown —
 those markets sit at zero between slates and reopen near gameday.
 
-## Known-broken — do not trust current projection output
+## Why the engine was rebuilt (history)
 
-Two verified defects make everything in `data/projections/` unusable. Both are fixed by
-the engine rebuild, not by patching.
+The pre-rebuild `projection_engine/` and `team_projection_engine.py` (deleted; see
+`git show 988d8f7^:projection_engine/core/base_projections.py` to recover) had two
+defects that motivated `projections.py` from first principles rather than patching:
 
-**1. The engine never applies its own adjustments.** [base_projections.py:68](projection_engine/core/base_projections.py#L68)
-writes results only `if f'proj_{stat}' in base_projections.columns`, but that frame is a
-copy of `df_players`, whose columns are `pass_yd`, `rec_yd`, … — never `proj_pass_yd`. The
-condition is always false, so schedule-strength, opponent-matchup, and regression-to-mean
-(steps 3-5 of the 9-step orchestrator) are computed and discarded. No shipped CSV contains
-any `proj_*` column. **What ships is the time-weighted historical average and nothing
-else**, with Monte Carlo simulating around an unadjusted mean.
+1. Its schedule-strength, opponent-matchup, and regression-to-mean steps wrote to
+   `proj_*` columns that the projection frame never had, so the condition guarding
+   every write was always false. Those steps ran and were silently discarded — what
+   shipped was an unadjusted historical average.
+2. A frozen, unmaintained snap-count CSV (no writer anywhere in the codebase) filtered
+   the player pool down to 57 players with **zero wide receivers** for the weeks it was
+   in effect. Root cause was the PFR scraper: `snap_pct` was null/zero in 56% of rows.
+   nflverse measures 5.7% for the same skill positions.
 
-**2. A stale filter deletes 80% of the player pool.** `data/snap_filtering_report.csv` has
-**no writer anywhere in the codebase** — it is frozen from commit `b36740c`.
-[data_loader.py:254](projection_engine/core/data_loader.py#L254) reads it and drops 277 of
-348 players. Week 10 output was 57 players containing **zero wide receivers**; A.J. Brown,
-Ja'Marr Chase, and Justin Jefferson were all filtered out. Root cause is upstream: `snap_pct`
-is null or zero in 56% of scraped rows because PFR snap-table parsing is unreliable. The
-same measure via nflverse is 5.7% for skill positions.
-
-Also note `_calculate_league_averages()` returns hardcoded constants under a
-`# For now, return default values` comment, and `opponent_analyzer` assumes
-`league_avg_pass = 200`.
+Everything under **Direction** below is the design that replaced it, and every choice
+there was measured, not assumed — see `projections.py`'s module docstring for the
+numbers behind each one.
 
 ## Direction
 
-The system is mid-rebuild. Settled decisions:
-
 - **Data source → nflverse (`nflreadpy`)**, replacing the PFR/ESPN Selenium scrapers.
-  Validated: 150 columns vs 28 scraped, includes `target_share` and `air_yards_share`.
-- **Model → usage × efficiency.** Project team volume, then player usage share, then
-  efficiency shrunk toward positional baseline. Averaging the *product* (what the current
-  engine does) bakes efficiency noise into the forecast.
+  150 columns vs. 28 scraped, includes `target_share` and `air_yards_share`.
+- **Model → usage × efficiency**, reliability-weighted shrinkage (see `projections.py`
+  above). Averaging the *product* directly — what the old engine did — bakes efficiency
+  noise into the forecast.
 - **Scoring → DraftKings classic** (full PPR, +3 bonuses at 100 rush / 100 rec / 300 pass
-  yards). The bonuses are nonlinear, so expected fantasy points cannot be derived from
-  expected yards — you need `P(yards ≥ 100)`, hence a distributional layer.
+  yards). Bonuses are nonlinear, so expected fantasy points needs `P(yards ≥ threshold)`,
+  not a threshold test on the mean — hence `_exceed_probability`.
 - **Edge thesis:** volume props (receptions, carries, attempts) are usage-driven and
-  predictable; yardage props are efficiency-driven and mostly noise. NFL sides/spreads are
-  efficient — do not model them.
-- **Steer on calibration and closing-line value, never on early ROI.** At ~50 bets, ROI is
-  statistically indistinguishable from noise.
-- **Delivery → Telegram push**, not a webapp. Decisions happen on a phone on Sunday morning.
+  predictable; yardage props are efficiency-driven and mostly noise. NFL sides/spreads
+  are efficient — do not model them.
+- **Venue: Kalshi where liquid, DraftKings otherwise** — see "Which venue to bet" above.
+- **Steer on calibration and closing-line value, never on early ROI.** At ~50 bets, ROI
+  is statistically indistinguishable from noise.
+- **Delivery → Telegram push**, not a webapp. Not yet built.
 
 ## Landmines
 
-**Three incompatible team-abbreviation conventions coexist.** `data/team_map.xlsx` is the bridge (`full_team_name` / `team_abbrev` / `roster_abbrev`):
+**Three incompatible team-abbreviation conventions coexist, but only in the legacy
+agent stack.** `data/team_map.xlsx` is the bridge (`full_team_name` / `team_abbrev` /
+`roster_abbrev`) — needed only by `odds.py` / `picks_agent.py` / `stats_agent.py`.
 
 | Source | Convention | Green Bay / Kansas City / New Orleans |
 |---|---|---|
-| `data/game_data/*.csv` `team` col, `data/nfl-2025-*.csv` schedule | PFR (`team_abbrev`) | `GNB` / `KAN` / `NOR` |
-| `data/roster.xlsx`, `data/projections/nfl25_proj_week*.csv` `team` col | ESPN (`roster_abbrev`) | `GB` / `KC` / `NO` |
-| `data/game_data/*.csv` `opponent`, `home_team`, `away_team` cols | full names | `Green Bay Packers` |
+| `data/nfl-2025-EasternStandardTime.csv` schedule | PFR (`team_abbrev`) | `GNB` / `KAN` / `NOR` |
+| `data/roster.xlsx` `team` col | ESPN (`roster_abbrev`) | `GB` / `KC` / `NO` |
 
-The `team` column in game data is itself mixed — some rows carry PFR abbreviations, others full names. Any join on team identity needs an explicit normalization step; `load_team_name_mapping()` in [picks_agent.py:87](picks_agent.py#L87) is the reference implementation (its hardcoded fallback is what produces the ESPN-style abbreviations).
+`load_team_name_mapping()` in [picks_agent.py:87](picks_agent.py#L87) is the reference
+implementation. **`nfl_source.py` does not have this problem** — nflverse uses one
+convention throughout (32 teams; `LA` for the Rams, `LAC` for the Chargers) and joins
+on stable `player_id`, so `projections.py` and everything downstream of it needs no
+team-name mapping at all. If you're writing new code and reaching for
+`team_map.xlsx`, that's a sign you're solving an already-solved problem.
 
-**Week-number zero-padding is inconsistent.** Odds use `data/odds/week_04/..._week_04.csv` (`{week:02d}`); projections use `data/projections/nfl25_proj_week4.csv` (unpadded). Insights/nuggets/fun_stats use padded (`grok_insights_week_04.json`).
+**`RUN.md` describes the pre-rebuild pipeline and should not be followed.** It refers
+to scripts (`nfl_data.py`, `run_projections.py`, `run_season_projections.py`,
+`backtesting/backtester.py`) that no longer exist. Kept only as a historical record of
+what the system used to do; see "Running things" above for current commands.
 
-**`RUN.md` is partly stale.** It refers to a `projection.py` that no longer exists (now `run_projections.py`), shows `run_season_projections.py <week>` when the script takes no week argument and auto-detects completed weeks, and lists pre-reorganization paths (`data/game_data_2024.csv` → now `data/game_data/game_data_2024.csv`; `data/team_season_totals.csv` → now `data/season_projections/team_season_totals.csv`). Trust the code over `RUN.md`.
-
-**The three-abbreviation problem only affects legacy code.** `nfl_source.py` uses one
-nflverse convention throughout (32 teams; note `LA` for the Rams, `LAC` for the
-Chargers) and joins on stable `player_id`, so new code needs no `team_map.xlsx` and no
-name matching. The table above still applies to `data/game_data/*.csv`, `roster.xlsx`,
-and anything reading them — which is all legacy and slated for removal.
-
-**Generated artifacts are committed.** `data/projections/`, `data/season_projections/`, `data/odds/`, `data/insights/`, and the root `nfl_week_*_analysis_*.html/csv` files are checked in. Re-running a pipeline stage rewrites tracked files — expect a dirty tree, and don't mistake regenerated output for a real diff.
+**Generated artifacts are gitignored except captured betting lines.**
+`data/projections/`, `data/season_projections/`, `data/insights/`, `data/nuggets/`,
+`data/fun_stats/`, `data/depth_charts/`, and root `nfl_week_*_analysis_*.html/csv` are
+ignored — reproducible from source data, so not tracked. **`data/odds/` (legacy
+`odds.py` output, weeks 1-10 already captured) and `data/odds_history/` (Kalshi/DK
+capture) are both deliberately tracked** — captured betting lines cannot be
+regenerated after the fact, and are the only source for closing-line-value analysis.
