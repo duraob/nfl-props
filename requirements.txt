@@ -1,0 +1,22 @@
+# Core data + modeling
+pandas==3.0.5
+numpy==2.5.2
+scipy==1.18.0
+
+# NFL data source (nflverse). Replaces the PFR/ESPN Selenium scrapers.
+# Brings polars as a transitive dependency.
+nflreadpy==0.1.5
+polars==1.43.2
+# Required for polars -> pandas conversion at the nfl_source boundary
+pyarrow==25.0.1
+
+# Odds / delivery / config
+requests==2.34.2
+python-dotenv==1.2.2
+
+# Reads the legacy data/roster.xlsx and data/team_map.xlsx.
+# Removable once Phase 2 retires the Excel inputs.
+openpyxl==3.1.5
+
+# Tests
+pytest==9.1.1

@@ -1,18 +1,40 @@
 # NFL Data Pipeline - Weekly Run Guide
 
-This document provides step-by-step instructions for running each core module in the NFL data pipeline for weekly operations.
+> **This document is being replaced and is partly obsolete.**
+>
+> Steps 1-3 below described `nfl_data.py`, `roster_scraper.py`, and `injuries.py`.
+> Those three Selenium scrapers were **deleted** and replaced by [nfl_source.py](nfl_source.py),
+> which reads nflverse directly. There is no longer a scraping step: data is fetched at
+> projection time and its freshness is verified rather than assumed.
+>
+> The projection engine itself is mid-rebuild — see the "Known-broken" and "Direction"
+> sections of [CLAUDE.md](CLAUDE.md). Everything below the Overview is retained only as a
+> record of the legacy pipeline and should not be followed as-is.
 
 # Run
 
-1. python nfl_data.py 2025 --- Scrape 2025 season data (run weekly after games complete)
-2. python roster_scraper.py --- Update active player roster [ DO THIS END OF DAY WEDNESDAY ]
-3. python injuries.py --- Scrape current injury data [ DO THIS END OF DAY WEDNESDAY ]
-4. python run_projections.py (CURRENT WEEK NUMBER) --- Week + player projections (uses available 2025 weeks + 2024 fill)
-5. python run_season_projections.py (CURRENT WEEK NUMBER) --- Team projections and standings
-6. python odds.py (CURRENT WEEK NUMBER) --- Scrape specific week odds
-7. python picks_agent.py --- Analyze current week (automatically detects available weeks)
-8. python stats_agent.py (CURRENT WEEK NUMBER) --- Generate insights for any week
-9. python utils/insights_formatter.py (CURRENT WEEK NUMBER) --csv
+Data no longer needs scraping. To pull current data:
+
+```python
+import nfl_source as src
+
+src.require_fresh(max_age_days=3)        # refuses to proceed on stale nflverse data
+df    = src.weekly_stats([2025, 2026])   # player-weeks + snap counts + usage shares
+sched = src.schedule([2026])             # incl. closing spread_line / total_line
+inj   = src.injuries([2026])             # weekly report + practice status
+src.clear_cache()                        # before Sunday runs; default TTL is 24h
+```
+
+Remaining legacy steps, still functional but slated for replacement:
+
+```bash
+python run_projections.py <week>          # DO NOT TRUST - see CLAUDE.md "Known-broken"
+python run_season_projections.py          # team projections and standings
+python odds.py <week>                     # weekly odds capture
+python picks_agent.py <week>              # projections vs odds + Grok
+python stats_agent.py <week>              # statistical nuggets
+python utils/insights_formatter.py <week> --csv
+```
 
 ## Overview
 

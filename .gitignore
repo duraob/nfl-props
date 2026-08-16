@@ -133,6 +133,22 @@ dmypy.json
 # Cache directory (contains scraped data cache)
 cache/
 
+# Generated pipeline outputs. Reproducible from source data + a pipeline run,
+# so they are kept on disk but not tracked.
+# NOTE: data/odds/ is deliberately NOT ignored - captured betting lines cannot be
+# regenerated after the fact and are the baseline for closing-line-value analysis.
+data/projections/
+data/season_projections/
+data/insights/
+data/nuggets/
+data/fun_stats/
+data/depth_charts/
+
+# Generated weekly reports
+nfl_week_*.html
+nfl_week_*.csv
+backtest_results/
+
 # Log files
 *.log
 scraper_errors.log
