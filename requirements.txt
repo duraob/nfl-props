@@ -14,9 +14,5 @@ pyarrow==25.0.1
 requests==2.34.2
 python-dotenv==1.2.2
 
-# Reads the legacy data/roster.xlsx and data/team_map.xlsx.
-# Removable once Phase 2 retires the Excel inputs.
-openpyxl==3.1.5
-
 # Tests
 pytest==9.1.1

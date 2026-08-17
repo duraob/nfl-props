@@ -96,6 +96,40 @@ def _snap_crosswalk() -> pl.DataFrame:
     return nfl.load_players().select(["gsis_id", "pfr_id"]).drop_nulls()
 
 
+def published_seasons(seasons: list[int], loader=None) -> list[int]:
+    """
+    Filter to seasons nflverse has actually published stats for.
+
+    Schedules publish months in advance; per-player stats and injuries only exist
+    once games have been played. So in the weeks before a season opens, season N has
+    a full schedule but requesting its stats raises a 404. Projecting week 1 of an
+    upcoming season is a completely normal thing to do - it just has to run entirely
+    on the prior season's history - so an unstarted season is filtered out here
+    rather than crashing the caller.
+
+    This is not a silent fallback: skipped seasons are printed, and requesting
+    nothing but unstarted seasons still raises.
+    """
+    loader = loader or (lambda season: nfl.load_player_stats(seasons=[season]))
+    available, skipped = [], []
+    for season in seasons:
+        try:
+            loader(season)
+            available.append(season)
+        except Exception:
+            skipped.append(season)
+
+    if skipped:
+        print(f"nfl_source: no published stats yet for {skipped} "
+              f"(season not started); using {available}")
+    if not available:
+        raise RuntimeError(
+            f"None of the requested seasons {seasons} have published stats yet. "
+            "Include at least one completed or in-progress season."
+        )
+    return available
+
+
 def weekly_stats(
     seasons: list[int],
     positions: list[str] | None = None,
@@ -118,6 +152,8 @@ def weekly_stats(
         One row per player-week, with offense_snaps and offense_pct attached.
     """
     positions = positions or SKILL_POSITIONS
+    # An upcoming season has a schedule but no stats until its first games are played.
+    seasons = published_seasons(seasons)
 
     stats = nfl.load_player_stats(seasons=seasons)
     if season_type != "ALL":
@@ -156,15 +192,83 @@ def schedule(seasons: list[int]) -> pd.DataFrame:
     return nfl.load_schedules(seasons=seasons).select(columns).to_pandas()
 
 
-def injuries(seasons: list[int]) -> pd.DataFrame:
+# nflverse is *mostly* internally consistent on team abbreviations, but not entirely:
+# the 2026 roster file uses "AZ" for Arizona while every schedule (and the 2023-25
+# rosters) use "ARI". Left unnormalized, Arizona silently vanishes from any
+# roster-to-schedule join - 0 projections for an entire team, no error raised. That
+# is the same failure shape as the old 57-player-pool bug, so it is normalized here
+# rather than trusted.
+TEAM_ALIASES = {"AZ": "ARI"}
+
+
+def rosters(seasons: list[int], positions: list[str] | None = None,
+            active_only: bool = True) -> pd.DataFrame:
+    """
+    Who is on which team, keyed by gsis_id so it joins straight to weekly_stats.
+
+    Unlike stats, rosters publish before a season starts - which is what makes it
+    possible to project week 1 of an upcoming season at all. `status` "ACT" is the
+    active roster; RES/RET/CUT are reserve, retired, and released.
+
+    Team abbreviations are normalized via TEAM_ALIASES - see the note there.
+    """
+    positions = positions or SKILL_POSITIONS
+    frame = nfl.load_rosters(seasons=seasons).filter(pl.col("position").is_in(positions))
+    if active_only:
+        frame = frame.filter(pl.col("status") == "ACT")
+    out = frame.select(
+        ["season", "team", "position", "gsis_id", "full_name", "status"]
+    ).drop_nulls(subset=["gsis_id"]).to_pandas()
+    out["team"] = out["team"].replace(TEAM_ALIASES)
+    return out
+
+
+def injuries(seasons: list[int], positions: list[str] | None = None) -> pd.DataFrame:
     """
     Weekly injury reports, keyed by gsis_id so they join directly to weekly_stats.
 
     report_status is the game-day designation (Out / Doubtful / Questionable);
     practice_status reflects the Wed-Fri practice participation that precedes it.
+
+    Defaults to skill positions, matching weekly_stats()/rosters(): the unfiltered
+    report is mostly offensive line and defense, who never appear in weekly_stats at
+    all, and would otherwise dilute any played-rate measured against it.
     """
+    positions = positions or SKILL_POSITIONS
+    # Like weekly_stats(): an unstarted season has no injury reports yet.
+    seasons = published_seasons(seasons, loader=lambda s: nfl.load_injuries(seasons=[s]))
     columns = [
         "season", "week", "team", "gsis_id", "full_name", "position",
         "report_status", "report_primary_injury", "practice_status",
     ]
-    return nfl.load_injuries(seasons=seasons).select(columns).to_pandas()
+    return (nfl.load_injuries(seasons=seasons)
+            .filter(pl.col("position").is_in(positions))
+            .select(columns).to_pandas())
+
+
+def depth_chart_ranks(season: int, positions: list[str] | None = None) -> pd.DataFrame:
+    """
+    Current depth-chart rank per player, keyed by gsis_id.
+
+    nflverse's depth-chart pipeline changed schema starting with the 2025 season:
+    2024 and earlier publish weekly, week-aligned snapshots (season/week/depth_team);
+    2025 onward publish a single rolling "current" snapshot instead (dt/pos_rank, no
+    week dimension, refreshed roughly daily) - only that newer schema is handled
+    here. That's a deliberate scope limit, not an oversight: the one caller
+    (projections.py's no-history prior) only ever needs "who is starting right now"
+    for the week being projected, never a specific past week.
+    """
+    positions = positions or SKILL_POSITIONS
+    dc = nfl.load_depth_charts(seasons=[season])
+    if "pos_rank" not in dc.columns:
+        raise RuntimeError(
+            f"nfl.load_depth_charts(seasons=[{season}]) returned the pre-2025 weekly "
+            "schema (no pos_rank column) - depth_chart_ranks() only supports the "
+            "newer rolling-snapshot schema. See this function's docstring."
+        )
+    latest = dc.filter(pl.col("dt") == dc["dt"].max())
+    return (latest.filter(pl.col("pos_abb").is_in(positions))
+            .select(["gsis_id", "pos_abb", "pos_rank"])
+            .rename({"gsis_id": "player_id", "pos_abb": "position", "pos_rank": "rank"})
+            .unique(subset=["player_id"], keep="first")
+            .to_pandas())

@@ -35,7 +35,8 @@ HISTORY = Path("data/odds_history/kalshi.csv")
 SERIES = [
     # Weekly per-game player props. These are the target: the model's measured edge is
     # in player volume, and Kalshi prices them as threshold binaries ("50+ receiving
-    # yards"), which is exactly what _exceed_probability already emits - no translation.
+    # yards"). Turning a raw-stat projection into a threshold probability isn't built
+    # yet - projections.py only outputs point estimates for now.
     # They sit at zero open markets between slates and reopen near gameday, so capture
     # has to run on a schedule rather than being judged by a one-off look.
     "KXNFLRECYDS",

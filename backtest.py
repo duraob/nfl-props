@@ -8,11 +8,12 @@ Grades the engine on the metrics that govern real decisions, not just MAE:
               on - you need the right ordering, not calibrated absolute values.
 - MAE       : average error, reported against a naive baseline so the number means
               something. "MAE 3.9" is not interpretable on its own.
-- calibration: do the modelled probabilities match realized frequencies? This is
-              what prop betting turns on, and a model can rank well while being
-              badly calibrated.
 
-Holdout discipline: every constant in projections.py was measured on 2022-24, so
+Scored per raw stat (passing yards, rushing yards, receiving yards, receptions, TDs,
+interceptions) rather than a single composite score - the project cares about the
+individual stat lines themselves, which is also what prop bets are priced on.
+
+Holdout discipline: every constant in projections.py was measured on 2023-24, so
 2025 is untouched. Tuning-set results are expected to flatter the model; the holdout
 number is the real one, and the gap between them is the overfitting estimate.
 """
@@ -28,26 +29,65 @@ import projections as P
 TUNING_SEASONS = [2023, 2024]
 HOLDOUT_SEASON = 2025
 
+# (label, projected column in build()'s output, actual column in weekly_stats)
+STATS = [
+    ("pass_yd", "pass_yd", "passing_yards"),
+    ("pass_td", "pass_td", "passing_tds"),
+    ("interceptions", "interceptions", "passing_interceptions"),
+    ("rush_yd", "rush_yd", "rushing_yards"),
+    ("rush_td", "rush_td", "rushing_tds"),
+    ("rec_yd", "rec_yd", "receiving_yards"),
+    ("rec_td", "rec_td", "receiving_tds"),
+    ("receptions", "receptions", "receptions"),
+]
+
 
 def _baselines(stats_df: pd.DataFrame) -> pd.DataFrame:
-    """Naive comparators. Without these, an MAE figure has no meaning."""
+    """
+    Naive last-4-week comparator per stat, plus the actual values themselves.
+
+    Grouped by player only, not player+season, matching projections.py's build():
+    the model now carries a player's trailing history across the season boundary
+    (weeks 1-2 would otherwise have zero same-season history and be dropped by
+    MIN_GAMES). If this baseline stayed season-scoped, it would have no fair number
+    for weeks 1-2 at all, and scorecard()'s dropna would silently exclude exactly the
+    weeks the model is now able to project - hiding the model's real early-season
+    performance right when validating it matters most.
+
+    Output columns are prefixed `obs_`/`bl_` rather than reusing the stat's own name
+    (e.g. `obs_receptions`, not `receptions`), because build()'s output already has a
+    *projected* `receptions` column - reusing the bare name would silently compare a
+    column against itself after the merge instead of raising an error. That exact
+    collision produced a first-draft bug here (receptions scored as a perfect
+    prediction, MAE 0.0) before the columns were renamed to be unambiguous.
+    """
     df = stats_df.sort_values(["player_id", "season", "week"]).copy()
-    df["actual_dk"] = P.dk_points(df)
-    g = df.groupby(["player_id", "season"], sort=False)["actual_dk"]
-    df["bl_last4"] = g.transform(lambda x: x.shift(1).rolling(4, min_periods=2).mean())
-    df["bl_season"] = g.transform(lambda x: x.shift(1).expanding(min_periods=2).mean())
-    # Realized yardage travels alongside the baselines so calibration can be checked.
-    return df[["player_id", "season", "week", "bl_last4", "bl_season",
-               "receiving_yards", "rushing_yards", "passing_yards"]]
+    out_cols = ["player_id", "season", "week"]
+    for label, _, actual_col in STATS:
+        obs_col, baseline_col = f"obs_{label}", f"bl_{label}"
+        g = df.groupby("player_id", sort=False)[actual_col]
+        df[baseline_col] = g.transform(lambda x: x.shift(1).rolling(4, min_periods=2).mean())
+        df[obs_col] = df[actual_col]
+        out_cols += [obs_col, baseline_col]
+    return df[out_cols]
 
 
 def evaluate(seasons: list[int]) -> pd.DataFrame:
-    """Score the engine and its baselines over the given seasons."""
-    stats_df = src.weekly_stats(seasons)
-    schedule_df = src.schedule(seasons)
+    """
+    Score the engine and its baseline over the given seasons, for every stat.
+
+    Loads one extra season before the earliest requested one purely as trailing
+    context - scored rows are still filtered to `seasons` only. Without this, weeks
+    1-2 of the earliest scored season would have no history (same reason build() now
+    carries a player's data across the season boundary) and silently score nothing,
+    hiding the exact weeks that most need validating before a real season starts.
+    """
+    load_seasons = [min(seasons) - 1] + list(seasons)
+    stats_df = src.weekly_stats(load_seasons)
+    schedule_df = src.schedule(load_seasons)
     built = P.build(stats_df, schedule_df)
-    merged = built.merge(_baselines(stats_df), on=["player_id", "season", "week"], how="left")
-    return merged.dropna(subset=["bl_last4", "bl_season"])
+    built = built[built.season.isin(seasons)]
+    return built.merge(_baselines(stats_df), on=["player_id", "season", "week"], how="left")
 
 
 def _score(pred: pd.Series, actual: pd.Series) -> dict:
@@ -57,79 +97,44 @@ def _score(pred: pd.Series, actual: pd.Series) -> dict:
         "mae": float(np.abs(err).mean()),
         "bias": float(err.mean()),
         "spearman": float(pred.corr(actual, method="spearman")),
-        "pearson": float(pred.corr(actual)),
     }
 
 
-def scorecard(df: pd.DataFrame, by_position: bool = True) -> pd.DataFrame:
-    """Model vs baselines, overall and per position."""
+def scorecard(df: pd.DataFrame) -> pd.DataFrame:
+    """Model vs. last-4-week baseline, one row per stat."""
     rows = []
-    groups = [("ALL", df)]
-    if by_position:
-        groups += [(p, d) for p, d in df.groupby("position")]
-
-    for label, d in groups:
-        for name, col in (("model", "dk_points"),
-                          ("last-4 baseline", "bl_last4"),
-                          ("season baseline", "bl_season")):
-            rows.append({"group": label, "model": name, **_score(d[col], d.actual_dk_points)})
+    for label, proj_col, _ in STATS:
+        obs_col, baseline_col = f"obs_{label}", f"bl_{label}"
+        d = df.dropna(subset=[baseline_col])
+        d = d[d[baseline_col] > 0]   # excludes players for whom this stat isn't part of their role
+        if d.empty:
+            continue
+        rows.append({"stat": label, "model": "engine", "n": len(d),
+                    **_score(d[proj_col], d[obs_col])})
+        rows.append({"stat": label, "model": "last-4 baseline", "n": len(d),
+                    **_score(d[baseline_col], d[obs_col])})
     return pd.DataFrame(rows)
-
-
-def calibration(df: pd.DataFrame, stat: str = "rec_yd", threshold: float = 100.0,
-                bins: int = 5) -> pd.DataFrame:
-    """
-    Do modelled probabilities match reality?
-
-    Buckets rows by predicted P(stat >= threshold) and compares to the realized rate.
-    A well-calibrated model puts ~30% of the 30%-bucket over the line. This validates
-    the same distribution the DK bonus math relies on, and is the prerequisite for
-    trusting any prop-betting edge later.
-    """
-    actual_col = {"rec_yd": "receiving_yards", "rush_yd": "rushing_yards",
-                  "pass_yd": "passing_yards"}[stat]
-    d = df.dropna(subset=[stat, actual_col]).copy()
-    d["p_pred"] = P._exceed_probability(d[stat], threshold, P.STAT_DISPERSION[stat])
-    d["hit"] = (d[actual_col] >= threshold).astype(float)
-
-    d["bucket"] = pd.qcut(d.p_pred, bins, duplicates="drop")
-    out = d.groupby("bucket", observed=True).agg(
-        n=("hit", "size"), predicted=("p_pred", "mean"), realized=("hit", "mean")
-    ).reset_index(drop=True)
-    out["error"] = out.realized - out.predicted
-    return out
 
 
 def run(seasons: list[int], label: str) -> pd.DataFrame:
     """Evaluate and print a scorecard for one set of seasons."""
     df = evaluate(seasons)
     card = scorecard(df)
-    print(f"\n{'=' * 66}\n{label}  (seasons={seasons}, n={len(df)})\n{'=' * 66}")
-    overall = card[card.group == "ALL"]
-    print(f"{'':18s} {'MAE':>7s} {'bias':>8s} {'spearman':>9s}")
-    for _, r in overall.iterrows():
-        print(f"  {r.model:16s} {r.mae:7.3f} {r.bias:+8.3f} {r.spearman:9.3f}")
+    print(f"\n{'=' * 70}\n{label}  (seasons={seasons})\n{'=' * 70}")
+    print(f"{'stat':16s} {'n':>6s} {'MAE':>8s} {'bias':>8s} {'spearman':>9s}   vs baseline")
 
-    m = overall[overall.model == "model"].iloc[0]
-    b = overall[overall.model == "last-4 baseline"].iloc[0]
-    print(f"\n  MAE improvement vs last-4 : {100 * (b.mae - m.mae) / b.mae:+.2f}%")
-    print(f"  Spearman improvement      : {100 * (m.spearman - b.spearman) / b.spearman:+.2f}%")
-
-    print("\n  by position (model MAE vs last-4 baseline):")
-    for pos in ("QB", "RB", "WR", "TE"):
-        sub = card[card.group == pos]
+    for stat, _, _ in STATS:
+        sub = card[card.stat == stat]
         if sub.empty:
             continue
-        mm = sub[sub.model == "model"].iloc[0]
-        bb = sub[sub.model == "last-4 baseline"].iloc[0]
-        print(f"    {pos}: {mm.mae:6.3f} vs {bb.mae:6.3f}  ({100 * (bb.mae - mm.mae) / bb.mae:+5.1f}%)"
-              f"   spearman {mm.spearman:.3f}")
+        m = sub[sub.model == "engine"].iloc[0]
+        b = sub[sub.model == "last-4 baseline"].iloc[0]
+        improvement = 100 * (b.mae - m.mae) / b.mae if b.mae else float("nan")
+        print(f"  {stat:14s} {int(m.n):6d} {m.mae:8.3f} {m.bias:+8.3f} {m.spearman:9.3f}"
+              f"   {improvement:+6.2f}%")
     return df
 
 
 if __name__ == "__main__":
-    tune = run(TUNING_SEASONS, "TUNING SET (constants were fitted here)")
-    hold = run([HOLDOUT_SEASON], "HOLDOUT (never used for any decision)")
-
-    print(f"\n{'=' * 66}\nCALIBRATION on holdout - P(receiving yards >= 100)\n{'=' * 66}")
-    print(calibration(hold).to_string(index=False))
+    run(TUNING_SEASONS, "TUNING SET (constants were fitted here)")
+    run([HOLDOUT_SEASON], "HOLDOUT (never used for any decision)")

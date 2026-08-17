@@ -31,13 +31,7 @@ nflverse package, which works and is already pinned in `requirements.txt`.
 ODDS_API=...      # The Odds API — free tier: 500 req/month. See dk_capture.py.
 KALSHI_API=...    # Kalshi API key id. Market data needs no auth; this is unused
                   # until/unless the project starts placing Kalshi trades.
-GROK_API_KEY=...  # xAI, used by picks_agent.py / stats_agent.py (legacy, see below)
 ```
-
-`xai-sdk` (required by `picks_agent.py` / `stats_agent.py`) is **not** in
-`requirements.txt` and not installed in the venv. Those two files predate the rebuild
-and are not wired to `projections.py`'s output — see "Legacy agents" below before
-touching them.
 
 ### Tests
 
@@ -56,43 +50,63 @@ All commands run **from the repo root** (every path in the codebase is CWD-relat
 ```bash
 python -m pytest tests/ -q                      # full suite
 python backtest.py                               # tuning + holdout scorecard (the gate)
+python -c "import projections as P; print(P.kickoff_windows(2026, 1))"  # when to act
 python odds_capture.py                            # Kalshi snapshot, append-only, free
 python dk_capture.py 6 --dry-run                  # DK cost estimate, spends nothing
 python dk_capture.py 6                            # DK closing lines, games within 6h
+python -c "import report; print(report.build_report(2026, 1))"          # formatted report, edge included where captured
+python -c "import market_odds as M; print(M.market_lines(2026))"        # normalized lines from both venues, direct
+python -c "import projections as P, ledger as L; L.log_predictions(P.project(2026, 1))"  # log before kickoff
+python settle.py 2026 1                           # grade a played week's bets
+python schedule_captures.py                       # one poll; no-ops unless a window is due right now
+python scorecard.py 2026 1                        # print last week's accuracy/CLV/calibration
+python scorecard.py --push                        # same, for the most recently completed week, sent to Telegram
 ```
 
 ```python
-import projections as P, nfl_source as src
-stats = src.weekly_stats([2025, 2026])
-sched = src.schedule([2025, 2026])
-proj  = P.project(season=2026, week=1, seasons=[2025, 2026])
+import projections as P
+proj = P.project(season=2026, week=1)  # seasons defaults to [2025, 2026] automatically
 ```
 
-There is no single "run the week" entry point yet — `projections.py` and the capture
-scripts are run independently. `RUN.md` describes the pre-rebuild pipeline and is
-retained only as a historical record; do not follow it.
+**`schedule_captures.py` is now the single "run the week" entry point** for the
+time-critical half of the pipeline — capture, prediction logging, and the report
+push — intended to run every 15 minutes under cron on an always-on machine (see
+"Automation" in the Roadmap below and `deploy/setup.sh`), rather than each piece
+being run by hand at roughly the right time. Generating a projection or a report
+directly, as above, still works exactly the same regardless of whether that's
+deployed - the scheduler calls the same functions, it doesn't replace them.
+**`RUN.md` is a current, accurate, plain-language guide** — written for a
+non-technical reader, but kept in sync with the actual system rather than
+describing the old pipeline.
 
 ## Architecture
 
 ```
-nfl_source.py (nflverse)  ─┬─>  projections.py  ─>  backtest.py  (tuning + holdout gate)
-                            │
-odds_capture.py (Kalshi)   ┤
-dk_capture.py (DK closing) ┘
-        │
-        └─> data/odds_history/{kalshi,draftkings}.csv  (append-only, never regenerated)
+nfl_source.py (nflverse)  ─┬─>  projections.py  ─┬─>  backtest.py (tuning + holdout gate)
+                            │                      │
+                            │                      ├─>  ledger.py (log_predictions)
+                            │                      │            │
+                            │                      └─>  market_odds.py (compute_edge)
+                            │                                │  │
+odds_capture.py (Kalshi)   ─┤                                │  └─>  report.py ─> telegram_notify.py
+dk_capture.py (DK closing) ─┤                                │
+        │                   │                                │
+        └─> data/odds_history/{kalshi,draftkings,predictions,bets}.csv (append-only)
+                             │                                │
+                             └────────────────> settle.py <───┘  (error, result, CLV)
 ```
 
-Three independent pieces, not a pipeline: `projections.py` needs only `nfl_source.py`.
-The two capture scripts need only network access and write straight to history files —
-neither depends on the projection engine, and nothing currently joins projections
-against captured odds. That join (compute model edge vs. market price) doesn't exist
-yet; it's the natural next module once Kalshi's weekly prop liquidity is known.
-
-`odds.py`, `picks_agent.py`, `stats_agent.py`, `utils/insights_formatter.py` are a
-**separate, older stack** — see "Legacy agents" below. They still run, but they consume
-`data/roster.xlsx` / `data/team_map.xlsx` / `data/player_name_mapping.csv`, not
-anything `projections.py` produces.
+`projections.py` needs only `nfl_source.py`. `report.py` formats its output for
+delivery; `telegram_notify.py` is a thin push layer under that. The two capture
+scripts need only network access and write straight to history files — neither
+depends on the projection engine. Two joins exist against captured odds now, both
+via `market_odds.py`'s normalized shape: `settle.py` joins **after the fact**, to
+grade a bet already placed (error, result, CLV — Phase 7); `report.py` joins
+**before** a bet, via `market_odds.compute_edge()`, to show edge alongside
+confidence for whichever shown players have a captured line (Phase 8). Most players
+show no edge simply because most stat/player combinations have no line captured yet
+— that's expected, not a bug; see "Confidence, not edge" below for what the
+confidence filter alone still means where no line exists.
 
 ### `nfl_source.py` — the data layer
 
@@ -117,14 +131,96 @@ Three things worth knowing:
 numbers, free, with 100% coverage. That is the fair-value benchmark for the team model
 and required no odds API.
 
+**Feeds publish on different timelines.** Schedules and rosters exist months before a
+season starts; `weekly_stats()` and `injuries()` 404 until the first games are played.
+`published_seasons()` filters unstarted seasons out (printing which it skipped, and
+raising if *nothing* requested is available) so projecting an upcoming week works
+instead of crashing — this is what makes `project(2026, 1)` possible in August.
+
+**`TEAM_ALIASES` exists because nflverse is not perfectly self-consistent.** The 2026
+roster file abbreviates Arizona `AZ` while every schedule (and the 2023-25 rosters)
+use `ARI`. Unnormalized, Arizona silently vanished from the roster→schedule join —
+an entire team with zero projections and no error, the same failure shape as the old
+57-player-pool bug. Normalized in `rosters()`, with
+`test_roster_team_abbreviations_match_the_schedule` to catch new drift and a hard
+raise in `_placeholder_rows` if any scheduled team ends up with no players.
+
 Polars is an implementation detail: nflreadpy returns polars, everything converts to
 pandas at this boundary (hence `pyarrow`). The rest of the project is pandas-only.
 
 ### `projections.py` — the model
 
 Replaces the legacy engine. Usage × efficiency with reliability-weighted shrinkage.
-`build(stats, schedule)` returns per-player-week projections; `project(season, week)`
-wraps it for a single upcoming week.
+`build(stats, schedule)` returns per-player-week projections for the raw stats
+themselves — `pass_yd`, `rush_yd`, `rec_yd`, `receptions`, `pass_td`, `rush_td`,
+`rec_td`, `interceptions` — plus `gameday`/`gametime` and two confidence columns
+(below). `project(season, week)` wraps it for a single upcoming week, sorted by
+total expected touches (`e_touches`) **within position** — see `report.py` for why
+that qualifier matters.
+
+**History carries across the season boundary.** `_trailing()`, `_trailing_rate()`,
+and `games_played` group by `player_id` alone, not `player_id` + `season`. Grouping
+by season was the original design and it silently broke weeks 1-2 of *every*
+season: with no same-season history yet, `MIN_GAMES` filtered every player out and
+`build()` returned zero rows. Confirmed and fixed once real 2025 Week 1 data was
+checked. `project()` now defaults `seasons` to `[season - 1, season]`, so calling it
+plainly (`P.project(2026, 1)`) is safe. **`build()` has no such default** — it takes
+`stats_df`/`schedule_df` directly, so a caller who loads only the target season (e.g.
+`src.weekly_stats([2026])`) will reproduce the empty-weeks-1-2 bug even though the
+grouping fix is in place, because there is no prior-season data in the frame to
+carry forward. The tradeoff is real, not free either way: a player who changed teams
+or role over the offseason still gets his prior team's trailing average, undiscounted
+for the change. `tests/test_projections.py::test_early_season_weeks_use_prior_season_history`
+guards the row-count side of this; there is no test for the role-change blind spot,
+because there is no fix for it yet either.
+
+**Confidence, not edge.** `confidence_yardage`/`confidence_touchdown` (plus
+`_label` columns: high/medium/low) tell you how much to trust the *number itself* —
+they are `MEASURED_RELIABILITY` ceiling × `min(1, games_played / CONFIDENCE_FULL_SAMPLE_GAMES)`.
+Since the TD/INT reliability ceiling is 0.09, **touchdown confidence can never
+reach "high"** — that is correct, not a bug, per the reliability table below.
+Confidence alone still says nothing about whether a number beats a market price —
+that comparison is `market_odds.compute_edge()` (Phase 8), reported in `report.py`
+*alongside* confidence, never merged into one number, because they answer different
+questions: confidence can be high with no edge (an accurately-priced player), and
+edge can be nonzero with low confidence (a noisy number that happens to look
+off-market — a weaker signal, not a stronger one). Edge only ever appears where a
+market line has actually been captured for that player/stat, which today is most of
+the time *not* the case (see "Which venue to bet" below) — confidence remains the
+only triage available for everyone else.
+
+**Projecting a week that has not been played.** `build()` is retrospective — it emits
+one projection per player-week *already present in the stats data*, so on its own it
+returns nothing for an upcoming week. `project()` handles this by appending
+placeholder rows built from `src.rosters()` + the schedule (`_placeholder_rows`),
+with raw stats left NaN so a not-yet-played game is never mistaken for a zero. Before
+this existed, `P.project(2026, 1)` — the actual production call — raised a raw 404 and
+then returned zero rows. Guarded by `test_upcoming_week_is_projectable`.
+
+**No-history coverage.** Anyone below `MIN_GAMES` of prior-game history — every
+rookie among them — no longer vanishes silently. `project()` rescues these rows with
+a depth-chart-based volume prior (`_apply_rookie_prior`, `DEPTH_RANK_VOLUME_PRIOR`)
+where a current depth-chart entry exists, always at low confidence; a player with
+neither history nor a depth-chart entry is still dropped. See Phase 6b in the
+Roadmap for the measurement behind it and the schema landmine it navigates.
+
+**`kickoff_windows(season, week)`** enumerates the distinct game days for a week and
+a suggested capture time (3h before the earliest kickoff in each) — a real 2026 Week
+1 has games on Wednesday, Thursday, Sunday, *and* Monday, so "capture Wednesday and
+Sunday" (the original plan) would miss the Wednesday/Thursday closing line entirely
+and try to act on Sunday/Monday days too early. See "Capture cadence" below.
+
+**There is no composite fantasy-point score.** A DraftKings-scoring layer
+(`dk_points`/`expected_dk_points`, plus the gamma-distribution machinery needed to
+integrate DK's nonlinear yardage bonuses) existed through Phase 4 and was removed
+deliberately — the project's goal is the individual stat predictions themselves, not
+a fantasy score. **`exceed_probability()` (Phase 8) reused the old gamma/dispersion
+approach but not its numbers** — it was rebuilt as its own concern, recalibrated
+across the full range of thresholds rather than just DK's three bonus levels, and
+restricted to players with real volume in that stat (see `DISPERSION_VOLUME_FLOOR` —
+an unthrown QB's ~0 rec_yd projection is real but irrelevant noise for calibrating a
+threshold nobody would query for that player). See Phase 8 in the Roadmap for the
+measured constants and known calibration caveats.
 
 Every parameter is measured, not chosen. Split-half reliability (2023-24) is the
 design driver:
@@ -149,74 +245,57 @@ Deliberately excluded, each because measurement rejected it:
   team's own scoring history) but **not** team *volume* (r=0.081) — NFL play counts
   are near-constant across teams. So the implied total scales **TDs only**.
 
-Two things to preserve when editing:
-
-- **DK bonuses need a distribution, not a threshold test.** `E[points] ≠ f(E[yards])`
-  because of the +3 at 100/100/300. `_exceed_probability` fits a gamma by method of
-  moments; a player projected for 85 rush yards still earns the bonus sometimes, and
-  ignoring that biases every projection low.
-- **`STAT_CV` and `LEAGUE_IMPLIED_TOTAL` are frozen constants on purpose.** Fitting
-  them at run time computes them over the whole frame including future weeks, which
-  leaks into backtests. `tests/test_projections.py::test_no_future_leakage` catches
-  this — it already caught it once.
+One thing to preserve when editing: **`LEAGUE_IMPLIED_TOTAL` is a frozen constant on
+purpose.** Fitting it at run time would compute it over the whole frame including
+future weeks, which leaks into backtests. `tests/test_projections.py::test_no_future_leakage`
+catches this class of bug — it already caught one real instance during Phase 4, when
+several `build()` priors were being computed over the whole frame instead of leak-free.
 
 ### Validation — `backtest.py`
 
-`python backtest.py` prints the scorecard for tuning and holdout. **Gate passed:**
+`python backtest.py` prints a scorecard **per raw stat** (not a composite score) for
+tuning and holdout, each against a last-4-week-average baseline. **Gate passed** — the
+model beats the naive baseline on every stat, on the untouched holdout:
 
 ```
-                         MAE    bias   spearman   vs last-4
-TUNING  2023-24        3.856  -0.332      0.786      +7.19%
-HOLDOUT 2025           3.842  -0.090      0.782      +6.83%
+HOLDOUT 2025 (never used to fit anything)
+  stat               n      MAE     bias  spearman   vs baseline
+  pass_yd          529   63.554   -1.589     0.416    +3.04%
+  pass_td          489    0.906   +0.068     0.332    +9.55%
+  interceptions    428    0.654   +0.017     0.056    +7.17%
+  rush_yd         2289   13.926   -1.037     0.775    +4.42%
+  rush_td          869    0.462   -0.016     0.271   +16.73%
+  rec_yd          3871   17.431   -0.367     0.595    +4.91%
+  rec_td          1633    0.375   +0.004     0.264   +20.21%
+  receptions      3923    1.318   +0.015     0.625    +2.95%
 ```
 
-The tuning/holdout gap is **0.36pp** — the model generalizes, it is not fitted to
-2023-24. Beats the baseline at every position: QB +4.6%, RB +5.9%, WR +6.7%, TE +11.5%.
+Tuning-set (2023-24) numbers are close to these — e.g. `rec_yd` MAE 17.897 vs the
+holdout's 17.431 — which is the generalization check: a model fitted to 2023-24 that
+did much better there than on 2025 would be overfit, and it isn't.
 
-Two things to carry forward:
+Things to carry forward:
 
-- **QB is the weak position.** Holdout Spearman 0.372 vs 0.78-0.79 for RB/WR/TE.
-  QB scoring is concentrated in TDs and rushing, both noisy. Lean on QB projections
-  least, especially for props.
-- **The 2025 holdout has now been observed.** Its miscalibration prompted the
-  dispersion fix (the fix itself was fitted on 2023-24 only, so the number is still
-  meaningful). It is no longer virgin. Use 2026 in-season results as the next clean
-  test rather than re-grading on 2025.
-
-### Legacy agents — `odds.py`, `picks_agent.py`, `stats_agent.py`, `utils/insights_formatter.py`
-
-Pre-rebuild code, kept because nothing has replaced its functionality yet — not
-because it's been reviewed or endorsed. Treat it as a separate, older system that
-happens to live in the same repo:
-
-- **Not wired to `projections.py`.** `picks_agent.py` reads
-  `data/projections/nfl25_proj_week{N}.csv`, a file format the current engine does not
-  write. Running it against the new pipeline's output will not work.
-- **Depends on files the rebuild left in place on purpose**: `data/roster.xlsx`,
-  `data/team_map.xlsx`, `data/player_name_mapping.csv`,
-  `data/nfl-2025-EasternStandardTime.csv`. These carry the three-abbreviation problem
-  described under Landmines below — `nfl_source.py` does not have this problem, these
-  files do.
-- **Needs `xai-sdk`**, not installed (see Environment above).
-- `picks_agent` calls `grok-4` with live search plus `grok-3`; `stats_agent` calls
-  `grok-3`. Both write JSON that `insights_formatter.py` renders to CSV/HTML.
-
-Whether to rebuild this layer, retire it, or replace the LLM step with a narrow
-injury/news lookup feeding `projections.py` is an open decision, not yet made — do
-not assume any direction here without asking.
-
-### `utils/`
-
-Only `insights_formatter.py` remains. Eight experimental modules and
-`season_projector.py` were removed in the rebuild (zero external imports each);
-recover any from history if needed: `git show c71c61c:utils/bayesian_updater.py`.
-[docs/ML.md](docs/ML.md) describes their intended role but was always aspirational.
+- **Interceptions and TD counts are barely predictable at all** (spearman 0.05-0.33).
+  Expected — TD/target and TD/carry measured 0.09 split-half reliability (see
+  `projections.py` above). The model still beats the naive baseline on these, but by
+  a smaller margin in absolute prediction quality than the improvement percentage
+  alone suggests. Don't over-read a "+20%" on a stat the model is still bad at
+  predicting in absolute terms.
+- **QB stats (`pass_yd`, `pass_td`) are the weakest predicted category overall**,
+  consistent with the volume-props edge thesis: passing efficiency and TDs are more
+  noise-dominated than rushing/receiving volume.
+- **The 2025 holdout has been observed more than once now** — first during the DK
+  bonus-calibration work (since removed), again here after the stat-level rescoring.
+  It is no longer a clean holdout in the strictest sense. Use 2026 in-season results
+  as the next genuinely clean test rather than continuing to re-grade on 2025.
 
 ### `odds_capture.py` — Kalshi capture
 
 Append-only snapshot of Kalshi NFL markets into `data/odds_history/kalshi.csv`.
 Deliberately does no analysis: lines cannot be reconstructed after the fact, so the
-only requirement is never losing data. Run twice weekly (open + pre-kickoff).
+only requirement is never losing data. See "Capture cadence" below for *when* — a
+fixed twice-weekly schedule is wrong for a week with Wednesday/Thursday games.
 
 Two API facts that will silently produce empty data if forgotten:
 
@@ -237,9 +316,15 @@ Measured liquidity (2026-08-16, ~4 weeks before Week 1):
 | `KXNFLSEASONPASSYDS` | 0.14 | $1,008 |
 | `KXNFLSEASONRECTD` / `RSHTD` | 0.25-0.29 | $105-142 |
 
-**Kalshi has no weekly per-game player props** — only season-long totals and leader
-markets. The measured edge (weekly volume props: receptions, carries, attempts) is
-therefore *not executable on Kalshi* and needs a sportsbook feed.
+**Kalshi does run weekly, single-game player props** — `KXNFLRECYDS`, `KXNFLRSHYDS`,
+`KXNFLPASSYDS`, confirmed via already-settled preseason markets (157/37/16 settled
+markets respectively). Two related series, `KXNFLREC` (receptions) and
+`KXNFLRSHATT` (rush attempts) — the two purest volume-prop series and the closest
+match to the measured edge — exist but have never been observed with an actual
+market. Unresolved until real regular-season weeks confirm or rule them out. These
+weekly series sit at zero open markets between slates and reopen near each week's
+games, which is exactly why they can look absent if checked at the wrong time — see
+`SERIES` in `odds_capture.py` for the full list now being captured.
 
 Season-prop spreads are bimodal, not uniformly wide: prominent player/threshold
 combinations quote 1-2 cents while obscure ones sit at 25-30. Tight markets are also
@@ -249,7 +334,7 @@ the better-priced ones, so edge and executability trade off directly.
 
 Narrow purpose: record what DK closed at, so CLV is computable. Bets are placed by
 hand (price recorded manually) and Kalshi supplies free intra-week movement, so this
-only needs the closing sweep.
+only needs the closing sweep — see "Capture cadence" below for exactly when.
 
 ```bash
 python dk_capture.py 6 --dry-run   # cost estimate, spends nothing
@@ -270,12 +355,65 @@ Sustainable cadence: 16 games x 3 markets x 1 sweep x 4.33 weeks = **208 credits
 
 `.env` uses `ODDS_API` (the legacy `odds.py` expected `ODDS_API_KEY`).
 
-### Which venue to bet
+### Capture cadence — driven by `kickoff_windows()`, not a fixed weekly schedule
 
-Model calibration was verified at Kalshi's exact threshold ladder on the 2025 holdout
-— errors within ±2 points at every level (25/50/75/100 yards; 150-300 passing). The
-model is applicable to Kalshi, and its native `_exceed_probability` output matches
-Kalshi's threshold-binary format with no translation.
+The original plan called for capturing twice a week (Wednesday open, Sunday close).
+**That is wrong**: real 2026 Week 1 has games on Wednesday, Thursday, Sunday, *and*
+Monday. A Wednesday-open/Sunday-close schedule would never capture a real closing
+line for the Wednesday or Thursday games (both already played out by the time
+Sunday's sweep runs), and would try to act on Sunday/Monday games far too early.
+
+Use `projections.kickoff_windows(season, week)` to get the real answer for any given
+week — it returns one row per distinct game day with `suggest_capture_by` (3h before
+that day's earliest kickoff, matching `dk_capture.py`'s `within_hours=6` default with
+margin to actually place a bet):
+
+```python
+import projections as P
+P.kickoff_windows(2026, 1)
+#   game_date  games  earliest_kickoff  ...  suggest_capture_by
+#   2026-09-09     1  2026-09-09 20:20  ...  2026-09-09 17:20   <- Wednesday opener
+#   2026-09-10     1  2026-09-10 20:35  ...  2026-09-10 17:35   <- Thursday
+#   2026-09-13    13  2026-09-13 13:00  ...  2026-09-13 10:00   <- Sunday slate
+#   2026-09-14     1  2026-09-14 20:15  ...  2026-09-14 17:15   <- Monday
+```
+
+Run `odds_capture.py`/`dk_capture.py` once per row, near `suggest_capture_by`, not on
+a fixed two-day-a-week schedule. `gametime` is assumed Eastern (early Sunday games
+show `13:00`, the NFL's standard 1:00 PM ET slot) — unverified against an
+authoritative source, but consistent across every game checked.
+
+### `report.py` + `telegram_notify.py` — delivery
+
+`report.py` formats `projections.project()` into a short, per-kickoff-day message;
+`telegram_notify.py` pushes it. Push only, no interactive bot commands (a message
+arriving at the right kickoff-adjacent moment matters more here than a queryable
+chat interface — see the original delivery decision in "Direction" below).
+
+```bash
+python -c "import report, telegram_notify as T; T.send_message(report.build_report(2026, 1, game_date='2026-09-10'))"
+```
+
+Two things to know:
+
+- **Ranked within each position, not globally.** The natural single sort key —
+  `e_touches` (targets + carries + attempts) — silently produces an all-QB report,
+  because pass attempts (~30+/game) always outrank targets or carries (~8-15/game).
+  Caught by eye during testing, now locked in by
+  `tests/test_report.py::test_report_includes_every_position`. Any change to the
+  ranking logic should re-run that test, not just eyeball one week's output.
+- **`min_confidence="high"` by default**, filtered on `confidence_yardage_label`
+  only. Touchdown/interception confidence never reaches "high" (see `projections.py`
+  above) — they are deliberately absent from the default report rather than
+  cluttering it with numbers that are mostly noise.
+
+`.env`: `TELEGRAM_API` is the bot token from @BotFather. `TELEGRAM_BOT_TOKEN` in
+`.env` is **not** a valid token — it's the numeric bot-id prefix only, left over
+from a partial paste; `telegram_notify.py` does not read it. `TELEGRAM_CHAT_ID` was
+discovered via `/getUpdates` after messaging the bot directly (`discover_chat_id()`
+reproduces this if it needs to be found again, e.g. for a different chat).
+
+### Which venue to bet
 
 The cost difference is decisive where liquidity allows:
 
@@ -287,6 +425,13 @@ The cost difference is decisive where liquidity allows:
 That ~2-point gap is often larger than the entire model edge. Prefer Kalshi when a
 market has liquidity; DK otherwise. Weekly Kalshi prop liquidity is still unknown —
 those markets sit at zero between slates and reopen near gameday.
+
+Kalshi and DraftKings both price props as threshold bets ("50+ receiving yards").
+`projections.exceed_probability()` converts a point projection into `P(stat ≥
+threshold)`, and `market_odds.py` turns both venues' captured lines into one
+`(player_id, stat, line, implied_probability, venue, captured_at)` shape;
+`market_odds.compute_edge()` joins the two. See Phase 8 in the Roadmap for how this
+was measured and its scope.
 
 ## Why the engine was rebuilt (history)
 
@@ -314,39 +459,35 @@ numbers behind each one.
 - **Model → usage × efficiency**, reliability-weighted shrinkage (see `projections.py`
   above). Averaging the *product* directly — what the old engine did — bakes efficiency
   noise into the forecast.
-- **Scoring → DraftKings classic** (full PPR, +3 bonuses at 100 rush / 100 rec / 300 pass
-  yards). Bonuses are nonlinear, so expected fantasy points needs `P(yards ≥ threshold)`,
-  not a threshold test on the mean — hence `_exceed_probability`.
+- **Output → raw stats, not a fantasy score.** A DraftKings-scoring layer existed
+  through Phase 4 and was deliberately removed — the goal is the individual stat
+  predictions (`pass_yd`, `rec_yd`, `receptions`, etc.), which is also what both
+  fantasy roster decisions and prop bets actually key off. `backtest.py` scores each
+  stat directly rather than through a composite point total.
 - **Edge thesis:** volume props (receptions, carries, attempts) are usage-driven and
   predictable; yardage props are efficiency-driven and mostly noise. NFL sides/spreads
   are efficient — do not model them.
 - **Venue: Kalshi where liquid, DraftKings otherwise** — see "Which venue to bet" above.
 - **Steer on calibration and closing-line value, never on early ROI.** At ~50 bets, ROI
   is statistically indistinguishable from noise.
-- **Delivery → Telegram push**, not a webapp. Not yet built.
+- **Delivery → Telegram push**, not a webapp. Built (`report.py` +
+  `telegram_notify.py`), push-only by design — decisions happen at specific
+  kickoff-adjacent moments (`kickoff_windows()`), so timing matters more than a
+  queryable chat interface. Interactive polling could be added later behind the same
+  bot token if that changes.
 
 ## Landmines
 
-**Three incompatible team-abbreviation conventions coexist, but only in the legacy
-agent stack.** `data/team_map.xlsx` is the bridge (`full_team_name` / `team_abbrev` /
-`roster_abbrev`) — needed only by `odds.py` / `picks_agent.py` / `stats_agent.py`.
+**nflverse is *largely* one team-abbreviation convention (32 teams; `LA` for the
+Rams, `LAC` for the Chargers), but "largely" is doing real work in that sentence.**
+The 2026 roster feed uses `AZ` where every schedule (and the 2023-25 rosters) uses
+`ARI`, which silently dropped a whole team from the roster→schedule join until it was
+caught — zero projections for an entire team, no error raised. Normalize through
+`nfl_source.TEAM_ALIASES` rather than assuming cross-feed consistency, and never
+assume a join "obviously" covers all 32 teams — assert it.
 
-| Source | Convention | Green Bay / Kansas City / New Orleans |
-|---|---|---|
-| `data/nfl-2025-EasternStandardTime.csv` schedule | PFR (`team_abbrev`) | `GNB` / `KAN` / `NOR` |
-| `data/roster.xlsx` `team` col | ESPN (`roster_abbrev`) | `GB` / `KC` / `NO` |
-
-`load_team_name_mapping()` in [picks_agent.py:87](picks_agent.py#L87) is the reference
-implementation. **`nfl_source.py` does not have this problem** — nflverse uses one
-convention throughout (32 teams; `LA` for the Rams, `LAC` for the Chargers) and joins
-on stable `player_id`, so `projections.py` and everything downstream of it needs no
-team-name mapping at all. If you're writing new code and reaching for
-`team_map.xlsx`, that's a sign you're solving an already-solved problem.
-
-**`RUN.md` describes the pre-rebuild pipeline and should not be followed.** It refers
-to scripts (`nfl_data.py`, `run_projections.py`, `run_season_projections.py`,
-`backtesting/backtester.py`) that no longer exist. Kept only as a historical record of
-what the system used to do; see "Running things" above for current commands.
+**`RUN.md` is a current, accurate, plain-language guide** — written for a
+non-technical reader, kept in sync with the real system.
 
 **Generated artifacts are gitignored except captured betting lines.**
 `data/projections/`, `data/season_projections/`, `data/insights/`, `data/nuggets/`,
@@ -355,3 +496,255 @@ ignored — reproducible from source data, so not tracked. **`data/odds/` (legac
 `odds.py` output, weeks 1-10 already captured) and `data/odds_history/` (Kalshi/DK
 capture) are both deliberately tracked** — captured betting lines cannot be
 regenerated after the fact, and are the only source for closing-line-value analysis.
+
+---
+
+# Roadmap
+
+Phases 0-5 are done (see "Why the engine was rebuilt" above). What follows is the
+remaining work, ordered by **risk of being confidently wrong**, not by value.
+
+**The hard deadline is Week 1 (2026-09-09).** Two things are true and shape everything
+below:
+
+- **Correctness gaps produce confidently wrong output.** A projection for a player
+  who is inactive is worse than no projection — you can work around a missing number,
+  you cannot work around a wrong one you trusted.
+- **Some data cannot be backfilled.** Bets placed before a ledger exists are
+  permanently unmeasurable, exactly like betting lines not captured before kickoff.
+
+That gives a hard cutline: **Phases 6 and 7 must land before you bet.** Phase 8 (edge)
+is the most *valuable* work but is not a blocker — you can compare a projection to a
+line by eye in the meantime.
+
+## Phase 6 — Correctness (done)
+
+The system used to produce confident numbers for players who would not play, and no
+numbers at all for ~45% of rostered players. All three fixes land in `project()`,
+not `build()` — `build()` stays exactly as `backtest.py` validates it; these are
+target-week-specific corrections layered on top, so the gate's methodology and
+results are untouched by any of this.
+
+**6a. Injury integration.** `project()` now excludes players ruled `Out`/`Doubtful`
+and discounts `Questionable`, gated on the target season having actually started
+(injury reports don't exist before then). The discount was measured, not guessed:
+`build()`'s retrospective projection vs. actual production (0 for player-weeks with
+no stats row at all, i.e. did not play) across 2023-25, restricted to skill
+positions — unfiltered, the injury report is mostly linemen and defense who would
+never appear in `weekly_stats` anyway, which understates any played-rate measured
+against it. Result: `Out` (976 tagged) and `Doubtful` (134 tagged) both measured
+under 1% played — indistinguishable, so both are excluded outright rather than given
+a falsely-precise near-zero multiplier. `Questionable` (1205 tagged) measured 51.0%
+played, and players who did play produced close to their normal projection — the
+discount is essentially a play/no-play gate, not a diminished-performance one. Frozen
+as `INJURY_DISCOUNT` in `projections.py`.
+
+**6b. Rookie / no-history coverage.** No-history players (every rookie, among
+others) are no longer silently dropped below `MIN_GAMES` — `project()` calls
+`build(..., min_games=0)` and rescues them with `_apply_rookie_prior`, provided a
+current depth-chart entry exists. Volume (targets/carries/attempts) is rescaled
+toward `DEPTH_RANK_VOLUME_PRIOR`, a (position, depth-rank-tier) table measured on
+2023-24 depth charts — the tiered pattern is a real, monotonic signal (e.g. TE
+targets: 3.40 / 1.80 / 0.62 by tier) confirming depth-chart rank predicts volume,
+not just proxies for it. These rows always land at **low** confidence purely from
+`games_played` being under 2 — no separate pinning needed. A player with neither
+trailing history nor a depth-chart entry is still dropped; there is no signal to
+project them from.
+  - **Landmine, not an oversight:** nflverse's depth-chart pipeline changed schema
+    at the 2025 season boundary. 2024-and-earlier publish weekly, week-aligned
+    snapshots (`season`/`week`/`depth_team`, where `depth_team` ranks players
+    *within one formation slot* — three different WRs can each be "1", for the
+    X/Z/Slot spots). 2025-onward publish a single rolling "current" snapshot instead
+    (`dt`/`pos_rank`, a real overall rank, no week dimension). `nfl_source.
+    depth_chart_ranks()` only supports the newer schema — the live prior only ever
+    needs "who is starting right now," never a specific past week — and the 2023-24
+    measurement first collapsed each player to his best slot rank, then dense-ranked
+    within (season, week, team, position) to make the two schemas comparable.
+  - Coverage measured on `project(2026, 1)`: 833 rows, up from 494 before this
+    landed (roughly 400 more players, matching the originally measured gap).
+
+**6c. `require_fresh()` wired in.** Called at the top of `project()`, gated the same
+way as 6a — only once the target season has actually started publishing stats. An
+unstarted season has no current-season data to go stale, so the check would raise
+for no reason; the same `season_started` flag gates both 6a and 6c.
+
+## Phase 7 — Measurement (done)
+
+Nothing recorded what was predicted or bet, so nothing could be evaluated later.
+Built as two new modules, both writing under `data/odds_history/` alongside the
+captured lines (same reason: not regenerable).
+
+- **`MODEL_VERSION`** in `projections.py` (currently `"1.0"`), bumped on any change
+  to `build()`'s model logic so a change in results can be attributed to the change
+  rather than confused with variance.
+- **`ledger.py`** — `log_predictions(proj_df)` appends one row per (player, stat) in
+  a `project()` result to `predictions.csv`
+  (`ts_utc, model_version, season, week, player_id, stat, projection, confidence`),
+  timestamped at call time — call it right before generating/sending a report, not
+  on a schedule, so the timestamp reflects when the projection was actually acted on
+  and pre-kickoff timestamps stay structurally impossible to edit retroactively.
+  `record_bet(...)` appends one manually-entered row to `bets.csv`
+  (`ts_utc, season, week, player_id, stat, venue, side, line, price, stake`) with a
+  light validity check on `venue`/`side` — manual entry is still the intended path,
+  this just guards against a typo silently corrupting an append-only, non-regenerable
+  file.
+- **`settle.py`** — `settle(season, week)` joins `bets.csv` to the latest matching
+  `predictions.csv` row and to real actuals (`nfl_source.weekly_stats`) for `error`
+  and win/push/loss `result`. **CLV is DraftKings-only.** `dk_capture.py`'s captured
+  rows are structured (`player`, `market`, `line`, `side`), so a bet matches its
+  closing line unambiguously on those four fields. Kalshi's captured rows have no
+  such field — `title` is free text ("Will Justin Jefferson have 75+ receiving
+  yards?") — and guessing a player/threshold out of it risks silently matching the
+  wrong market's price, which is worse than reporting nothing; Kalshi bets still get
+  `error`/`result`, just no `closing_price`. A further, honest gap: `dk_capture.py`
+  only sweeps `player_receptions`/`player_rush_attempts`/`player_pass_attempts`
+  (see its `MARKETS`), so even DraftKings CLV is only computable for `receptions`
+  bets today — the other five tracked stats have no closing line captured to match
+  against yet.
+
+## Phase 8 — Edge (done)
+
+Used to be the largest remaining piece and the only one that answers "is this bet
+good?" The system used to say *"Puka Nacua, 90.7 rec yards, high confidence"* and be
+unable to say whether that beats a posted line - it can now, wherever a line has
+actually been captured.
+
+**8a. Threshold probabilities.** `projections.exceed_probability(proj, stat,
+threshold)` - a gamma distribution (method of moments, `cv = k/sqrt(mean)`), same
+shape as the old (removed) `_exceed_probability`/`STAT_DISPERSION`, but **not pasted
+back unchanged**: refit on 2023-24 across the full range of projections (not just
+DK's three old bonus thresholds), restricted per stat to players with real volume in
+it (`DISPERSION_VOLUME_FLOOR` - an unthrown QB's ~0 rec_yd projection is real but
+irrelevant noise for calibrating a threshold nobody would query for that player),
+and built as its own concern rather than welded to a scoring system. Only
+`pass_yd`/`rush_yd`/`rec_yd`/`receptions` are supported - the stats with both a real
+point projection and an actual captured market; touchdowns/interceptions are not
+extended to, since their 0.09 reliability ceiling would make a "probability" false
+precision on top of false precision. Checked (not fit) on 2025: predicted clear-rate
+runs a few points low in several bins, inherited from the base model's own small
+point-estimate bias rather than a defect in the dispersion fit - 2026 in-season is
+the next genuinely clean check.
+
+**8b. Odds normalization — `market_odds.py`.** Both venues into one shape:
+`(player_id, stat, line, implied_probability, venue, captured_at)`.
+- **Landmine that turned out not to be one:** Kalshi's weekly player-prop titles
+  looked like free text going into this (that's why Phase 7's CLV matching skips
+  Kalshi entirely - see there), but checked against real settled preseason markets,
+  they're a strict template - `"{Player Name}: {N}+ {description}"` - not the
+  freeform sentences game markets use (`"Will Kansas City win..."`). Parsed directly;
+  no fuzzy matching needed. Player name still resolves to `player_id` via an exact
+  match against `nfl_source.rosters()` - unmatched names are dropped and counted,
+  not guessed.
+- DK: two-sided American odds → implied probabilities → **de-vigged** using the
+  paired Over/Under price for the same (event, market, line, capture) → fair
+  probability, keeping only the Over side (matches Kalshi's "X+" framing). Still
+  `receptions`-only, same gap noted in Phase 7 - `dk_capture.py` only sweeps
+  `player_receptions`/`player_rush_attempts`/`player_pass_attempts`, and only the
+  first has a corresponding build() stat.
+- Kalshi's mid-price is used directly as the implied probability (~1% fee, far less
+  work than DK's de-vig) - and is the better fair-value reference for that reason.
+
+**8c. Edge, reported alongside confidence.** `market_odds.compute_edge()` = model
+probability (8a) minus market implied probability (8b), for every captured line that
+matches a projected player/stat. `report.py` shows it inline next to the stat it
+prices, preferring Kalshi over DraftKings when both have a line (see "Which venue to
+bet" below), and only when one exists - most players show no edge simply because
+most player/stat combinations have no line captured yet, which is the common case
+today, not a bug. Never collapsed into confidence: a high-confidence number can show
+no edge (accurately priced), and a nonzero edge on a low-confidence number is a
+weaker signal, not a stronger one - the disclaimer in every report says this
+explicitly. (CLV - grading a bet already placed against a closing line - is the
+separate, already-built piece in `settle.py`/Phase 7; this is the pre-bet version of
+a similar comparison.)
+
+**Open dependency, still unresolved:** `KXNFLREC` (receptions) and `KXNFLRSHATT`
+(rush attempts) - the two purest volume-prop series, and the closest match to the
+measured edge - exist on Kalshi but have never been observed with an actual live
+market (re-confirmed 2026-08-16: 0 open, 0 settled for `KXNFLREC`). If they never
+open, the strongest edge is DK-only, at DK's worse pricing. Week 1-3 capture answers
+this; `market_odds.py` does not design around an assumption either way - it simply
+finds nothing to normalize for a series with no rows, the same as it does today.
+
+## Phase 9 — Automation (done)
+
+Four manual commands at four different times per week was a plan that would not
+survive contact with a real season - a laptop asleep at the wrong moment means a
+permanently missing capture. Deployment target: a small always-on Ubuntu droplet,
+not a local machine (see `deploy/setup.sh` and RUN.md's "Running this without you
+having to remember any of it").
+
+- **`schedule_captures.py`** — polls (intended: cron, every 15 min) and no-ops
+  unless *now* falls inside one of `kickoff_windows()`'s actual windows for the
+  current week, **not** a fixed weekly cron — a real week spans Wed/Thu/Sun/Mon and
+  a fixed schedule misses closing lines entirely. `current_week()` finds that week
+  from the real schedule (season = the NFL's own year label, a January game
+  belongs to the *previous* year; "current" = earliest week whose games haven't
+  all finished, 1-day grace past the latest kickoff). Idempotency is a marker file
+  per (season, week, game_date) under `data/scheduler_state/` (gitignored -
+  operational bookkeeping, not data) rather than a database, since cron re-invokes
+  the script stateless every time. Each action (Kalshi capture, DK capture, log
+  predictions, Telegram push) is isolated - one failing (e.g. DK's credit budget)
+  does not block the others, and the window is still marked done rather than
+  retried forever against a persistent error.
+  - **Landmine worth flagging:** `kickoff_windows()`'s timestamps are tz-naive and
+    *assumed* Eastern (see `nfl_source.py`), while `datetime.now(UTC)` is tz-aware -
+    comparing them directly either raises or, worse, silently compares the wrong
+    epoch if tzinfo is just stripped instead of actually converted. Fixed via
+    `zoneinfo.ZoneInfo("America/New_York")` (stdlib, correct across the EDT/EST
+    transition that falls inside every NFL season) - caught by an end-to-end smoke
+    test against real dates, not by the unit tests, which had accidentally
+    constructed already-consistent fixtures.
+- **Weekly scorecard — `scorecard.py`.** Bias and rank correlation (reusing
+  `backtest._score`) on the just-completed week's logged predictions vs. real
+  outcomes; CLV-to-date and calibration (predicted vs. actual clear-rate, binned)
+  aggregated across every settled bet this season via `settle.py`. Calibration
+  recomputes `exceed_probability` from each bet's logged projection with
+  `skip_volume_check=True` - settle.py's thin per-bet records don't carry the
+  volume column that check needs, and a bet is itself proof the player had real
+  volume in that stat, so the check is redundant there, not skipped for
+  convenience. `most_recently_completed_week()` (deliberately separate from
+  `schedule_captures.current_week()`, which answers a different question with a
+  grace period tuned for that) picks the target week for the no-argument cron
+  invocation (`scorecard.py --push`).
+- **`deploy/setup.sh`** — one-time droplet setup: installs Python 3.14 via `uv`
+  (Ubuntu 24.04's own `python3` is 3.12, and PPA availability for a specific recent
+  version isn't something to assume), sets the system timezone to
+  `America/New_York` (so cron's own wall clock lines up with `kickoff_windows()`
+  without a per-line `TZ=` hack), and installs the two crontab lines. Does not
+  create `.env` - secrets are copied over by hand, never generated or fetched by a
+  script.
+
+## Phase 10 — Narrow to what actually works (gate, ongoing)
+
+Not a build phase. Once several weeks of ledger data exist:
+
+- Confirm empirically whether **volume props beat yardage props**, as the reliability
+  work predicts. Keep what clears the bar; drop what doesn't.
+- **Steer on calibration and CLV, never on early ROI.** At ~50 bets the two are
+  statistically indistinguishable, and steering on ROI means fitting noise while it
+  feels like progress.
+
+**Legacy agent stack retired.** `odds.py`, `picks_agent.py`, `stats_agent.py`,
+`utils/insights_formatter.py`, and their dedicated inputs (`data/roster.xlsx`,
+`data/team_map.xlsx`, `data/player_name_mapping.csv`,
+`data/nfl-2025-EasternStandardTime.csv`) were removed rather than rebuilt or reduced
+to a narrow LLM lookup — nothing else in the codebase imported them or their data
+files (`projections.py` was already independent of this stack; see `nfl_source.py`
+above). `openpyxl` dropped from `requirements.txt` as its last consumer. Recoverable
+from history if ever needed: `git show 63c46ec:picks_agent.py`.
+
+## Known limitations that no phase currently fixes
+
+State these plainly rather than letting them be rediscovered as bugs:
+
+- **Early-season bias.** Weeks 1-2 beat baseline on 7 of 8 stats but run high, and
+  **interceptions actually lose to the naive baseline** in that window. Confidence
+  labels are more optimistic than they should be in weeks 1-2.
+- **Role/team-change blind spot.** Cross-season carry-forward gives a player his prior
+  team's trailing average with no discount for a changed team, scheme, or role — worst
+  exactly at Week 1.
+- **The 2025 holdout is spent.** It has been observed multiple times. **2026 in-season
+  results are the next genuinely clean test** — do not re-grade on 2025 and treat it
+  as independent evidence.
+- **QB stats are the weakest category** (holdout spearman 0.48 pass_yd vs 0.76 rush_yd),
+  concentrated in the noisiest components. Lean on QB projections least.

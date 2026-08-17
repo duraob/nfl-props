@@ -144,6 +144,10 @@ data/nuggets/
 data/fun_stats/
 data/depth_charts/
 
+# schedule_captures.py's idempotency markers - which windows have already been
+# actioned on this machine. Purely operational bookkeeping, not data.
+data/scheduler_state/
+
 # Generated weekly reports
 nfl_week_*.html
 nfl_week_*.csv
