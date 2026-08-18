@@ -563,10 +563,20 @@ project them from.
   - Coverage measured on `project(2026, 1)`: 833 rows, up from 494 before this
     landed (roughly 400 more players, matching the originally measured gap).
 
-**6c. `require_fresh()` wired in.** Called at the top of `project()`, gated the same
-way as 6a — only once the target season has actually started publishing stats. An
-unstarted season has no current-season data to go stale, so the check would raise
-for no reason; the same `season_started` flag gates both 6a and 6c.
+**6c. `require_fresh()` wired in.** Called at the top of `project()`, but on a
+narrower gate than 6a's: the target season must have both started *and* not yet be
+complete (every game in `schedule_df` already carrying a final score means it's
+complete — checked directly, not via a calendar date). A season that's fully over
+can never go "more stale," since nothing will ever publish for it again — so a
+retrospective query like `project(2025, 5)` run well after that season ended must
+not fail just because nflverse's live feed (which only ever reflects whichever
+season is *currently* in progress) happens to be quiet, which is most of the
+offseason. This was originally gated on the same `season_started` flag as 6a's
+injury filtering, which is correct for injuries (old reports don't go stale) but
+was wrong for freshness — caught only once real droplet test runs during the 2026
+offseason hit it directly, not by the unit tests, which had no way to exercise a
+"started but not yet complete" season using only 2023-25 fixture data (all three are
+long finished) until one was constructed synthetically to test it.
 
 ## Phase 7 — Measurement (done)
 
