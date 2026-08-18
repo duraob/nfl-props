@@ -36,6 +36,15 @@ echo "== Setting system timezone to America/New_York =="
 # plain wall-clock times instead of a per-line TZ= hack.
 sudo timedatectl set-timezone America/New_York
 
+echo "== Configuring git identity for this repo (needed for automated commits) =="
+# schedule_captures.py commits captured data back to git after each capture (see
+# sync_captured_data()) - a commit needs an identity to attribute to. Repo-local
+# only (no --global), and only set if not already configured.
+git config user.email >/dev/null 2>&1 || git config user.name >/dev/null 2>&1 || {
+    git config user.name "${GIT_AUTHOR_NAME:-nfl-props droplet}"
+    git config user.email "${GIT_AUTHOR_EMAIL:-droplet@localhost}"
+}
+
 echo "== Installing crontab entries =="
 # schedule_captures.py: polls every 15 min, no-ops unless a kickoff window is
 # actually due (see its own docstring) - cheap and safe to run this often.

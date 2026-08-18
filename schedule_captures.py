@@ -20,6 +20,7 @@ persist across runs on disk, and a whole season is at most ~20 markers.
 from __future__ import annotations
 
 import datetime as dt
+import subprocess
 import zoneinfo
 from pathlib import Path
 
@@ -83,6 +84,34 @@ def _try(label: str, fn) -> None:
         print(f"  {label}: FAILED ({type(exc).__name__}: {exc})")
 
 
+def sync_captured_data() -> None:
+    """
+    Commit and push any new rows under data/odds_history/ (kalshi.csv,
+    draftkings.csv, predictions.csv, bets.csv).
+
+    Captured betting lines cannot be reconstructed after the fact - the whole point
+    of odds_capture.py/dk_capture.py is never losing them - so leaving them only on
+    this machine's disk is a real, permanent data-loss risk if the droplet is ever
+    rebuilt or dies. Requires the droplet's git remote to have push access (a deploy
+    key with write access, or an HTTPS token) - see deploy/setup.sh's comments.
+    Best-effort like every other action here: a git/network failure must not be
+    treated as a capture failure, since the data is still safe on local disk either
+    way and will sync on the next successful run.
+    """
+    changed = subprocess.run(
+        ["git", "status", "--porcelain", "--", "data/odds_history"],
+        capture_output=True, text=True, check=True,
+    ).stdout.strip()
+    if not changed:
+        return
+    subprocess.run(["git", "add", "data/odds_history"], check=True)
+    subprocess.run(
+        ["git", "commit", "-m", f"capture: {dt.datetime.now(dt.UTC):%Y-%m-%d %H:%M} UTC"],
+        check=True,
+    )
+    subprocess.run(["git", "push", "origin", "main"], check=True)
+
+
 def run(now: dt.datetime | None = None) -> None:
     now = now or dt.datetime.now(dt.UTC)
     week_info = current_week(now)
@@ -108,6 +137,7 @@ def run(now: dt.datetime | None = None) -> None:
         _try("Telegram push", lambda: T.send_message(
             R.build_report(season, week, game_date=str(row.game_date))
         ))
+        _try("sync captured data to git", sync_captured_data)
 
         STATE_DIR.mkdir(parents=True, exist_ok=True)
         marker.touch()

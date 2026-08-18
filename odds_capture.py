@@ -55,6 +55,13 @@ SERIES = [
     "KXNFLSEASONRECTD",
     "KXNFLSEASONRSHTD",
     "KXNFLSEASONPASSTDS",
+    # Season volume props - confirmed live (195/116/169 open markets, 2026-08-17),
+    # not previously captured. These price exactly the stats the model is strongest
+    # at (rec_yd/rush_yd/receptions - see projections.py's reliability table), unlike
+    # the four season series above which are mostly QB yardage/TD markets.
+    "KXNFLSEASONRECYDS",
+    "KXNFLSEASONRSHYDS",
+    "KXNFLSEASONREC",
 ]
 
 REQUEST_PAUSE = 0.12  # ~8 req/s, comfortably inside Kalshi's read limits
