@@ -478,22 +478,38 @@ def project(season: int, week: int, seasons: list[int] | None = None) -> pd.Data
     at low confidence, since a depth-chart slot is a guess about role, not evidence
     of production.
 
-    Raises if nflverse's data is stale (nfl_source.require_fresh()), and excludes
-    players ruled Out/Doubtful (discounting Questionable toward INJURY_DISCOUNT) -
-    but only once `season` has actually started publishing stats. An unstarted season
-    (the normal case when projecting next week's slate in advance) has no
-    current-season data or injury reports yet, so both checks would either raise or
-    do nothing useful; they activate the moment that stops being true.
+    Excludes players ruled Out/Doubtful (discounting Questionable toward
+    INJURY_DISCOUNT) once `season` has actually started publishing stats - an
+    unstarted season (the normal case when projecting next week's slate in advance)
+    has no injury reports yet, so the check would do nothing useful.
+
+    Also raises if nflverse's data is stale (nfl_source.require_fresh()), but only
+    for a season that's both started AND not yet complete - i.e. the one actually
+    live right now. A fully completed season can never go "more stale" (nothing new
+    will ever publish for it), so a retrospective query like project(2025, 5) run
+    well after that season ended must not fail just because nflverse's live feed
+    happens to be quiet, which is most of the offseason.
     """
     seasons = seasons or [season - 1, season]
     stats_df = src.weekly_stats(seasons)
     schedule_df = src.schedule(seasons)
 
-    # Both freshness and injury reports only exist once nflverse has actual data for
-    # this season - an unstarted season (the normal case projecting next week ahead
-    # of time) has neither yet, so both are skipped rather than raising for no reason.
+    # Injury reports only exist once nflverse has actual data for this season - an
+    # unstarted season (the normal case projecting next week ahead of time) has none
+    # yet, so that check is skipped rather than raising for no reason.
     season_started = season in stats_df.season.unique()
-    if season_started:
+
+    # Freshness only matters for a season that could still change - i.e. the live,
+    # in-progress one. A fully completed season (every game already has a final
+    # score) can never become "more stale": nothing new will ever publish for it, so
+    # checking nflverse's live feed for it just fails a retrospective query (e.g.
+    # project(2025, 5) run any time after the 2025 season ended) for no reason
+    # whenever that live feed happens to be quiet - which is most of the offseason.
+    # Determined from schedule data already loaded, not today's calendar date -
+    # dates are their own landmine (see schedule_captures.py's Eastern-time fix).
+    season_schedule = schedule_df[schedule_df.season == season]
+    season_complete = not season_schedule.empty and season_schedule.home_score.notna().all()
+    if season_started and not season_complete:
         src.require_fresh()
 
     already_played = ((stats_df.season == season) & (stats_df.week == week)).any()

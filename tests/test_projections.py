@@ -214,14 +214,38 @@ def test_roster_team_abbreviations_match_the_schedule():
     )
 
 
-def test_project_raises_on_stale_data_for_a_started_season(monkeypatch):
-    """2025 has published stats, so stale nflverse data must block a live projection."""
+def test_project_raises_on_stale_data_for_an_incomplete_season(monkeypatch):
+    """
+    A season that's started but not yet fully complete - i.e. genuinely live right
+    now - must still block on stale data. Simulated by wiping 2025's scores to NaN
+    (2025 itself is long over in reality, so this is the only way to construct a
+    "started but not complete" case without waiting for a real one).
+    """
     import datetime as dt
     import nfl_source as src
     old = dt.datetime.now() - dt.timedelta(days=30)
     monkeypatch.setattr(src, "freshness", lambda tag="stats_player": old)
+
+    incomplete = src.schedule([2024, 2025]).copy()
+    incomplete.loc[incomplete.season == 2025, "home_score"] = np.nan
+    monkeypatch.setattr(src, "schedule", lambda seasons: incomplete)
+
     with pytest.raises(RuntimeError, match="Refusing to project on stale data"):
         P.project(2025, 5)
+
+
+def test_project_skips_freshness_check_for_a_completed_season(monkeypatch):
+    """
+    2025 is fully over - every game has a final score, so nothing will ever publish
+    for it again. A stale live feed (which only ever reflects the current, possibly
+    still-in-progress season) must not block a retrospective query against it.
+    """
+    import datetime as dt
+    import nfl_source as src
+    old = dt.datetime.now() - dt.timedelta(days=30)
+    monkeypatch.setattr(src, "freshness", lambda tag="stats_player": old)
+    proj = P.project(2025, 5)
+    assert not proj.empty
 
 
 def test_project_skips_freshness_check_for_an_unstarted_season(monkeypatch):
