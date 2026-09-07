@@ -51,7 +51,12 @@ echo "== Installing crontab entries =="
 # scorecard.py --push: once a week, Tuesday morning, well after Monday Night
 # Football has finished and actuals have published.
 CRON_MARKER="# abacus-scraper (managed by deploy/setup.sh - do not hand-edit these two lines)"
-CRON_CAPTURE="*/15 * * * * cd $REPO_DIR && $REPO_DIR/.venv/bin/python schedule_captures.py >> $REPO_DIR/scheduler.log 2>&1"
+# flock: a full Kalshi sweep takes ~12 min once weekly prop markets open (~4,000
+# live markets in Week 1) against a 15-min cron, and the count grows toward
+# kickoff. Without a lock the next tick starts a second concurrent capture into
+# the same append-only CSV - duplicate rows and interleaved writes in a file
+# that cannot be reconstructed. -n means "skip this tick", never queue up.
+CRON_CAPTURE="*/15 * * * * cd $REPO_DIR && flock -n /tmp/abacus-capture.lock $REPO_DIR/.venv/bin/python schedule_captures.py >> $REPO_DIR/scheduler.log 2>&1"
 CRON_SCORECARD="0 9 * * 2 cd $REPO_DIR && $REPO_DIR/.venv/bin/python scorecard.py --push >> $REPO_DIR/scorecard.log 2>&1"
 
 (crontab -l 2>/dev/null | grep -v "abacus-scraper"; \

@@ -68,7 +68,8 @@ def test_run_actions_a_due_window_once(tmp_path, monkeypatch):
 
     SC.run(now)
     assert set(calls) == {"kalshi", "dk", "predictions", "telegram", "sync"}
-    assert (tmp_path / "2099_1_2099-09-10.done").exists()
+    for action in ("kalshi", "dk", "predictions", "report"):
+        assert (tmp_path / f"2099_1_2099-09-10.{action}").exists()
 
     calls.clear()
     SC.run(now)
@@ -91,11 +92,74 @@ def test_run_isolates_one_failing_action(tmp_path, monkeypatch, capsys):
 
     assert set(calls) == {"dk", "predictions", "telegram", "sync"}, "one failure must not block the rest"
     assert "Kalshi capture: FAILED" in capsys.readouterr().out
-    assert (tmp_path / "2099_1_2099-09-10.done").exists(), (
-        "window still marked done even with a partial failure - matches capture "
-        "scripts' own append-only, best-effort philosophy rather than retrying "
-        "forever on a persistent error"
+    assert not (tmp_path / "2099_1_2099-09-10.kalshi").exists(), (
+        "a failed action must stay unmarked so the next tick retries it - retries "
+        "are bounded by the window closing at kickoff, not unbounded"
     )
+    for succeeded in ("dk", "predictions", "report"):
+        assert (tmp_path / f"2099_1_2099-09-10.{succeeded}").exists()
+
+
+def test_a_retry_reruns_only_the_action_that_failed(tmp_path, monkeypatch):
+    """
+    The credit-budget guarantee. dk_capture.py spends real API credits per event, so
+    a window retried every 15 minutes across its 3-hour span would sweep DraftKings
+    a dozen times and spend the month's whole budget in one afternoon. Only the
+    action that actually failed may run again.
+    """
+    monkeypatch.setattr(SC, "STATE_DIR", tmp_path)
+    monkeypatch.setattr(SC, "current_week", lambda now: (2099, 1))
+    now = dt.datetime(2099, 9, 10, 12, 0, tzinfo=dt.UTC)
+    monkeypatch.setattr(SC.P, "kickoff_windows", lambda season, week: _fake_window(now))
+
+    failing = {"kalshi": True}
+
+    def _kalshi():
+        if failing["kalshi"]:
+            raise RuntimeError("network down")
+        calls.append("kalshi")
+
+    calls = []
+    _patch_actions(monkeypatch, calls, kalshi=_kalshi)
+    SC.run(now)
+    assert "dk" in calls
+
+    failing["kalshi"] = False
+    calls.clear()
+    SC.run(now)
+    assert calls == ["kalshi", "sync"], (
+        "the retry must re-run only Kalshi - never a second paid DraftKings sweep"
+    )
+
+
+def test_a_failing_critical_action_alerts_once(tmp_path, monkeypatch):
+    """
+    require_fresh() raising mid-week takes down the prediction log and the report
+    together, and a pre-kickoff prediction timestamp cannot be backfilled honestly.
+    That has to be loud - but only once, not on all twelve retries.
+    """
+    monkeypatch.setattr(SC, "STATE_DIR", tmp_path)
+    monkeypatch.setattr(SC, "current_week", lambda now: (2099, 1))
+    now = dt.datetime(2099, 9, 10, 12, 0, tzinfo=dt.UTC)
+    monkeypatch.setattr(SC.P, "kickoff_windows", lambda season, week: _fake_window(now))
+
+    calls = []
+    _patch_actions(monkeypatch, calls)
+
+    def _stale(proj):
+        raise RuntimeError("Refusing to project on stale data.")
+
+    monkeypatch.setattr(SC.L, "log_predictions", _stale)
+    sent = []
+    monkeypatch.setattr(SC.T, "send_message", lambda text: sent.append(text))
+
+    SC.run(now)
+    assert any("log predictions failed" in m and "stale" in m for m in sent), sent
+    assert (tmp_path / "2099_1_2099-09-10.predictions-alerted").exists()
+
+    sent.clear()
+    SC.run(now)
+    assert not any("failed" in m for m in sent), "must not re-alert on every retry"
 
 
 def test_run_skips_windows_not_yet_due(tmp_path, monkeypatch):

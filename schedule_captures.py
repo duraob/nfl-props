@@ -36,6 +36,9 @@ import telegram_notify as T
 
 STATE_DIR = Path("data/scheduler_state")
 
+# Actions worth waking you up for when they fail - see _alert.
+ALERT_ACTIONS = {"predictions", "report"}
+
 # kickoff_windows()'s timestamps are tz-naive and assumed Eastern (see
 # nfl_source.py's gametime note - unverified against an authoritative source, but
 # consistent across every game checked). `now` (tz-aware UTC) has to be converted
@@ -73,15 +76,42 @@ def current_week(now: dt.datetime | None = None) -> tuple[int, int] | None:
     return season, int(upcoming.idxmin())
 
 
-def _marker(season: int, week: int, game_date) -> Path:
-    return STATE_DIR / f"{season}_{week}_{game_date}.done"
+def _marker(season: int, week: int, game_date, action: str) -> Path:
+    return STATE_DIR / f"{season}_{week}_{game_date}.{action}"
 
 
-def _try(label: str, fn) -> None:
+def _try(label: str, fn) -> Exception | None:
+    """Run fn, returning the exception it raised, or None if it succeeded."""
     try:
         fn()
+        return None
     except Exception as exc:
         print(f"  {label}: FAILED ({type(exc).__name__}: {exc})")
+        return exc
+
+
+def _alert(season: int, week: int, game_date, action: str, label: str,
+           exc: Exception) -> None:
+    """
+    Push a failure notice for the two actions whose silent failure costs something
+    that cannot be recreated afterwards: the prediction log (a pre-kickoff timestamp
+    cannot be backfilled honestly - see ledger.py) and the report itself.
+
+    Sent at most once per (window, action): the retry loop runs every 15 minutes
+    until kickoff, and twelve identical warnings would only train you to ignore the
+    thirteenth. Best-effort - if Telegram is itself what's broken there is nothing
+    better to fall back to, so a failed alert stays silent rather than masking the
+    original error.
+    """
+    marker = _marker(season, week, game_date, f"{action}-alerted")
+    if marker.exists():
+        return
+    try:
+        T.send_message(f"\u26a0\ufe0f {season} Week {week} ({game_date}): {label} failed "
+                       f"- {type(exc).__name__}: {exc}")
+        marker.touch()
+    except Exception:
+        pass
 
 
 def sync_captured_data() -> None:
@@ -126,21 +156,37 @@ def run(now: dt.datetime | None = None) -> None:
                   & (now_eastern <= windows.earliest_kickoff)]
 
     for _, row in due.iterrows():
-        marker = _marker(season, week, row.game_date)
-        if marker.exists():
+        # A marker per action, not one per window. A window whose report failed has
+        # to retry that report on the next tick - bounded by the window closing at
+        # kickoff - without re-running what already succeeded: re-sweeping
+        # DraftKings every 15 minutes would spend the whole month's credit budget in
+        # one afternoon (see dk_capture.py's budget note).
+        actions = (
+            ("kalshi", "Kalshi capture", K.capture),
+            ("dk", "DraftKings capture", lambda: DK.capture(within_hours=6)),
+            ("predictions", "log predictions",
+             lambda: L.log_predictions(P.project(season, week))),
+            ("report", "Telegram push",
+             lambda: T.send_message(
+                 R.build_report(season, week, game_date=str(row.game_date)))),
+        )
+        pending = [a for a in actions
+                   if not _marker(season, week, row.game_date, a[0]).exists()]
+        if not pending:
             continue
 
         print(f"{now:%Y-%m-%d %H:%M} UTC: acting on {season} week {week}, {row.game_date}")
-        _try("Kalshi capture", K.capture)
-        _try("DraftKings capture", lambda: DK.capture(within_hours=6))
-        _try("log predictions", lambda: L.log_predictions(P.project(season, week)))
-        _try("Telegram push", lambda: T.send_message(
-            R.build_report(season, week, game_date=str(row.game_date))
-        ))
-        _try("sync captured data to git", sync_captured_data)
-
         STATE_DIR.mkdir(parents=True, exist_ok=True)
-        marker.touch()
+        for action, label, fn in pending:
+            exc = _try(label, fn)
+            if exc is None:
+                _marker(season, week, row.game_date, action).touch()
+            elif action in ALERT_ACTIONS:
+                _alert(season, week, row.game_date, action, label, exc)
+
+        # Deliberately unmarkered: predictions logged on a later retry still need
+        # pushing, and the function no-ops when there is nothing new to commit.
+        _try("sync captured data to git", sync_captured_data)
 
 
 if __name__ == "__main__":
