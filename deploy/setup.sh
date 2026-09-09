@@ -50,17 +50,21 @@ echo "== Installing crontab entries =="
 # actually due (see its own docstring) - cheap and safe to run this often.
 # scorecard.py --push: once a week, Tuesday morning, well after Monday Night
 # Football has finished and actuals have published.
-CRON_MARKER="# abacus-scraper (managed by deploy/setup.sh - do not hand-edit these two lines)"
+CRON_MARKER="# abacus-scraper (managed by deploy/setup.sh - do not hand-edit these lines)"
 # flock: a full Kalshi sweep takes ~12 min once weekly prop markets open (~4,000
 # live markets in Week 1) against a 15-min cron, and the count grows toward
 # kickoff. Without a lock the next tick starts a second concurrent capture into
 # the same append-only CSV - duplicate rows and interleaved writes in a file
 # that cannot be reconstructed. -n means "skip this tick", never queue up.
 CRON_CAPTURE="*/15 * * * * cd $REPO_DIR && flock -n /tmp/abacus-capture.lock $REPO_DIR/.venv/bin/python schedule_captures.py >> $REPO_DIR/scheduler.log 2>&1"
+# telegram_commands.py: one cheap getUpdates call, so this can run far more often
+# than the capture. Its own lock file - it must never wait behind a 12-minute
+# capture, which would make recording a wager feel broken from the phone.
+CRON_COMMANDS="*/2 * * * * cd $REPO_DIR && flock -n /tmp/abacus-commands.lock $REPO_DIR/.venv/bin/python telegram_commands.py >> $REPO_DIR/commands.log 2>&1"
 CRON_SCORECARD="0 9 * * 2 cd $REPO_DIR && $REPO_DIR/.venv/bin/python scorecard.py --push >> $REPO_DIR/scorecard.log 2>&1"
 
 (crontab -l 2>/dev/null | grep -v "abacus-scraper"; \
- echo "$CRON_MARKER"; echo "$CRON_CAPTURE"; echo "$CRON_SCORECARD") | crontab -
+ echo "$CRON_MARKER"; echo "$CRON_CAPTURE"; echo "$CRON_COMMANDS"; echo "$CRON_SCORECARD") | crontab -
 
 echo ""
 echo "Done. Remaining manual steps:"

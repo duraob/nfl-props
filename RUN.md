@@ -79,9 +79,11 @@ deliberately don't produce one.
 
 You said you don't have the ammo to act on every bet — this is the tool for that.
 It filters the full projection table down to only the players we're genuinely
-confident in (see "How confident are we?" in Section 2), grouped by position so
-you get a mix of quarterbacks, running backs, receivers, and tight ends instead of
-one position crowding out the rest:
+confident in, **and that we think beat the price Kalshi is currently offering**.
+
+It is a short list of wagers, not a listing of players. Most weeks it will hold a
+handful of entries out of a few thousand priced lines, and some game days it will
+hold none at all — that is the screen working, not the system failing.
 
 ```bash
 python -c "import report; print(report.build_report(2026, 1, game_date='2026-09-10'))"
@@ -95,16 +97,58 @@ your phone instead of printed to a terminal:
 python -c "import report, telegram_notify as T; T.send_message(report.build_report(2026, 1, game_date='2026-09-10'))"
 ```
 
-This is **still not a finished bet recommendation**, but it's more than a trust
-score now: wherever we've actually captured a Kalshi or DraftKings line for a shown
-player, the report also prints an **edge** — our estimate of whether the number
-beats that price, shown right next to it, e.g. `rec yds 90.7 (edge +9% vs kalshi
-80.5) [high]`. Most players won't show one yet, simply because most props haven't
-been captured for the week you're asking about — that's expected, not broken. When
-neither venue has a captured line for a player, you're back to comparing the
-projection against whatever price you see yourself. See "Confidence vs. edge" in
-Section 2 for exactly what edge does and doesn't mean, and why it's shown next to
-confidence instead of folded into one number.
+Each entry reads like this:
+
+```
+1. Colby Parkinson — LA TE vs SF
+   3+ RECEPTIONS · buy at 41c
+   model 50% vs mkt 40% → +9 pts
+   proj 3.4 · spread 1c · $21.6k deep
+   3 nearby lines agree
+```
+
+Line by line: the wager and what it costs (41 cents to win a dollar); what we think
+the chance is against what the market is charging, and the gap between them; the raw
+projection, how wide the market's quote is, and how much money is sitting there to
+trade against; and finally how many neighbouring thresholds for the same player
+agreed — more is better, because a real disagreement with the market shows up across
+several nearby lines while a fluke shows up at only one.
+
+**Why the list is short.** Four rules throw almost everything away, and each exists
+because the system once produced a confident wrong answer without it:
+
+- Only thresholds near our own projection. We once showed "+5% edge" on a 350-yard
+  passing line for a quarterback we projected at 219 — an artifact of how the maths
+  handles unlikely outcomes, not a real opportunity.
+- The price you'd actually pay, not the midpoint. You never buy at the midpoint.
+- Nothing above +20 points. Counter-intuitive, but a gap that large on a busy market
+  means the market knows something we don't — usually that the player isn't really
+  playing. We once showed +37% on a receiver who was fourth on his depth chart.
+- Only real markets: a tight quote with real money behind it. A market quoted "1 cent
+  to 72 cents" has a meaningless midpoint, and fake edges are biggest exactly there.
+
+**Recording a bet from your phone.** When you place one, reply to the bot:
+
+```
+/bet 2 25
+```
+
+That records entry 2 from the latest sheet at a $25 stake. If you filled at a
+different price than the sheet showed, or bet something that wasn't on it:
+
+```
+/bet Colby Parkinson rec 3 0.41 25
+```
+
+Player, stat, threshold, the price you actually got, stake. `/bets` lists what you've
+recorded this week and `/help` reminds you of the format. The bot only listens to
+your chat, and there is deliberately no undo — the ledger is append-only so it can
+never quietly rewrite its own history. Fix a mistake by editing
+`data/odds_history/bets.csv` directly.
+
+Behind the scenes every projection is still recorded for every player and every
+stat, whether or not it made the sheet — that's what grades the model against real
+outcomes later. The short list is the decision; the full record is the learning.
 
 ### Keeping a record of what you predicted and bet
 

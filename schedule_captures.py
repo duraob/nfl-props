@@ -142,6 +142,20 @@ def sync_captured_data() -> None:
     subprocess.run(["git", "push", "origin", "main"], check=True)
 
 
+def _push_report(season: int, week: int, game_date: str) -> None:
+    """
+    Send the bet sheet, then record it.
+
+    Logged after the send, not before, so a sheet only ever exists in the ledger if
+    it actually reached the phone - a /bet slot number that resolves against a sheet
+    you never saw would silently record the wrong wager.
+    """
+    text = R.build_report(season, week, game_date=game_date)
+    T.send_message(text)
+    L.log_recommendations(getattr(R.build_report, "last_bets", pd.DataFrame()),
+                          season, week, game_date)
+
+
 def run(now: dt.datetime | None = None) -> None:
     now = now or dt.datetime.now(dt.UTC)
     week_info = current_week(now)
@@ -167,8 +181,7 @@ def run(now: dt.datetime | None = None) -> None:
             ("predictions", "log predictions",
              lambda: L.log_predictions(P.project(season, week))),
             ("report", "Telegram push",
-             lambda: T.send_message(
-                 R.build_report(season, week, game_date=str(row.game_date)))),
+             lambda: _push_report(season, week, str(row.game_date))),
         )
         pending = [a for a in actions
                    if not _marker(season, week, row.game_date, a[0]).exists()]

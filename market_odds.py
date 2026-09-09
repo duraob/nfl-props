@@ -1,6 +1,15 @@
 """
 Normalize Kalshi and DraftKings captured lines into one shape:
-(player_id, stat, line, implied_probability, venue, captured_at).
+(player_id, stat, line, implied_probability, yes_ask, spread, depth, venue,
+captured_at).
+
+`implied_probability` is fair value (Kalshi's mid; DraftKings de-vigged). `yes_ask`
+is what a buyer actually pays, which is a different and usually worse number - a
+screen run on the mid systematically overstates every edge, since you never transact
+at the mid. `spread` and `depth` say whether the quote is a real market at all: a
+book quoting 0.01/0.72 has a "mid" of 0.365 that means nothing, and mid-based edge is
+largest exactly where the book is emptiest. Every consumer needs all four, which is
+why they belong in the shared shape rather than being re-derived per caller.
 
 Kalshi and DraftKings both price props as thresholds, but their captured data looks
 nothing alike (see odds_capture.py / dk_capture.py) - this is the one place that
@@ -21,6 +30,9 @@ import pandas as pd
 
 import nfl_source as src
 import projections as P
+
+SHAPE = ["player_id", "stat", "line", "implied_probability", "yes_ask", "spread",
+         "depth", "venue", "captured_at"]
 
 KALSHI_HISTORY = Path("data/odds_history/kalshi.csv")
 DRAFTKINGS_HISTORY = Path("data/odds_history/draftkings.csv")
@@ -54,8 +66,7 @@ def normalize_kalshi(df: pd.DataFrame, season: int) -> pd.DataFrame:
     unlike DraftKings below."""
     rows = df[df.series.isin(KALSHI_SERIES_TO_STAT)].copy()
     if rows.empty:
-        return pd.DataFrame(columns=["player_id", "stat", "line", "implied_probability",
-                                     "venue", "captured_at"])
+        return pd.DataFrame(columns=SHAPE)
     rows["stat"] = rows.series.map(KALSHI_SERIES_TO_STAT)
     rows = pd.concat([rows, rows.title.str.extract(_KALSHI_TITLE_RE)], axis=1)
     rows = rows.dropna(subset=["player_name", "line", "mid"])
@@ -68,9 +79,9 @@ def normalize_kalshi(df: pd.DataFrame, season: int) -> pd.DataFrame:
         print(f"normalize_kalshi: {unmatched} row(s) had no exact roster name match, dropped")
     rows = rows.dropna(subset=["player_id"])
 
-    return rows.rename(columns={"mid": "implied_probability"}).assign(venue="kalshi")[
-        ["player_id", "stat", "line", "implied_probability", "venue", "captured_at"]
-    ]
+    return rows.rename(
+        columns={"mid": "implied_probability", "yes_depth": "depth"}
+    ).assign(venue="kalshi")[SHAPE]
 
 
 def normalize_draftkings(df: pd.DataFrame, season: int) -> pd.DataFrame:
@@ -82,8 +93,7 @@ def normalize_draftkings(df: pd.DataFrame, season: int) -> pd.DataFrame:
     """
     rows = df[df.market.isin(DK_MARKET_TO_STAT)].copy()
     if rows.empty:
-        return pd.DataFrame(columns=["player_id", "stat", "line", "implied_probability",
-                                     "venue", "captured_at"])
+        return pd.DataFrame(columns=SHAPE)
     rows["stat"] = rows.market.map(DK_MARKET_TO_STAT)
     rows["raw_prob"] = rows.price.apply(_american_to_prob)
 
@@ -98,9 +108,15 @@ def normalize_draftkings(df: pd.DataFrame, season: int) -> pd.DataFrame:
         print(f"normalize_draftkings: {unmatched} row(s) had no exact roster name match, dropped")
     over = over.dropna(subset=["player_id"])
 
-    return over.rename(columns={"fair_prob": "implied_probability"}).assign(venue="draftkings")[
-        ["player_id", "stat", "line", "implied_probability", "venue", "captured_at"]
-    ]
+    # yes_ask is the raw, still-vigged Over price: de-vigging estimates fair value,
+    # but the hold is real money and you pay it. `spread` is that hold (the paired
+    # prices' overround); `depth` has no DraftKings analogue - the API publishes no
+    # resting size - so it stays null rather than being invented.
+    over["overround"] = rows.groupby(key).raw_prob.transform("sum").loc[over.index] - 1.0
+    return over.rename(
+        columns={"fair_prob": "implied_probability", "raw_prob": "yes_ask",
+                 "overround": "spread"}
+    ).assign(venue="draftkings", depth=float("nan"))[SHAPE]
 
 
 def market_lines(season: int) -> pd.DataFrame:
@@ -111,13 +127,12 @@ def market_lines(season: int) -> pd.DataFrame:
         frames.append(normalize_kalshi(pd.read_csv(KALSHI_HISTORY), season))
     if DRAFTKINGS_HISTORY.exists():
         frames.append(normalize_draftkings(pd.read_csv(DRAFTKINGS_HISTORY), season))
-    columns = ["player_id", "stat", "line", "implied_probability", "venue", "captured_at"]
     if not frames:
-        return pd.DataFrame(columns=columns)
+        return pd.DataFrame(columns=SHAPE)
     combined = pd.concat(frames, ignore_index=True)
     return combined.sort_values("captured_at").drop_duplicates(
         subset=["player_id", "stat", "line", "venue"], keep="last"
-    )[columns]
+    )[SHAPE]
 
 
 def compute_edge(proj_df: pd.DataFrame, market_df: pd.DataFrame) -> pd.DataFrame:

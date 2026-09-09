@@ -21,9 +21,11 @@ REAL_SEASON = 2025
 def test_normalize_kalshi_parses_player_and_threshold_from_title():
     df = pd.DataFrame([
         {"series": "KXNFLRECYDS", "ticker": "KXNFLRECYDS-X-Y-70", "captured_at": "t1",
-         "title": "Christian McCaffrey: 70+ receiving yards", "mid": 0.62},
+         "title": "Christian McCaffrey: 70+ receiving yards", "mid": 0.62,
+         "yes_ask": 0.64, "spread": 0.04, "yes_depth": 1200.0},
         {"series": "KXNFLGAME", "ticker": "KXNFLGAME-X", "captured_at": "t1",
-         "title": "Will Kansas City win the game?", "mid": 0.55},   # unmapped series
+         "title": "Will Kansas City win the game?", "mid": 0.55,
+         "yes_ask": 0.56, "spread": 0.02, "yes_depth": 900.0},   # unmapped series
     ])
     out = M.normalize_kalshi(df, REAL_SEASON)
     assert len(out) == 1, "only the mapped series should survive"
@@ -31,7 +33,10 @@ def test_normalize_kalshi_parses_player_and_threshold_from_title():
     assert row.player_id == REAL_PLAYER
     assert row.stat == "rec_yd"
     assert row.line == pytest.approx(70.0)
-    assert row.implied_probability == pytest.approx(0.62)
+    assert row.implied_probability == pytest.approx(0.62), "mid is fair value"
+    assert row.yes_ask == pytest.approx(0.64), "ask is what a buyer actually pays"
+    assert row.spread == pytest.approx(0.04)
+    assert row.depth == pytest.approx(1200.0)
     assert row.venue == "kalshi"
 
 
@@ -39,6 +44,7 @@ def test_normalize_kalshi_drops_unmatched_player_names():
     df = pd.DataFrame([{
         "series": "KXNFLRSHYDS", "ticker": "x", "captured_at": "t1",
         "title": "Totally Fictional Player: 50+ rushing yards", "mid": 0.4,
+        "yes_ask": 0.42, "spread": 0.04, "yes_depth": 500.0,
     }])
     out = M.normalize_kalshi(df, REAL_SEASON)
     assert out.empty
@@ -56,6 +62,11 @@ def test_normalize_draftkings_devigs_symmetric_pricing():
     out = M.normalize_draftkings(df, REAL_SEASON)
     assert len(out) == 1, "only the Over side is kept"
     assert out.iloc[0].implied_probability == pytest.approx(0.5)
+    assert out.iloc[0].yes_ask == pytest.approx(110 / 210), (
+        "the ask is the raw vigged price actually paid, not the de-vigged fair value"
+    )
+    assert out.iloc[0].spread == pytest.approx(2 * (110 / 210) - 1), "the hold"
+    assert pd.isna(out.iloc[0].depth), "DraftKings publishes no resting size"
     assert out.iloc[0].venue == "draftkings"
 
 
@@ -71,9 +82,11 @@ def test_market_lines_keeps_only_the_latest_capture(tmp_path, monkeypatch):
     kalshi_path = tmp_path / "kalshi.csv"
     pd.DataFrame([
         {"series": "KXNFLRECYDS", "ticker": "x", "captured_at": "2025-10-01T00:00:00Z",
-         "title": "Christian McCaffrey: 70+ receiving yards", "mid": 0.50},
+         "title": "Christian McCaffrey: 70+ receiving yards", "mid": 0.50,
+         "yes_ask": 0.52, "spread": 0.04, "yes_depth": 800.0},
         {"series": "KXNFLRECYDS", "ticker": "x", "captured_at": "2025-10-05T00:00:00Z",
-         "title": "Christian McCaffrey: 70+ receiving yards", "mid": 0.65},
+         "title": "Christian McCaffrey: 70+ receiving yards", "mid": 0.65,
+         "yes_ask": 0.67, "spread": 0.04, "yes_depth": 800.0},
     ]).to_csv(kalshi_path, index=False)
     monkeypatch.setattr(M, "KALSHI_HISTORY", kalshi_path)
     monkeypatch.setattr(M, "DRAFTKINGS_HISTORY", tmp_path / "draftkings.csv")  # absent

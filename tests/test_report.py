@@ -1,10 +1,10 @@
 """
-Tests for the report formatter.
+Tests for the bet-sheet report.
 
-The one that matters most: a report ranked by raw touch count silently produces an
-all-QB list, because pass attempts (~30+/game) always outrank targets or carries
-(~8-15/game). That shipped once during development before being caught by eye - this
-locks in the fix (rank within each position, not globally).
+The screen is the whole product here, so most of these pin one rejection rule each,
+and each rule exists because this system produced a confident wrong answer without
+it - see report.py's constants for the incidents. The formatter is tested only for
+the parts a reader acts on: the threshold, the side, and the price.
 """
 
 import pandas as pd
@@ -12,80 +12,122 @@ import pandas as pd
 import report
 
 
-def test_report_includes_every_position():
-    """Regression test for the all-QB bug: a real week must surface RB/WR/TE too,
-    not just quarterbacks sorted by raw touch volume."""
-    text = report.build_report(2025, 5, seasons=[2024, 2025])
-    for header in ("*QB*", "*RB*", "*WR*", "*TE*"):
-        assert header in text, f"{header} missing from report - position ranking may be broken"
+def _proj(**over):
+    base = {"player_id": ["A"], "player_display_name": ["Test Player"],
+            "position": ["WR"], "team": ["AA"], "opponent_team": ["BB"],
+            "rec_yd": [50.0], "receptions": [4.0], "e_targets": [6.0],
+            "confidence_yardage": [0.35], "confidence_touchdown": [0.05]}
+    base.update(over)
+    return pd.DataFrame(base)
 
 
-def test_report_respects_game_date_filter():
+def _lines(line=45.0, implied=0.38, ask=0.40, spread=0.03, depth=5000.0, stat="rec_yd",
+           venue="kalshi"):
+    return pd.DataFrame({
+        "player_id": ["A"], "stat": [stat], "line": [line],
+        "implied_probability": [implied], "yes_ask": [ask], "spread": [spread],
+        "depth": [depth], "venue": [venue], "captured_at": ["t1"],
+    })
+
+
+def _screen(monkeypatch, lines, proj=None):
+    monkeypatch.setattr(report.M, "market_lines", lambda season: lines)
+    return report._screen_bets(proj if proj is not None else _proj(), 2099)
+
+
+def test_a_qualifying_line_becomes_a_bet(monkeypatch):
+    bets, considered = _screen(monkeypatch, _lines())
+    assert considered == 1
+    assert len(bets) == 1
+    assert bets.iloc[0].edge_at_ask > 0
+
+
+def test_a_tail_rung_is_rejected_however_large_its_edge(monkeypatch):
     """
-    A per-position cap keeps every report short once enough candidates qualify, so
-    message length alone doesn't distinguish a filtered report from an unfiltered
-    one - check that filtering actually changes *which* players appear instead.
+    The Drake Maye case. A 219-yard projection showed +5% "edge" at a 350-yard rung
+    purely because the gamma tail is too fat - the same defect reads as -17% at 150.
+    Edge far from the projection measures the dispersion fit, not the market.
     """
-    full_week = report.build_report(2025, 1, seasons=[2024, 2025])
-    thursday_only = report.build_report(2025, 1, game_date="2025-09-04", seasons=[2024, 2025])
-    # The Thursday opener (2025-09-04) was DAL @ PHI only; a Sunday player like
-    # Jonathan Taylor (IND) must not leak into a Thursday-filtered report.
-    assert "Jonathan Taylor" not in thursday_only
-    assert full_week != thursday_only
-    assert len(thursday_only) < len(full_week), (
-        "a single-game slate has fewer real candidates than the whole week and "
-        "should not fill every position's cap the way the full week does"
+    bets, considered = _screen(monkeypatch, _lines(line=350.0, implied=0.05, ask=0.06))
+    assert considered == 1, "the line was priced and considered"
+    assert bets.empty, "a rung the model puts outside 25-75% must never be offered"
+
+
+def test_an_implausibly_large_edge_is_rejected(monkeypatch):
+    """
+    The Mack Hollins case. A WR4 on a new team showed +37% at every rung while the
+    market priced him near zero. Past the cap the market knows something the model
+    does not - an inactive, a depth-chart drop - and the model is the wrong one.
+    """
+    bets, _ = _screen(monkeypatch, _lines(implied=0.10, ask=0.11))
+    assert bets.empty, "a 20+ point edge is a red flag, not the best bet on the board"
+
+
+def test_a_wide_book_is_rejected(monkeypatch):
+    """Bucky Irving quoted 0.01/0.72: the mid is arithmetic, not a price."""
+    bets, _ = _screen(monkeypatch, _lines(spread=0.71, ask=0.30))
+    assert bets.empty
+
+
+def test_a_shallow_book_is_rejected(monkeypatch):
+    bets, _ = _screen(monkeypatch, _lines(depth=50.0))
+    assert bets.empty
+
+
+def test_draftkings_never_clears_the_screen(monkeypatch):
+    """DraftKings publishes no resting size, so depth is null and MIN_DEPTH drops it -
+    intended, not incidental. See build_report's docstring."""
+    dk = _lines(venue="draftkings", depth=float("nan"))
+    bets, considered = _screen(monkeypatch, dk)
+    assert considered == 1
+    assert bets.empty
+
+
+def test_one_bet_per_player_stat_with_the_agreeing_rung_count(monkeypatch):
+    """
+    A player quoted at four rungs is one decision, not four. The count of rungs that
+    also cleared is kept, because a real disagreement persists across neighbouring
+    thresholds while a dispersion artifact flips sign as you walk up them.
+    """
+    ladder = pd.concat([
+        _lines(line=40.0, implied=0.44, ask=0.46),   # model 0.534 -> +0.074
+        _lines(line=45.0, implied=0.38, ask=0.40),   # model 0.469 -> +0.069
+        _lines(line=50.0, implied=0.28, ask=0.30),   # model 0.410 -> +0.110, best
+    ], ignore_index=True)
+    bets, _ = _screen(monkeypatch, ladder)
+    assert len(bets) == 1, "one row per (player, stat)"
+    assert bets.iloc[0].agreeing_rungs == 3
+    assert bets.iloc[0].line == 50.0, (
+        "the surviving rung must be the best-priced one - the original bug printed "
+        "whichever row drop_duplicates happened to keep, which is how a 219-yard "
+        "projection got reported against a 350-yard line"
     )
 
 
-def test_report_handles_empty_slate_gracefully():
-    text = report.build_report(2025, 1, game_date="1999-01-01", seasons=[2024, 2025])
-    assert "No games" in text
+def test_bet_block_states_the_action_the_threshold_and_the_price(monkeypatch):
+    bets, _ = _screen(monkeypatch, _lines())
+    text = report._format_bet(1, bets.iloc[0])
+    assert "45+ REC YDS" in text, "the threshold and stat must be unmissable"
+    assert "buy at 40c" in text, "the price shown is the ask actually paid"
+    assert "Test Player" in text
+
+
+def test_an_empty_slate_says_how_many_lines_were_checked(monkeypatch):
+    """Silence is what a broken cron looks like. A screened-and-empty slate has to be
+    distinguishable from no message at all, from a phone."""
+    monkeypatch.setattr(report.P, "project", lambda season, week, seasons=None: _proj().assign(
+        gameday="2099-09-10", season=season, week=week))
+    monkeypatch.setattr(report.M, "market_lines", lambda season: _lines(depth=1.0))
+    text = report.build_report(2099, 1)
+    assert "No bets clear the screen" in text
+    assert "1 priced lines checked" in text
+
+
+def test_report_handles_an_empty_slate_gracefully():
+    assert "No games" in report.build_report(2025, 1, game_date="1999-01-01",
+                                             seasons=[2024, 2025])
 
 
 def test_report_never_exceeds_telegram_message_limit():
     text = report.build_report(2025, 5, seasons=[2024, 2025])
-    assert len(text) < 4096, "a single-day/week report should fit in one Telegram message"
-
-
-def test_touchdown_stats_are_never_shown_as_headline_numbers():
-    """The report is deliberately restricted to confidence_yardage - touchdown
-    confidence never reaches 'high', so TD-only players should not appear as if they
-    were a trusted number."""
-    text = report.build_report(2025, 5, seasons=[2024, 2025])
-    assert "[high]" in text  # sanity: something was actually included
-
-
-def _row(player_id="A", position="WR", **stats):
-    base = {"player_id": player_id, "player_display_name": "Test Player",
-            "position": position, "team": "AA", "opponent_team": "BB",
-            "confidence_yardage_label": "high", "rec_yd": 50.0, "receptions": 4.0}
-    base.update(stats)
-    return pd.Series(base)
-
-
-def test_format_player_line_shows_edge_when_a_line_is_captured():
-    edges = {("A", "rec_yd"): pd.Series({"edge": 0.12, "venue": "kalshi", "line": 45.0})}
-    line = report._format_player_line(_row(), edges)
-    assert "edge +12% vs kalshi 45" in line
-
-
-def test_format_player_line_omits_edge_with_no_captured_line():
-    line = report._format_player_line(_row(), {})
-    assert "edge" not in line
-
-
-def test_edge_lookup_prefers_kalshi_over_draftkings(monkeypatch):
-    proj = pd.DataFrame({"player_id": ["A"], "rec_yd": [50.0], "e_targets": [6.0],
-                         "confidence_yardage": [0.3], "confidence_touchdown": [0.05]})
-    fake_lines = pd.DataFrame({
-        "player_id": ["A", "A"], "stat": ["rec_yd", "rec_yd"], "line": [45.0, 45.0],
-        "implied_probability": [0.5, 0.6], "venue": ["draftkings", "kalshi"],
-        "captured_at": ["t1", "t1"],
-    })
-    monkeypatch.setattr(report.M, "market_lines", lambda season: fake_lines)
-
-    edges = report._edge_lookup(proj, 2099)
-
-    assert len(edges) == 1
-    assert edges[("A", "rec_yd")].venue == "kalshi"
+    assert len(text) < 4096, "a bet sheet must fit in one Telegram message"

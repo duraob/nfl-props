@@ -61,6 +61,7 @@ python settle.py 2026 1                           # grade a played week's bets
 python schedule_captures.py                       # one poll; no-ops unless a window is due right now
 python scorecard.py 2026 1                        # print last week's accuracy/CLV/calibration
 python scorecard.py --push                        # same, for the most recently completed week, sent to Telegram
+python telegram_commands.py                       # one inbound-command polling pass
 ```
 
 ```python
@@ -88,11 +89,17 @@ nfl_source.py (nflverse)  ─┬─>  projections.py  ─┬─>  backtest.py (t
                             │                      │            │
                             │                      └─>  market_odds.py (compute_edge)
                             │                                │  │
-odds_capture.py (Kalshi)   ─┤                                │  └─>  report.py ─> telegram_notify.py
-dk_capture.py (DK closing) ─┤                                │
-        │                   │                                │
-        └─> data/odds_history/{kalshi,draftkings,predictions,bets}.csv (append-only)
-                             │                                │
+odds_capture.py (Kalshi)   ─┤                                │  └─>  report.py (_screen_bets)
+dk_capture.py (DK closing) ─┤                                │            │
+        │                   │                                │            ├─> telegram_notify.py
+        │                   │                                │            └─> ledger.log_recommendations
+        │                   │                                │                        │
+        │                   │                                │      telegram_commands.py  (/bet <slot>)
+        │                   │                                │                        │
+        │                   │                                │            ledger.record_bet
+        │                   │                                │                        │
+        └─> data/odds_history/{kalshi,draftkings,predictions,recommendations,bets}.csv
+                             │                                │        (all append-only)
                              └────────────────> settle.py <───┘  (error, result, CLV)
 ```
 
@@ -383,35 +390,65 @@ a fixed two-day-a-week schedule. `gametime` is assumed Eastern (early Sunday gam
 show `13:00`, the NFL's standard 1:00 PM ET slot) — unverified against an
 authoritative source, but consistent across every game checked.
 
-### `report.py` + `telegram_notify.py` — delivery
+### `report.py` + `telegram_notify.py` + `telegram_commands.py` — delivery
 
-`report.py` formats `projections.project()` into a short, per-kickoff-day message;
-`telegram_notify.py` pushes it. Push only, no interactive bot commands (a message
-arriving at the right kickoff-adjacent moment matters more here than a queryable
-chat interface — see the original delivery decision in "Direction" below).
+`report.py` formats a **bet sheet**, not a projection listing: only wagers that clear
+`_screen_bets()`. `telegram_notify.py` pushes it; `telegram_commands.py` receives
+`/bet` back.
 
 ```bash
 python -c "import report, telegram_notify as T; T.send_message(report.build_report(2026, 1, game_date='2026-09-10'))"
+python telegram_commands.py    # one polling pass; cron runs this every 2 min
 ```
 
-Two things to know:
+**The full projection frame is still recorded on every run** by
+`ledger.log_predictions()` — every player, every stat, unfiltered — which is what
+`settle.py`/`scorecard.py` grade against actuals. That record is the learning loop;
+the message is the decision, and the two want opposite things. The previous format
+listed every high-confidence player and buried three real bets among nineteen rows,
+including a TE projected for 1.1 receiving yards.
 
-- **Ranked within each position, not globally.** The natural single sort key —
-  `e_touches` (targets + carries + attempts) — silently produces an all-QB report,
-  because pass attempts (~30+/game) always outrank targets or carries (~8-15/game).
-  Caught by eye during testing, now locked in by
-  `tests/test_report.py::test_report_includes_every_position`. Any change to the
-  ranking logic should re-run that test, not just eyeball one week's output.
-- **`min_confidence="high"` by default**, filtered on `confidence_yardage_label`
-  only. Touchdown/interception confidence never reaches "high" (see `projections.py`
-  above) — they are deliberately absent from the default report rather than
-  cluttering it with numbers that are mostly noise.
+**Every screen bound traces to a specific confidently-wrong output**, not to taste:
 
-`.env`: `TELEGRAM_API` is the bot token from @BotFather. `TELEGRAM_BOT_TOKEN` in
-`.env` is **not** a valid token — it's the numeric bot-id prefix only, left over
-from a partial paste; `telegram_notify.py` does not read it. `TELEGRAM_CHAT_ID` was
-discovered via `/getUpdates` after messaging the bot directly (`discover_chat_id()`
-reproduces this if it needs to be found again, e.g. for a different chat).
+| bound | the failure it prevents |
+|---|---|
+| `NEAR_PROJECTION = (0.25, 0.75)` | A 219-yard QB projection showed **+5% edge at a 350-yard rung** — the gamma tail is too fat, and the same defect reads as **-17% at 150**. Edge far from the projection measures the dispersion fit, not the market. |
+| `EDGE_AT_ASK = (0.05, 0.20)` | Lower: mid-based edge flatters every quote, since you never transact at the mid. **Upper is the important half** — a WR4 on a new team showed +37% at every rung while the market priced him near zero. Past ~20 points the market knows something (an inactive, a depth-chart drop) and the model is wrong. |
+| `MAX_SPREAD = 0.10` / `MIN_DEPTH = 500` | A book quoting 0.01/0.72 has a "mid" of 0.365 that means nothing — and mid-based edge is **largest exactly where the book is emptiest**. |
+
+`agreeing_rungs` falls out of the ladder for free: a real disagreement persists across
+neighbouring thresholds, while a dispersion artifact flips sign as you walk up them.
+
+**One bet per (player, stat), best-priced rung.** The old `_edge_lookup` sorted only
+by venue and then `drop_duplicates`'d, so *which* rung got printed was incidental —
+that is how a 219-yard projection got reported against a 350-yard line.
+
+**DraftKings never clears the screen today.** The API publishes no resting size, so
+`depth` is null and `MIN_DEPTH` excludes it. Intended rather than incidental — DK
+holds ~4.5% against Kalshi's ~1%, and a quote whose book cannot be inspected has no
+place on a sheet whose whole job is inspecting books. DK stays in `market_lines()`
+for `settle.py`'s closing-line work.
+
+**An empty slate says so out loud** ("No bets clear the screen, N priced lines
+checked"). Silence is what a broken cron looks like, and the two must never be
+confusable from a phone — a malformed `flock` line once no-op'd the scheduler for a
+full kickoff window and looked identical to "nothing qualified".
+
+**`telegram_commands.py` is polled from cron, not a daemon.** `getUpdates` is one
+cheap call, cron already exists, and a long-running process is a third thing to
+supervise for no gain. Its own lock file and a 2-minute cadence, deliberately not
+sharing the capture's lock — recording a wager must never queue behind a 12-minute
+Kalshi sweep. Two rules worth keeping: **only `TELEGRAM_CHAT_ID` is honoured** (a bot
+username is discoverable, and `bets.csv` is append-only, so a stranger's message
+would be a permanent silent row), and **there is no `/undo`** (a ledger that can
+retract its own history cannot grade anything). The Telegram message's own timestamp
+is recorded, not collection time.
+
+`ledger.log_recommendations()` writes `recommendations.csv` — the numbered sheet as
+sent. `slot` is what `/bet 2 25` resolves against, and logging every recommendation
+whether or not it was backed is the only way to ever grade the screen itself:
+`bets.csv` holds the handful actually placed, and a handful per season can never say
+whether the +20 cap or the 25-75% window are the right numbers.
 
 ### Which venue to bet
 
