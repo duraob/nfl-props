@@ -1,0 +1,83 @@
+captured_at,event_id,commence_time,home_team,away_team,bookmaker,market,player,side,line,price
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_pass_attempts,Drake Maye,Over,31.5,-128
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_pass_attempts,Drake Maye,Under,31.5,101
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_pass_attempts,Sam Darnold,Over,30.5,-104
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_pass_attempts,Sam Darnold,Under,30.5,-123
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Jaxon Smith-Njigba,Over,6.5,-107
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Jaxon Smith-Njigba,Under,6.5,-119
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,A.J. Brown,Over,5.5,-105
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,A.J. Brown,Under,5.5,-122
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Rhamondre Stevenson,Over,3.5,104
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Rhamondre Stevenson,Under,3.5,-133
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Romeo Doubs,Over,3.5,113
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Romeo Doubs,Under,3.5,-144
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Hunter Henry,Over,3.5,125
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Hunter Henry,Under,3.5,-160
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,AJ Barner,Over,2.5,-159
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,AJ Barner,Under,2.5,125
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Cooper Kupp,Over,2.5,-142
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Cooper Kupp,Under,2.5,112
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Rashid Shaheed,Over,2.5,-101
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Rashid Shaheed,Under,2.5,-127
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,DeMario Douglas,Over,2.5,138
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,DeMario Douglas,Under,2.5,-177
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,George Holani,Over,1.5,-153
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,George Holani,Under,1.5,119
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Jadarian Price,Over,1.5,109
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Jadarian Price,Under,1.5,-139
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Mack Hollins,Over,1.5,141
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Mack Hollins,Under,1.5,-181
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Elijah Arroyo,Over,1.5,164
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_receptions,Elijah Arroyo,Under,1.5,-212
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Rhamondre Stevenson,Over,15.5,-108
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Rhamondre Stevenson,Under,15.5,-118
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Jadarian Price,Over,13.5,101
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Jadarian Price,Under,13.5,-129
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Drake Maye,Over,5.5,111
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Drake Maye,Under,5.5,-142
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Sam Darnold,Over,2.5,113
+2026-09-09T23:02:02+00:00,8c94552d022acec4a0458d70c19d3da9,2026-09-10T00:20:00Z,Seattle Seahawks,New England Patriots,draftkings,player_rush_attempts,Sam Darnold,Under,2.5,-145
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_pass_attempts,Matthew Stafford,Over,34.5,-120
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_pass_attempts,Matthew Stafford,Under,34.5,-107
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_pass_attempts,Brock Purdy,Over,33.5,-118
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_pass_attempts,Brock Purdy,Under,33.5,-108
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Puka Nacua,Over,6.5,-144
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Puka Nacua,Under,6.5,113
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Christian McCaffrey,Over,4.5,-140
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Christian McCaffrey,Under,4.5,110
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Davante Adams,Over,4.5,-107
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Davante Adams,Under,4.5,-119
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Mike Evans,Over,3.5,-155
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Mike Evans,Under,3.5,121
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,George Kittle,Over,3.5,116
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,George Kittle,Under,3.5,-148
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Deebo Samuel,Over,2.5,-162
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Deebo Samuel,Under,2.5,127
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,De'Zhaun Stribling,Over,2.5,-154
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,De'Zhaun Stribling,Under,2.5,121
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Colby Parkinson,Over,2.5,137
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Colby Parkinson,Under,2.5,-175
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Terrance Ferguson,Over,1.5,-165
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Terrance Ferguson,Under,1.5,129
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Kyren Williams,Over,1.5,-146
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Kyren Williams,Under,1.5,114
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Tyler Higbee,Over,1.5,-145
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Tyler Higbee,Under,1.5,113
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Jake Tonges,Over,1.5,147
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Jake Tonges,Under,1.5,-188
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Kyle Juszczyk,Over,1.5,165
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Kyle Juszczyk,Under,1.5,-213
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Demarcus Robinson,Over,1.5,177
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Demarcus Robinson,Under,1.5,-229
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Jordan Whittington,Over,0.5,-208
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Jordan Whittington,Under,0.5,161
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Blake Corum,Over,0.5,-148
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_receptions,Blake Corum,Under,0.5,116
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Christian McCaffrey,Over,15.5,-120
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Christian McCaffrey,Under,15.5,-106
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Kyren Williams,Over,13.5,106
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Kyren Williams,Under,13.5,-135
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Blake Corum,Over,9.5,-131
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Blake Corum,Under,9.5,103
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Brock Purdy,Over,3.5,-127
+2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Brock Purdy,Under,3.5,-101
