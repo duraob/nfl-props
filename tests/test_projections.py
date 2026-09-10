@@ -10,6 +10,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
+import nfl_source as src
 import projections as P
 
 # Core projected stats, paired with their raw-stat counterpart in weekly_stats output.
@@ -250,14 +251,24 @@ def test_project_skips_freshness_check_for_a_completed_season(monkeypatch):
 
 def test_project_skips_freshness_check_for_an_unstarted_season(monkeypatch):
     """
-    2026 week 1 has no published stats yet, so there is nothing current to go stale -
-    the check must not fire and block the normal "project next week in advance" case.
+    A season with nothing published yet has nothing current to go stale, so the check
+    must not fire - this is the ordinary "project next week in advance" case.
+
+    Simulated by hiding 2025's stats, following the sibling tests above, rather than
+    pointing at whichever real season happens to be unstarted today. This test used
+    to target 2026 Week 1 for real and silently changed meaning the moment that week
+    was actually played - a calendar-dependent test asserts a different thing every
+    time the calendar moves.
     """
     import datetime as dt
     import nfl_source as src
     old = dt.datetime.now() - dt.timedelta(days=30)
     monkeypatch.setattr(src, "freshness", lambda tag="stats_player": old)
-    proj = P.project(2026, 1)
+
+    stats = src.weekly_stats([2024, 2025])
+    monkeypatch.setattr(src, "weekly_stats", lambda seasons: stats[stats.season != 2025])
+
+    proj = P.project(2025, 1)
     assert len(proj) > 300
 
 
@@ -373,3 +384,53 @@ def test_exceed_probability_accepts_a_per_row_threshold(fake_proj):
     thresholds = pd.Series([40.0, 120.0, 40.0])
     out = P.exceed_probability(fake_proj, "rec_yd", thresholds)
     assert out.iloc[0] > out.iloc[1], "same projection, different threshold per row"
+
+
+def test_a_partially_played_week_still_projects_its_remaining_games():
+    """
+    An NFL week spans Wednesday to Monday, so "has this week been played" is not a
+    single fact. Testing it as one boolean meant the first game's stats publishing
+    stripped placeholders from every remaining game in the same week: 2026 Week 1
+    collapsed from 493 players to the 23 who played Wednesday, and the Thursday,
+    Sunday and Monday reports each returned "no games" instead of erroring - the
+    silent-empty failure shape this codebase keeps having to design against.
+
+    Real schedule data, synthetic stats: only a real schedule has the Wed/Thu/Sun/Mon
+    spread that makes this fail, and only synthetic stats can put one game in the
+    past while the rest are still upcoming.
+    """
+    schedule_df = src.schedule([2026])
+    week1 = schedule_df[(schedule_df.season == 2026) & (schedule_df.week == 1)]
+    opener = week1.sort_values("gameday").iloc[0]
+    played = pd.DataFrame({
+        "player_id": ["played-1", "played-2"],
+        "team": [opener.home_team, opener.away_team],
+        "season": [2026, 2026],
+        "week": [1, 1],
+    })
+
+    out = P._placeholder_rows(2026, 1, played, schedule_df)
+
+    teams = set(out.team)
+    assert opener.home_team not in teams, "a played game must not be re-projected"
+    assert opener.away_team not in teams
+    expected = set(week1.home_team) | set(week1.away_team)
+    expected -= {opener.home_team, opener.away_team}
+    assert teams == expected, (
+        "every team whose game has not kicked off yet must still get placeholders"
+    )
+
+
+def test_a_fully_played_week_produces_no_placeholders():
+    """The other side of the same rule: once every game has stats, build()'s real
+    rows are the projection and synthetic ones would double-count."""
+    schedule_df = src.schedule([2026])
+    week1 = schedule_df[(schedule_df.season == 2026) & (schedule_df.week == 1)]
+    all_teams = sorted(set(week1.home_team) | set(week1.away_team))
+    played = pd.DataFrame({
+        "player_id": [f"p{i}" for i in range(len(all_teams))],
+        "team": all_teams,
+        "season": 2026,
+        "week": 1,
+    })
+    assert P._placeholder_rows(2026, 1, played, schedule_df).empty

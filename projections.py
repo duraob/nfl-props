@@ -346,6 +346,18 @@ def _placeholder_rows(season: int, week: int, stats_df: pd.DataFrame,
     """
     roster = src.rosters([season])
     week_games = schedule_df[(schedule_df.season == season) & (schedule_df.week == week)]
+
+    # An NFL week is not one event - 2026 Week 1 runs Wednesday to Monday. Testing
+    # "has this week been played" as a single boolean means the first game's stats
+    # publishing strips placeholders from every *remaining* game in the same week:
+    # Week 1 collapsed from 493 players to the 23 who played Wednesday, and the
+    # Thursday, Sunday and Monday reports all returned "no games" rather than
+    # erroring. Exclude only the teams whose own game already has stats.
+    played = stats_df[(stats_df.season == season) & (stats_df.week == week)]
+    played_teams = set(played.team.dropna().unique())
+    week_games = week_games[~(week_games.home_team.isin(played_teams)
+                              | week_games.away_team.isin(played_teams))]
+
     if roster.empty or week_games.empty:
         return pd.DataFrame()
 
@@ -512,11 +524,11 @@ def project(season: int, week: int, seasons: list[int] | None = None) -> pd.Data
     if season_started and not season_complete:
         src.require_fresh()
 
-    already_played = ((stats_df.season == season) & (stats_df.week == week)).any()
-    if not already_played:
-        placeholders = _placeholder_rows(season, week, stats_df, schedule_df)
-        if not placeholders.empty:
-            stats_df = pd.concat([stats_df, placeholders], ignore_index=True)
+    # Always attempted: _placeholder_rows self-filters to the games in this week that
+    # have not been played yet, and returns empty once they all have.
+    placeholders = _placeholder_rows(season, week, stats_df, schedule_df)
+    if not placeholders.empty:
+        stats_df = pd.concat([stats_df, placeholders], ignore_index=True)
 
     built = build(stats_df, schedule_df, min_games=0)
     week_rows = built[(built.season == season) & (built.week == week)].copy()
