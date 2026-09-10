@@ -53,6 +53,14 @@ STAT_LABELS = {"pass_yd": "PASS YDS", "rush_yd": "RUSH YDS",
 #   market was right.
 # MAX_SPREAD / MIN_DEPTH - a quote of 0.01/0.72 has a mid of 0.365 that means
 #   nothing, and mid-based edge is largest exactly where the book is emptiest.
+# A cap on the sheet, for two reasons that happen to want the same number. Telegram
+# hard-limits a message at 4096 characters and a 33-bet sheet ran 5206 - split
+# mid-block, it is unreadable exactly when it is longest. The bankroll argument is
+# the stronger one though: at the 1-2% sizing this model's edge justifies, 33 bets is
+# a third of the roll on a single slate, and Sunday's 13 games screen ~12x the volume
+# of a Thursday. A sheet you cannot responsibly back in full is not a short list.
+MAX_BETS = 10
+
 NEAR_PROJECTION = (0.25, 0.75)
 EDGE_AT_ASK = (0.05, 0.20)
 MAX_SPREAD = 0.10
@@ -155,7 +163,7 @@ def build_report(season: int, week: int, game_date: str | None = None,
             return f"No games on {game_date} in {season} week {week}."
 
     bets, considered = _screen_bets(proj, season)
-    build_report.last_bets = bets   # what /bet <n> resolves against; see schedule_captures
+    build_report.last_bets = bets.head(0)   # replaced below once the cap is applied
     header_date = f" · {game_date}" if game_date else ""
     lines = [f"*WEEK {week}{header_date}*"]
 
@@ -165,8 +173,13 @@ def build_report(season: int, week: int, game_date: str | None = None,
         lines += ["", f"No bets clear the screen ({considered} priced lines checked)."]
         return "\n".join(lines)
 
-    lines += [f"{len(bets)} bet{'s' if len(bets) > 1 else ''} from {considered} lines screened", ""]
-    for index, (_, row) in enumerate(bets.iterrows(), start=1):
+    shown = bets.head(MAX_BETS)
+    build_report.last_bets = shown   # slots must match what was actually sent
+    summary = f"{len(shown)} bet{'s' if len(shown) > 1 else ''} from {considered} lines screened"
+    if len(bets) > len(shown):
+        summary += f" (top {MAX_BETS} of {len(bets)} qualifying)"
+    lines += [summary, ""]
+    for index, (_, row) in enumerate(shown.iterrows(), start=1):
         lines += [_format_bet(index, row), ""]
     lines += ["_Edge is measured at the ask, so it is what you would actually pay. "
               "Verify the live book before acting - these are last-capture prices._",

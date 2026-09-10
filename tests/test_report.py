@@ -129,5 +129,36 @@ def test_report_handles_an_empty_slate_gracefully():
 
 
 def test_report_never_exceeds_telegram_message_limit():
+    """
+    Telegram hard-limits a message at 4096 characters, and send_message splits on
+    that boundary - which lands mid-block precisely when the sheet is longest. An
+    uncapped screen produced 33 bets and 5206 characters against real captured lines.
+    """
     text = report.build_report(2025, 5, seasons=[2024, 2025])
     assert len(text) < 4096, "a bet sheet must fit in one Telegram message"
+
+
+def test_the_sheet_is_capped_and_says_so(monkeypatch):
+    """
+    The cap is a bankroll rule before it is a formatting one: at the 1-2% sizing this
+    model's edge justifies, backing every qualifying bet on a 13-game Sunday would
+    commit a third of the roll to one slate. Saying "top 10 of N" matters too - a
+    silent cap reads as "only 10 qualified".
+    """
+    ladder = pd.concat([_lines(line=45.0 + i * 0.01) for i in range(report.MAX_BETS + 5)],
+                       ignore_index=True)
+    ladder["player_id"] = [f"P{i}" for i in range(len(ladder))]
+    proj = pd.concat([_proj(player_id=[f"P{i}"]) for i in range(len(ladder))],
+                     ignore_index=True)
+    proj["gameday"] = "2099-09-10"
+    monkeypatch.setattr(report.P, "project",
+                        lambda season, week, seasons=None: proj.assign(season=season, week=week))
+    monkeypatch.setattr(report.M, "market_lines", lambda season: ladder)
+
+    text = report.build_report(2099, 1)
+
+    assert text.count("· buy at") == report.MAX_BETS
+    assert f"top {report.MAX_BETS} of {len(ladder)} qualifying" in text
+    assert len(report.build_report.last_bets) == report.MAX_BETS, (
+        "/bet slot numbers must resolve against what was actually sent"
+    )
