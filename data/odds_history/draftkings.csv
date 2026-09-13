@@ -81,3 +81,285 @@ captured_at,event_id,commence_time,home_team,away_team,bookmaker,market,player,s
 2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Blake Corum,Under,9.5,103
 2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Brock Purdy,Over,3.5,-127
 2026-09-10T22:01:47+00:00,acc580d74344ea3b31bbcdd057fe6a9c,2026-09-11T00:35:00Z,Los Angeles Rams,San Francisco 49ers,draftkings,player_rush_attempts,Brock Purdy,Under,3.5,-101
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_pass_attempts,Aaron Rodgers,Over,31.5,-112
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_pass_attempts,Aaron Rodgers,Under,31.5,-114
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Drake London,Over,4.5,-141
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Drake London,Under,4.5,110
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Bijan Robinson,Over,4.5,118
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Bijan Robinson,Under,4.5,-150
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Kyle Pitts,Over,4.5,123
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Kyle Pitts,Under,4.5,-157
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Michael Pittman Jr.,Over,3.5,-162
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Michael Pittman Jr.,Under,3.5,127
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,DK Metcalf,Over,3.5,-140
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,DK Metcalf,Under,3.5,110
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Pat Freiermuth,Over,2.5,-136
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Pat Freiermuth,Under,2.5,106
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Jaylen Warren,Over,2.5,-123
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Jaylen Warren,Under,2.5,-103
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Rico Dowdle,Over,1.5,-165
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Rico Dowdle,Under,1.5,129
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Darnell Washington,Over,1.5,-160
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Darnell Washington,Under,1.5,125
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Jahan Dotson,Over,1.5,-106
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Jahan Dotson,Under,1.5,-121
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Roman Wilson,Over,1.5,125
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_receptions,Roman Wilson,Under,1.5,-160
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_rush_attempts,Bijan Robinson,Over,18.5,-115
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_rush_attempts,Bijan Robinson,Under,18.5,-111
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_rush_attempts,Rico Dowdle,Over,12.5,104
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_rush_attempts,Rico Dowdle,Under,12.5,-133
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_rush_attempts,Jaylen Warren,Over,10.5,-125
+2026-09-13T14:18:28+00:00,95c01d1bb797d6df14824b106c5a9130,2026-09-13T17:00:00Z,Pittsburgh Steelers,Atlanta Falcons,draftkings,player_rush_attempts,Jaylen Warren,Under,10.5,-102
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_pass_attempts,Daniel Jones,Over,32.5,-108
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_pass_attempts,Daniel Jones,Under,32.5,-118
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_pass_attempts,Lamar Jackson,Over,27.5,-112
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_pass_attempts,Lamar Jackson,Under,27.5,-114
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Zay Flowers,Over,4.5,-161
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Zay Flowers,Under,4.5,126
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Tyler Warren,Over,4.5,-143
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Tyler Warren,Under,4.5,112
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Josh Downs,Over,4.5,112
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Josh Downs,Under,4.5,-143
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Keenan Allen,Over,3.5,112
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Keenan Allen,Under,3.5,-142
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Mark Andrews,Over,3.5,115
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Mark Andrews,Under,3.5,-147
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Alec Pierce,Over,2.5,-173
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Alec Pierce,Under,2.5,135
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Jonathan Taylor,Over,2.5,-121
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Jonathan Taylor,Under,2.5,-105
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Rashod Bateman,Over,1.5,-194
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Rashod Bateman,Under,1.5,151
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Justice Hill,Over,1.5,-181
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Justice Hill,Under,1.5,141
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Ja'Kobi Lane,Over,1.5,-133
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Ja'Kobi Lane,Under,1.5,104
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Derrick Henry,Over,0.5,-239
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_receptions,Derrick Henry,Under,0.5,185
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Derrick Henry,Over,18.5,-101
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Derrick Henry,Under,18.5,-126
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Jonathan Taylor,Over,18.5,102
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Jonathan Taylor,Under,18.5,-129
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Lamar Jackson,Over,6.5,-114
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Lamar Jackson,Under,6.5,-112
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Daniel Jones,Over,3.5,100
+2026-09-13T14:18:28+00:00,b6cfdcbafa61ce220ba87dc2d9b80c77,2026-09-13T17:00:00Z,Indianapolis Colts,Baltimore Ravens,draftkings,player_rush_attempts,Daniel Jones,Under,3.5,-128
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_pass_attempts,C.J. Stroud,Over,31.5,-119
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_pass_attempts,C.J. Stroud,Under,31.5,-108
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_pass_attempts,Josh Allen,Over,30.5,-114
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_pass_attempts,Josh Allen,Under,30.5,-112
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Nico Collins,Over,5.5,111
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Nico Collins,Under,5.5,-141
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,DJ Moore,Over,3.5,-140
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,DJ Moore,Under,3.5,110
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Khalil Shakir,Over,3.5,-128
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Khalil Shakir,Under,3.5,100
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Dalton Schultz,Over,3.5,-115
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Dalton Schultz,Under,3.5,-111
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Dalton Kincaid,Over,3.5,-114
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Dalton Kincaid,Under,3.5,-112
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,James Cook,Over,2.5,-131
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,James Cook,Under,2.5,103
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Kayshon Boutte,Over,2.5,140
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Kayshon Boutte,Under,2.5,-180
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Xavier Hutchinson,Over,1.5,-181
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Xavier Hutchinson,Under,1.5,141
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,David Montgomery,Over,1.5,-143
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,David Montgomery,Under,1.5,112
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Jaylin Noel,Over,1.5,-109
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Jaylin Noel,Under,1.5,-117
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Woody Marks,Over,1.5,-108
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Woody Marks,Under,1.5,-118
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Dawson Knox,Over,1.5,108
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Dawson Knox,Under,1.5,-138
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Keon Coleman,Over,1.5,162
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Keon Coleman,Under,1.5,-210
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Joshua Palmer,Over,1.5,168
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_receptions,Joshua Palmer,Under,1.5,-216
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,James Cook,Over,16.5,-121
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,James Cook,Under,16.5,-105
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,David Montgomery,Over,13.5,-123
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,David Montgomery,Under,13.5,-104
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,Woody Marks,Over,7.5,114
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,Woody Marks,Under,7.5,-145
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,Josh Allen,Over,6.5,-114
+2026-09-13T14:18:28+00:00,7e09efed7e12c659b82740b67ce2f9a1,2026-09-13T17:00:00Z,Houston Texans,Buffalo Bills,draftkings,player_rush_attempts,Josh Allen,Under,6.5,-112
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_pass_attempts,Caleb Williams,Over,32.5,-111
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_pass_attempts,Caleb Williams,Under,32.5,-114
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_pass_attempts,Bryce Young,Over,30.5,-118
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_pass_attempts,Bryce Young,Under,30.5,-108
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Luther Burden III,Over,4.5,-134
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Luther Burden III,Under,4.5,105
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Colston Loveland,Over,4.5,-123
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Colston Loveland,Under,4.5,-104
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Tetairoa McMillan,Over,4.5,-114
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Tetairoa McMillan,Under,4.5,-112
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Jalen Coker,Over,3.5,-125
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Jalen Coker,Under,3.5,-102
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Rome Odunze,Over,2.5,-170
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Rome Odunze,Under,2.5,133
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,D'Andre Swift,Over,2.5,135
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,D'Andre Swift,Under,2.5,-173
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Xavier Legette,Over,2.5,143
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Xavier Legette,Under,2.5,-183
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Darren Waller,Over,1.5,-164
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Darren Waller,Under,1.5,128
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Chuba Hubbard,Over,1.5,-151
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Chuba Hubbard,Under,1.5,118
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Cole Kmet,Over,1.5,-119
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Cole Kmet,Under,1.5,-107
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Jonathon Brooks,Over,1.5,-118
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Jonathon Brooks,Under,1.5,-108
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Kalif Raymond,Over,1.5,-112
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Kalif Raymond,Under,1.5,-114
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Tommy Tremble,Over,1.5,122
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Tommy Tremble,Under,1.5,-157
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Kyle Monangai,Over,1.5,179
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_receptions,Kyle Monangai,Under,1.5,-231
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,D'Andre Swift,Over,13.5,-123
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,D'Andre Swift,Under,13.5,-104
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Chuba Hubbard,Over,12.5,-125
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Chuba Hubbard,Under,12.5,-102
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Jonathon Brooks,Over,7.5,-134
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Jonathon Brooks,Under,7.5,105
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Kyle Monangai,Over,7.5,-120
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Kyle Monangai,Under,7.5,-106
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Caleb Williams,Over,4.5,124
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Caleb Williams,Under,4.5,-159
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Bryce Young,Over,3.5,113
+2026-09-13T14:18:28+00:00,fc362aff0d889ec52d358307a70c32ed,2026-09-13T17:00:00Z,Carolina Panthers,Chicago Bears,draftkings,player_rush_attempts,Bryce Young,Under,3.5,-144
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_pass_attempts,Joe Burrow,Over,34.5,-117
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_pass_attempts,Joe Burrow,Under,34.5,-109
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_pass_attempts,Baker Mayfield,Over,31.5,-111
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_pass_attempts,Baker Mayfield,Under,31.5,-114
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Ja'Marr Chase,Over,7.5,112
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Ja'Marr Chase,Under,7.5,-143
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Tee Higgins,Over,4.5,-132
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Tee Higgins,Under,4.5,103
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Emeka Egbuka,Over,4.5,102
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Emeka Egbuka,Under,4.5,-130
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Chris Godwin,Over,4.5,108
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Chris Godwin,Under,4.5,-138
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Chase Brown,Over,3.5,-101
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Chase Brown,Under,3.5,-127
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Cade Otton,Over,3.5,101
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Cade Otton,Under,3.5,-128
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Kenny Gainwell,Over,3.5,126
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Kenny Gainwell,Under,3.5,-161
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Mike Gesicki,Over,2.5,121
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Mike Gesicki,Under,2.5,-155
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Bucky Irving,Over,2.5,149
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Bucky Irving,Under,2.5,-191
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Erick All,Over,1.5,100
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Erick All,Under,1.5,-127
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Andrei Iosivas,Over,1.5,114
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Andrei Iosivas,Under,1.5,-146
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Samaje Perine,Over,1.5,146
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_receptions,Samaje Perine,Under,1.5,-188
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Bucky Irving,Over,14.5,-114
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Bucky Irving,Under,14.5,-111
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Chase Brown,Over,14.5,-109
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Chase Brown,Under,14.5,-117
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Baker Mayfield,Over,3.5,-102
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Baker Mayfield,Under,3.5,-125
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Joe Burrow,Over,2.5,-128
+2026-09-13T14:18:28+00:00,ed6d24ff979f9c71979fead577b0b3f7,2026-09-13T17:00:00Z,Cincinnati Bengals,Tampa Bay Buccaneers,draftkings,player_rush_attempts,Joe Burrow,Under,2.5,100
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_pass_attempts,Trevor Lawrence,Over,31.5,-123
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_pass_attempts,Trevor Lawrence,Under,31.5,-103
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_pass_attempts,Deshaun Watson,Over,30.5,-114
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_pass_attempts,Deshaun Watson,Under,30.5,-112
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Parker Washington,Over,4.5,119
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Parker Washington,Under,4.5,-152
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Harold Fannin Jr.,Over,3.5,-163
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Harold Fannin Jr.,Under,3.5,127
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,KC Concepcion,Over,3.5,-105
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,KC Concepcion,Under,3.5,-121
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Jakobi Meyers,Over,3.5,-103
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Jakobi Meyers,Under,3.5,-124
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Brenton Strange,Over,3.5,108
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Brenton Strange,Under,3.5,-138
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Jerry Jeudy,Over,3.5,136
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Jerry Jeudy,Under,3.5,-174
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Brian Thomas Jr,Over,2.5,-161
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Brian Thomas Jr,Under,2.5,126
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Denzel Boston,Over,2.5,105
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Denzel Boston,Under,2.5,-134
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Bhayshul Tuten,Over,1.5,-160
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Bhayshul Tuten,Under,1.5,125
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Quinshon Judkins,Over,1.5,-140
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_receptions,Quinshon Judkins,Under,1.5,110
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Quinshon Judkins,Over,15.5,-113
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Quinshon Judkins,Under,15.5,-112
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Bhayshul Tuten,Over,11.5,-113
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Bhayshul Tuten,Under,11.5,-113
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Chris Rodriguez Jr.,Over,9.5,-110
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Chris Rodriguez Jr.,Under,9.5,-116
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Trevor Lawrence,Over,4.5,-130
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Trevor Lawrence,Under,4.5,102
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Deshaun Watson,Over,4.5,116
+2026-09-13T14:18:29+00:00,e55c6fe19fce094ce214c8b0e5b504e9,2026-09-13T17:00:00Z,Jacksonville Jaguars,Cleveland Browns,draftkings,player_rush_attempts,Deshaun Watson,Under,4.5,-148
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_pass_attempts,Jared Goff,Over,33.5,-117
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_pass_attempts,Jared Goff,Under,33.5,-109
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_pass_attempts,Tyler Shough,Over,33.5,-102
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_pass_attempts,Tyler Shough,Under,33.5,-126
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Amon-Ra St. Brown,Over,6.5,-115
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Amon-Ra St. Brown,Under,6.5,-111
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Chris Olave,Over,6.5,109
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Chris Olave,Under,6.5,-139
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Jahmyr Gibbs,Over,4.5,111
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Jahmyr Gibbs,Under,4.5,-141
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Sam LaPorta,Over,4.5,119
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Sam LaPorta,Under,4.5,-151
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Juwan Johnson,Over,4.5,124
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Juwan Johnson,Under,4.5,-159
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Jameson Williams,Over,3.5,-150
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Jameson Williams,Under,3.5,117
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Devaughn Vele,Over,3.5,-111
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Devaughn Vele,Under,3.5,-115
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Travis Etienne Jr.,Over,2.5,-127
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Travis Etienne Jr.,Under,2.5,-101
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Isaac TeSlaa,Over,1.5,-103
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_receptions,Isaac TeSlaa,Under,1.5,-124
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_rush_attempts,Jahmyr Gibbs,Over,18.5,-111
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_rush_attempts,Jahmyr Gibbs,Under,18.5,-114
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_rush_attempts,Travis Etienne Jr.,Over,15.5,101
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_rush_attempts,Travis Etienne Jr.,Under,15.5,-129
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_rush_attempts,Tyler Shough,Over,4.5,102
+2026-09-13T14:18:29+00:00,c1d3fcec25aaeb06ebd2244d33d338e0,2026-09-13T17:00:00Z,Detroit Lions,New Orleans Saints,draftkings,player_rush_attempts,Tyler Shough,Under,4.5,-130
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_pass_attempts,Cam Ward,Over,31.5,-127
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_pass_attempts,Cam Ward,Under,31.5,100
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_pass_attempts,Geno Smith,Over,30.5,-114
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_pass_attempts,Geno Smith,Under,30.5,-112
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Garrett Wilson,Over,5.5,-116
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Garrett Wilson,Under,5.5,-110
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Wan'Dale Robinson,Over,4.5,-108
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Wan'Dale Robinson,Under,4.5,-117
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Carnell Tate,Over,3.5,109
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Carnell Tate,Under,3.5,-139
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Breece Hall,Over,2.5,-138
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Breece Hall,Under,2.5,109
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Adonai Mitchell,Over,2.5,-121
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Adonai Mitchell,Under,2.5,-105
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Tyjae Spears,Over,2.5,-113
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Tyjae Spears,Under,2.5,-113
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Mason Taylor,Over,2.5,103
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Mason Taylor,Under,2.5,-131
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Gunnar Helm,Over,2.5,112
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Gunnar Helm,Under,2.5,-143
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Calvin Ridley,Over,2.5,144
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Calvin Ridley,Under,2.5,-185
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Tony Pollard,Over,1.5,-119
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Tony Pollard,Under,1.5,-107
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Kenyon Sadiq,Over,1.5,-113
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Kenyon Sadiq,Under,1.5,-113
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Omar Cooper Jr.,Over,1.5,-101
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_receptions,Omar Cooper Jr.,Under,1.5,-127
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Breece Hall,Over,16.5,-107
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Breece Hall,Under,16.5,-119
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Tony Pollard,Over,13.5,-105
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Tony Pollard,Under,13.5,-121
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Tyjae Spears,Over,7.5,106
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Tyjae Spears,Under,7.5,-136
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Braelon Allen,Over,5.5,120
+2026-09-13T14:18:29+00:00,7dddb296a42e7a41a774b24bd1709ce1,2026-09-13T17:00:00Z,Tennessee Titans,New York Jets,draftkings,player_rush_attempts,Braelon Allen,Under,5.5,-153
