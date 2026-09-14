@@ -1,3 +1,6 @@
 ts_utc,season,week,player_id,stat,venue,side,line,price,stake
 2026-09-11T09:55:17+00:00,2026,1,00-0033288,receptions,kalshi,over,4.0,0.43,25.0
 2026-09-11T09:55:35+00:00,2026,1,00-0036244,receptions,kalshi,over,4.0,0.22,25.0
+2026-09-13T14:43:41+00:00,2026,1,00-0038559,rec_yd,kalshi,over,45.0,0.45,20.0
+2026-09-13T14:43:55+00:00,2026,1,00-0038117,rec_yd,kalshi,over,80.0,0.14,10.0
+2026-09-13T14:44:14+00:00,2026,1,00-0039847,receptions,kalshi,over,2.0,0.52,15.0
