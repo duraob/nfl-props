@@ -11,6 +11,7 @@ exercise the real join against nflverse actuals end to end.
 import pandas as pd
 import pytest
 
+import backtest as B
 import ledger as L
 import projections as P
 import scorecard as C
@@ -47,7 +48,8 @@ def test_week_accuracy_returns_empty_when_no_predictions_logged(tmp_path, monkey
 def test_clv_to_date_reports_none_when_no_bets(tmp_path, monkeypatch):
     monkeypatch.setattr(S, "BETS", tmp_path / "bets.csv")
     out = C.clv_to_date(2099)
-    assert out == {"n_bets": 0, "win_rate": None, "n_with_close": 0, "beat_close_rate": None}
+    assert out == {"n_bets": 0, "n_graded": 0, "n_wins": 0, "win_rate": None,
+                   "n_with_close": 0, "n_stale_close": 0, "beat_close_rate": None}
 
 
 def test_clv_to_date_aggregates_settled_bets(tmp_path, monkeypatch):
@@ -105,3 +107,39 @@ def test_most_recently_completed_week_is_none_before_any_games():
     import datetime as dt
 
     assert C.most_recently_completed_week(dt.datetime(2026, 8, 16, tzinfo=dt.UTC)) is None
+
+
+def test_week_accuracy_grades_each_stat_only_for_players_whose_role_includes_it(
+        tmp_path, monkeypatch):
+    """
+    The regression this guards is subtle and was live for all of Week 1: without a
+    role filter, every logged player is graded on all eight stats, because
+    weekly_stats gives a player who played a row with zeros in the stats outside his
+    role. Receivers then get scored on passing yards against an actual of 0.
+
+    The visible symptom was an identical n on every stat - so that is what this
+    asserts. Ranking quarterbacks above receivers in passing yards is free, and it
+    inflated Week 1's reported pass_yd rank correlation from 0.02 to 0.46.
+    """
+    import nfl_source as src
+
+    season, week = 2025, 5
+    played = src.weekly_stats([season])
+    played = played[played.week == week]
+
+    # A ledger covering everyone who played, so any difference in n between stats
+    # can only come from the role filter.
+    preds = pd.DataFrame([
+        {"ts_utc": "2025-10-05T12:00:00+00:00", "model_version": "1.0",
+         "season": season, "week": week, "player_id": pid, "stat": stat,
+         "projection": 1.0, "confidence": 0.4}
+        for pid in played.player_id.unique()
+        for stat, _, _ in B.STATS
+    ])
+    preds_path = tmp_path / "predictions.csv"
+    preds.to_csv(preds_path, index=False)
+    monkeypatch.setattr(L, "PREDICTIONS", preds_path)
+
+    accuracy = C.week_accuracy(season, week).set_index("stat")
+    assert accuracy.n.nunique() > 1, "identical n across stats means the role filter is gone"
+    assert accuracy.loc["pass_yd", "n"] < accuracy.loc["receptions", "n"]

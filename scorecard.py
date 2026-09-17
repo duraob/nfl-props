@@ -26,9 +26,23 @@ _ACTUAL_COLUMN = {label: raw for label, _, raw in B.STATS}
 
 
 def week_accuracy(season: int, week: int) -> pd.DataFrame:
-    """Bias/rank-correlation for one week's logged predictions vs. real outcomes -
-    same scoring as backtest.py (B._score), on live ledger data instead of a
-    retrospective build() run."""
+    """
+    Bias/rank-correlation for one week's logged predictions vs. real outcomes,
+    scored the way backtest.py scores - including its role filter and its baseline.
+
+    Both of those were missing here originally, and the result was not comparable to
+    the holdout table it was formatted to look like. weekly_stats has a row per
+    player who *played*, with zeros in every stat outside his role, and this graded
+    every logged player on all eight stats: 90% of the rows scored for pass_yd in
+    Week 1 were non-quarterbacks with an actual of 0. Those rows drag bias toward
+    zero and inflate spearman, because ranking quarterbacks above receivers in
+    passing yards is free. Restricted to players who actually threw, Week 1's
+    pass_yd spearman was 0.02, not the 0.46 the unfiltered card reported.
+
+    The filter is `bl_{stat} > 0` - a positive trailing average, i.e. this stat is
+    part of the player's role - exactly backtest.scorecard()'s, and deliberately not
+    "actual > 0", which would condition on the outcome being graded.
+    """
     if not L.PREDICTIONS.exists():
         return pd.DataFrame()
     preds = pd.read_csv(L.PREDICTIONS, parse_dates=["ts_utc"])
@@ -37,20 +51,44 @@ def week_accuracy(season: int, week: int) -> pd.DataFrame:
         return pd.DataFrame()
     preds = preds.sort_values("ts_utc").drop_duplicates(subset=["player_id", "stat"], keep="last")
 
-    stats_df = src.weekly_stats([season])
-    stats_df = stats_df[stats_df.week == week]
+    # Prior season loaded too: the trailing baseline carries across the season
+    # boundary (see backtest._baselines), so weeks 1-2 have a fair comparator at all.
+    baselines = B._baselines(src.weekly_stats([season - 1, season]))
+    baselines = baselines[(baselines.season == season) & (baselines.week == week)]
 
     rows = []
-    for stat, group in preds.groupby("stat"):
-        raw_col = _ACTUAL_COLUMN.get(stat)
-        if raw_col is None:
+    for label, _, _ in B.STATS:
+        obs_col, baseline_col = f"obs_{label}", f"bl_{label}"
+        graded = preds[preds.stat == label].merge(
+            baselines[["player_id", obs_col, baseline_col]], on="player_id", how="inner"
+        ).dropna(subset=[obs_col, baseline_col])
+        graded = graded[graded[baseline_col] > 0]
+        if len(graded) < 5:   # too few graded rows for a meaningful spearman
             continue
-        merged = group.merge(stats_df[["player_id", raw_col]], on="player_id", how="inner")
-        merged = merged.dropna(subset=[raw_col])
-        if len(merged) < 5:   # too few graded rows for a meaningful spearman
-            continue
-        rows.append({"stat": stat, **B._score(merged.projection, merged[raw_col])})
+        model = B._score(graded.projection, graded[obs_col])
+        base = B._score(graded[baseline_col], graded[obs_col])
+        rows.append({"stat": label, **model,
+                     "baseline_mae": base["mae"], "baseline_spearman": base["spearman"]})
     return pd.DataFrame(rows)
+
+
+def week_coverage(season: int, week: int) -> dict:
+    """How many projected players the week actually graded.
+
+    Printed because the old card showed an identical n for all eight stats, which
+    was the visible symptom of the missing role filter - differing n is now the
+    at-a-glance signal that it is still applied.
+    """
+    if not L.PREDICTIONS.exists():
+        return {"projected": 0, "played": 0}
+    preds = pd.read_csv(L.PREDICTIONS)
+    preds = preds[(preds.season == season) & (preds.week == week)]
+    if preds.empty:
+        return {"projected": 0, "played": 0}
+    played = src.weekly_stats([season])
+    played = set(played[played.week == week].player_id)
+    projected = set(preds.player_id)
+    return {"projected": len(projected), "played": len(projected & played)}
 
 
 def _settled_to_date(season: int) -> pd.DataFrame:
@@ -75,15 +113,23 @@ def clv_to_date(season: int) -> dict:
     has happened yet.'"""
     settled = _settled_to_date(season)
     if settled.empty:
-        return {"n_bets": 0, "win_rate": None, "n_with_close": 0, "beat_close_rate": None}
+        return {"n_bets": 0, "n_graded": 0, "n_wins": 0, "win_rate": None,
+                "n_with_close": 0, "n_stale_close": 0, "beat_close_rate": None}
     graded = settled.dropna(subset=["result"])
     graded = graded[graded.result != "push"]
     with_close = settled.dropna(subset=["closing_price"])
+    # A closing price captured before the bet is the snapshot the bet was made from,
+    # so its CLV is 0.00 by construction - counted separately rather than averaged
+    # in, where it would read as "no edge" instead of "not measured". See settle.py.
+    fresh = with_close[~with_close.close_is_stale.astype(bool)]
     return {
         "n_bets": len(settled),
+        "n_graded": len(graded),
+        "n_wins": int((graded.result == "win").sum()),
         "win_rate": float((graded.result == "win").mean()) if len(graded) else None,
         "n_with_close": len(with_close),
-        "beat_close_rate": float(with_close.beat_close.mean()) if len(with_close) else None,
+        "n_stale_close": len(with_close) - len(fresh),
+        "beat_close_rate": float(fresh.beat_close.mean()) if len(fresh) else None,
     }
 
 
@@ -121,6 +167,13 @@ def calibration_to_date(season: int, n_bins: int = 5) -> pd.DataFrame:
     return table[table.n > 0]
 
 
+def _label(stat: str) -> str:
+    """Telegram renders with parse_mode=Markdown, where `_` opens italics - so
+    `pass_td` arrived on the phone as *passtd* in italics and silently swallowed the
+    formatting of everything after it. Spaces read better in a message anyway."""
+    return stat.replace("_", " ")
+
+
 def build_scorecard(season: int, week: int) -> str:
     """Formats the above into a short Telegram message."""
     lines = [f"*Week {week} scorecard*", ""]
@@ -129,18 +182,34 @@ def build_scorecard(season: int, week: int) -> str:
     if accuracy.empty:
         lines.append("No graded predictions for this week yet.")
     else:
-        lines.append("*This week's accuracy* (vs. real outcomes)")
+        lines.append("*Accuracy* - model vs. what actually happened")
+        lines.append("bias: + means projected too high. rank: 1.0 = perfect order,")
+        lines.append("0 = coin flip. base: how much better than just averaging")
+        lines.append("that player's last 4 games.")
         for _, row in accuracy.iterrows():
-            lines.append(f"  {row.stat}: bias {row.bias:+.1f}, rank corr {row.spearman:.2f} (n={int(row.n)})")
+            better = 100 * (row.baseline_mae - row.mae) / row.baseline_mae if row.baseline_mae else float("nan")
+            lines.append(f"  {_label(row.stat):14s} bias {row.bias:+6.1f}  rank {row.spearman:+5.2f}"
+                         f"  base {better:+.0f}%  (n={int(row.n)})")
+        coverage = week_coverage(season, week)
+        lines.append(f"  {coverage['played']} of {coverage['projected']} projected players played.")
+        lines.append("  Only players for whom a stat is part of their role are")
+        lines.append("  graded on it, so n differs per stat.")
     lines.append("")
 
     clv = clv_to_date(season)
-    lines.append(f"*CLV to date* ({clv['n_bets']} bet(s) recorded)")
+    lines.append(f"*Bets* - {clv['n_bets']} recorded this season")
     if clv["win_rate"] is not None:
-        lines.append(f"  win rate: {clv['win_rate']:.0%}")
+        lines.append(f"  win rate: {clv['win_rate']:.0%} ({clv['n_wins']} of {clv['n_graded']}, pushes excluded)")
     if clv["beat_close_rate"] is not None:
-        lines.append(f"  beat closing price: {clv['beat_close_rate']:.0%} ({clv['n_with_close']} priced)")
-    if clv["win_rate"] is None and clv["beat_close_rate"] is None:
+        lines.append(f"  beat closing price: {clv['beat_close_rate']:.0%} ({clv['n_with_close'] - clv['n_stale_close']} priced)")
+    elif clv["n_stale_close"]:
+        # Never print a 0% here. Every Week 1 closing price was the same snapshot the
+        # bet was placed from, so a CLV of 0.00 would be an artifact of the capture
+        # schedule reported as a result.
+        lines.append(f"  closing-line value: not measurable - all {clv['n_stale_close']} closing")
+        lines.append("  prices were captured before the bet was placed. Needs a")
+        lines.append("  sweep nearer kickoff, not a model change.")
+    if clv["win_rate"] is None and clv["beat_close_rate"] is None and not clv["n_stale_close"]:
         lines.append("  nothing settled yet.")
     lines.append("")
 
@@ -148,7 +217,8 @@ def build_scorecard(season: int, week: int) -> str:
     if calibration.empty:
         lines.append("*Calibration*: not enough settled bets yet.")
     else:
-        lines.append("*Calibration* (predicted vs. actual clear rate, by bin)")
+        lines.append("*Calibration* - when the model said X% likely, how often did")
+        lines.append("it happen? Bets only, so this is a small, self-selected sample.")
         for _, row in calibration.iterrows():
             lines.append(f"  {row.predicted:.0%} predicted -> {row.actual_rate:.0%} actual (n={int(row.n)})")
 

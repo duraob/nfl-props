@@ -5,13 +5,22 @@ Run once a week's games are done (Tuesday is the natural cadence). Joins ledger.
 predictions.csv + bets.csv to real outcomes (nfl_source.weekly_stats) for error and
 result, and to a captured closing line for CLV where one can be reliably matched.
 
-CLV is DraftKings-only. dk_capture.py's rows are structured (player, market, line,
-side), so a bet matches its closing line unambiguously on those four fields. Kalshi's
-captured rows have no such field - `title` is free text ("Will Justin Jefferson have
-75+ receiving yards?") - and guessing a player/threshold out of it risks silently
-matching the wrong market's price, which is worse than reporting nothing. Kalshi bets
-are graded for error/result exactly the same as DraftKings; closing_price/beat_close
-are left null for them.
+CLV covers both venues. It used to be DraftKings-only, on the grounds that Kalshi's
+`title` is free text and unmatchable - true of the game markets ("Will Kansas City
+win..."), but not of the weekly player props, whose titles are a strict template
+("{Player Name}: {N}+ receiving yards"). market_odds.normalize_kalshi already parses
+them into (player_id, stat, line, yes_ask), so this joins through there rather than
+re-deriving it.
+
+`beat_close` is venue-specific and the two directions are opposite. A DraftKings
+price is American odds, where a bigger number pays more, so beating the close means
+`price > closing_price`. A Kalshi price is what you paid in cents for a $1 contract,
+where lower is better, so beating the close means `price < closing_price`. One shared
+comparison would silently invert every Kalshi bet's CLV.
+
+Both venues compare ask-to-ask: `yes_ask` at close against the ask actually paid.
+Grading an entry ask against a closing *mid* would book the bid/ask spread as lost
+CLV on every bet, which is an artifact of the measurement, not a cost you paid.
 """
 
 from __future__ import annotations
@@ -20,6 +29,7 @@ from pathlib import Path
 
 import pandas as pd
 
+import market_odds as M
 import nfl_source as src
 
 PREDICTIONS = Path("data/odds_history/predictions.csv")
@@ -35,6 +45,7 @@ STAT_RAW_COLUMN = {
 # Only markets dk_capture.py actually captures (see its MARKETS list) have a closing
 # line to match against - yardage props are not swept there today.
 DK_MARKET_FOR_STAT = {"receptions": "player_receptions"}
+KALSHI_HISTORY = Path("data/odds_history/kalshi.csv")
 
 
 def _actuals(season: int, week: int) -> pd.DataFrame:
@@ -81,6 +92,28 @@ def _dk_closing_price(bet: pd.Series, dk: pd.DataFrame, player_names: pd.Series)
     return match.sort_values("captured_at").iloc[-1].price
 
 
+def _kalshi_closing_lines(season: int) -> pd.DataFrame:
+    """Last captured ask per (player_id, stat, line) - the closing price, as far as
+    the capture history knows it.
+
+    Kalshi markets vanish from the open-markets sweep once they close at kickoff, so
+    the final captured row for a market is necessarily pre-kickoff and no post-game
+    price can leak in here. Verified against the Week 1 history: zero captured rows
+    have captured_at past their own close_time. This is only as good as the last
+    sweep is close to kickoff, which is a property of the capture schedule, not of
+    this function - see `closing_captured_at` in the output, which exists so a CLV
+    number can never be read without also seeing how stale the price behind it is.
+    """
+    if not KALSHI_HISTORY.exists():
+        return pd.DataFrame(columns=["player_id", "stat", "line", "yes_ask", "captured_at"])
+    lines = M.normalize_kalshi(pd.read_csv(KALSHI_HISTORY), season)
+    if lines.empty:
+        return lines
+    return lines.sort_values("captured_at").drop_duplicates(
+        subset=["player_id", "stat", "line"], keep="last"
+    )[["player_id", "stat", "line", "yes_ask", "captured_at"]]
+
+
 def settle(season: int, week: int) -> pd.DataFrame:
     """One row per bet placed on (season, week): model error, result, and CLV."""
     if not BETS.exists():
@@ -97,7 +130,12 @@ def settle(season: int, week: int) -> pd.DataFrame:
     out["result"] = [_grade(a, l, s) for a, l, s in zip(out.actual, out.line, out.side)]
 
     out["closing_price"] = None
+    # Object dtype, holding tz-aware Timestamps: a typed datetime column cannot
+    # take an all-NaT assignment when no Kalshi line matches, and the only use of
+    # this column is the row-wise comparison against ts_utc below.
+    out["closing_captured_at"] = None
     out["beat_close"] = None
+
     dk_rows = out.venue == "draftkings"
     if dk_rows.any():
         player_names = src.rosters([season]).set_index("gsis_id").full_name
@@ -105,8 +143,39 @@ def settle(season: int, week: int) -> pd.DataFrame:
         out.loc[dk_rows, "closing_price"] = out.loc[dk_rows].apply(
             lambda bet: _dk_closing_price(bet, dk, player_names), axis=1
         )
-        has_close = out.closing_price.notna()
-        out.loc[has_close, "beat_close"] = out.loc[has_close, "price"] > out.loc[has_close, "closing_price"]
+
+    kalshi_rows = out.venue == "kalshi"
+    if kalshi_rows.any():
+        closes = _kalshi_closing_lines(season)
+        if not closes.empty:
+            matched = out.loc[kalshi_rows, ["player_id", "stat", "line"]].merge(
+                closes, on=["player_id", "stat", "line"], how="left"
+            )
+            out.loc[kalshi_rows, "closing_price"] = matched.yes_ask.to_numpy()
+            out.loc[kalshi_rows, "closing_captured_at"] = pd.to_datetime(
+                matched.captured_at, utc=True
+            ).to_numpy(dtype=object)
+
+    has_close = out.closing_price.notna()
+    # Opposite directions by venue - see the module docstring. Sharing one
+    # comparison would invert every Kalshi bet.
+    out.loc[has_close & dk_rows, "beat_close"] = (
+        out.loc[has_close & dk_rows, "price"] > out.loc[has_close & dk_rows, "closing_price"]
+    )
+    out.loc[has_close & kalshi_rows, "beat_close"] = (
+        out.loc[has_close & kalshi_rows, "price"] < out.loc[has_close & kalshi_rows, "closing_price"]
+    )
+
+    # A "closing" price captured before the bet was placed is the same snapshot the
+    # bet was made from, so its CLV is 0.00 by construction and measures the capture
+    # schedule, not the bet. Every Week 1 bet was like this - the last sweep runs
+    # ~3h before kickoff and nothing is captured between it and the game. Flagged
+    # per row rather than silently averaged into a CLV that would read as "no skill"
+    # when it actually means "no closing line was ever taken".
+    out["close_is_stale"] = [
+        bool(captured is not None and not pd.isna(captured) and captured <= placed)
+        for captured, placed in zip(out.closing_captured_at, out.ts_utc)
+    ]
 
     return out
 
