@@ -637,17 +637,26 @@ captured lines (same reason: not regenerable).
   file.
 - **`settle.py`** — `settle(season, week)` joins `bets.csv` to the latest matching
   `predictions.csv` row and to real actuals (`nfl_source.weekly_stats`) for `error`
-  and win/push/loss `result`. **CLV is DraftKings-only.** `dk_capture.py`'s captured
-  rows are structured (`player`, `market`, `line`, `side`), so a bet matches its
-  closing line unambiguously on those four fields. Kalshi's captured rows have no
-  such field — `title` is free text ("Will Justin Jefferson have 75+ receiving
-  yards?") — and guessing a player/threshold out of it risks silently matching the
-  wrong market's price, which is worse than reporting nothing; Kalshi bets still get
-  `error`/`result`, just no `closing_price`. A further, honest gap: `dk_capture.py`
-  only sweeps `player_receptions`/`player_rush_attempts`/`player_pass_attempts`
-  (see its `MARKETS`), so even DraftKings CLV is only computable for `receptions`
-  bets today — the other five tracked stats have no closing line captured to match
-  against yet.
+  and win/push/loss `result`. **CLV now covers both venues**, joining Kalshi through
+  `market_odds.normalize_kalshi`. It was DraftKings-only on the grounds that Kalshi
+  titles are free text — true of the game markets, but not of the weekly player
+  props, which follow a strict template (see Phase 8b). `beat_close` is
+  **venue-specific, and the two directions are opposite**: DraftKings prices are
+  American odds where higher pays more, Kalshi prices are cents paid for a $1
+  contract where lower is better. One shared comparison silently inverts every
+  Kalshi bet. Both compare ask-to-ask — grading an entry ask against a closing
+  *mid* books the bid/ask spread as lost CLV on every bet.
+
+  **The binding constraint on CLV is now the capture schedule, not matching.** All
+  five 2026 Week 1 bets matched a Kalshi market, and all five "closing" prices were
+  the same snapshot the bet was placed from: the last sweep runs ~3h before kickoff
+  (`suggest_capture_by`) and nothing is captured between it and the game, so CLV is
+  0.00 by construction. `settle.py` flags these `close_is_stale` and `scorecard.py`
+  refuses to average them into a CLV number — a structural 0% reads as "no edge"
+  when it means "never measured". Fixing it needs a second Kalshi sweep near
+  kickoff, not a model change. Separately, `dk_capture.py` only sweeps
+  `player_receptions`/`player_rush_attempts`/`player_pass_attempts` (see its
+  `MARKETS`), so DraftKings CLV is only ever computable for `receptions` bets.
 
 ## Phase 8 — Edge (done)
 
@@ -675,8 +684,9 @@ the next genuinely clean check.
 **8b. Odds normalization — `market_odds.py`.** Both venues into one shape:
 `(player_id, stat, line, implied_probability, venue, captured_at)`.
 - **Landmine that turned out not to be one:** Kalshi's weekly player-prop titles
-  looked like free text going into this (that's why Phase 7's CLV matching skips
-  Kalshi entirely - see there), but checked against real settled preseason markets,
+  looked like free text going into this (which is why Phase 7's CLV matching
+  originally skipped Kalshi - since fixed, see there), but checked against real
+  settled preseason markets,
   they're a strict template - `"{Player Name}: {N}+ {description}"` - not the
   freeform sentences game markets use (`"Will Kansas City win..."`). Parsed directly;
   no fuzzy matching needed. Player name still resolves to `player_id` via an exact
@@ -704,13 +714,13 @@ explicitly. (CLV - grading a bet already placed against a closing line - is the
 separate, already-built piece in `settle.py`/Phase 7; this is the pre-bet version of
 a similar comparison.)
 
-**Open dependency, still unresolved:** `KXNFLREC` (receptions) and `KXNFLRSHATT`
-(rush attempts) - the two purest volume-prop series, and the closest match to the
-measured edge - exist on Kalshi but have never been observed with an actual live
-market (re-confirmed 2026-08-16: 0 open, 0 settled for `KXNFLREC`). If they never
-open, the strongest edge is DK-only, at DK's worse pricing. Week 1-3 capture answers
-this; `market_odds.py` does not design around an assumption either way - it simply
-finds nothing to normalize for a series with no rows, the same as it does today.
+**Open dependency — resolved for `KXNFLREC`.** `KXNFLREC` (receptions) and
+`KXNFLRSHATT` (rush attempts) are the two purest volume-prop series and the closest
+match to the measured edge, and through 2026-08-16 neither had ever been observed
+with a live market. **`KXNFLREC` opened for Week 1** — 1,343 captured rows, alongside
+`KXNFLRECYDS` (1,823), `KXNFLRSHYDS` (1,061) and `KXNFLPASSYDS` (505). The strongest
+edge is therefore available at Kalshi's ~1% hold rather than DK-only at ~4.5%.
+`KXNFLRSHATT` still has no corresponding `build()` stat and is skipped regardless.
 
 ## Phase 9 — Automation (done)
 
