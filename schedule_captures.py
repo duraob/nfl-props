@@ -175,7 +175,13 @@ def sync_captured_data() -> None:
         return
     print(f"  syncing {ahead} commit(s) to origin")
     subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True)
-    subprocess.run(["git", "push", "origin", "main"], check=True)
+    # HEAD:main, not main - `git push origin main` needs a *local* branch called
+    # main, and whether there is one depends on the machine's init.defaultBranch.
+    # git only started defaulting to `main` in 2.28 and only when configured, so a
+    # repo cloned or initialised on a box without that config sits on `master` and
+    # every push fails with "src refspec main does not match any" - silently, since
+    # run() treats a sync failure as best-effort.
+    subprocess.run(["git", "push", "origin", "HEAD:main"], check=True)
 
 
 def _push_report(season: int, week: int, game_date: str) -> None:

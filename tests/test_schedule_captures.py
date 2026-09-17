@@ -315,3 +315,31 @@ def test_closing_sweep_runs_again_near_kickoff(tmp_path, monkeypatch):
     # And it is itself idempotent - a third tick inside the same window adds nothing.
     SC.run(late)
     assert calls.count("kalshi") == 2
+
+
+def test_sync_works_when_the_local_branch_is_not_called_main(working_repo):
+    """
+    Reproduces the droplet, where this failed while passing on the developer's Mac.
+
+    `git push origin main` resolves `main` as a *local* branch name. Whether one
+    exists depends on init.defaultBranch, which git only honours from 2.28 and only
+    when set - so a repo initialised on a box without it sits on `master` and every
+    push dies with "src refspec main does not match any". run() treats a sync
+    failure as best-effort, so in production that is silent.
+
+    Renamed explicitly rather than relying on this machine's default, which is the
+    whole reason the original went unnoticed.
+    """
+    _git("branch", "-m", "master", cwd=working_repo)
+
+    odds_dir = working_repo / "data" / "odds_history"
+    odds_dir.mkdir(parents=True)
+    (odds_dir / "kalshi.csv").write_text("captured_at,mid\n2099-01-01,0.5\n")
+
+    SC.sync_captured_data()
+
+    remote_log = subprocess.run(
+        ["git", "log", "--oneline", "-1", "origin/main"], cwd=working_repo,
+        capture_output=True, text=True, check=True,
+    ).stdout
+    assert "capture:" in remote_log, "commit did not reach origin/main from a non-main branch"
