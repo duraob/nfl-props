@@ -773,13 +773,29 @@ having to remember any of it").
     constructed already-consistent fixtures.
 - **Weekly scorecard — `scorecard.py`.** Bias and rank correlation (reusing
   `backtest._score`) on the just-completed week's logged predictions vs. real
-  outcomes; CLV-to-date and calibration (predicted vs. actual clear-rate, binned)
-  aggregated across every settled bet this season via `settle.py`. Calibration
-  recomputes `exceed_probability` from each bet's logged projection with
-  `skip_volume_check=True` - settle.py's thin per-bet records don't carry the
-  volume column that check needs, and a bet is itself proof the player had real
-  volume in that stat, so the check is redundant there, not skipped for
-  convenience. `most_recently_completed_week()` (deliberately separate from
+  outcomes; CLV-to-date across every settled bet this season via `settle.py`.
+
+  **The screen is graded separately from the bets, off `recommendations.csv`.**
+  `screen_accuracy()` / `screen_calibration()` grade every call the sheet made,
+  backed or not - `bets.csv` structurally cannot do this, since it holds only the
+  calls that were backed and so can never say whether `EDGE_AT_ASK`'s +20 cap or
+  the 25-75% `NEAR_PROJECTION` window are the right numbers. The sample sizes are
+  not close: Week 1 logged **30 recommendations against 7 bets**, so the screen
+  accrues evidence roughly four times faster for the same weeks of waiting, and
+  calibration now bins those 30 rather than 7 self-selected ones. `model_probability`
+  is read **as logged**, not recomputed - the sheet recorded what the screen
+  believed when it fired, and recomputing would grade today's model against last
+  week's decision. (This is why calibration no longer calls `exceed_probability`
+  with `skip_volume_check=True`; that parameter still exists and is still tested,
+  but `scorecard.py` is no longer its caller.)
+
+  First reading, 2026 Week 1 (n=30, one week - noise, not a verdict): the screen
+  said 42% would clear, the market priced them at 28%, and **17% cleared**. The
+  market was closer. Consistent with the documented early-season bias below rather
+  than new information; the point is that it is now measured every week instead of
+  inferred from seven bets.
+
+  `most_recently_completed_week()` (deliberately separate from
   `schedule_captures.current_week()`, which answers a different question with a
   grace period tuned for that) picks the target week for the no-argument cron
   invocation (`scorecard.py --push`).

@@ -17,7 +17,6 @@ import pandas as pd
 import backtest as B
 import ledger as L
 import nfl_source as src
-import projections as P
 import settle as S
 
 # label -> raw weekly_stats column, taken from backtest.py's STATS so both scorers
@@ -133,34 +132,86 @@ def clv_to_date(season: int) -> dict:
     }
 
 
-def calibration_to_date(season: int, n_bins: int = 5) -> pd.DataFrame:
+def _graded_recommendations(season: int, week: int | None = None) -> pd.DataFrame:
     """
-    Reliability check across every settled bet: of the bets where the model said
-    roughly X% likely to clear, did ~X% actually clear?
+    Every recommendation the sheet ever made, joined to what actually happened.
 
-    Recomputes model_probability from each settled bet's logged projection and
-    recorded line (skip_volume_check=True: a bet is itself proof the player had
-    real volume in that stat, so the check settle.py's thin records can't perform
-    is redundant here, not skipped for convenience).
+    This is the sample that can grade the *screen*, which bets.csv structurally
+    cannot: bets.csv holds only the calls that were backed, so it can never say
+    whether EDGE_AT_ASK's +20 cap or the 25-75% NEAR_PROJECTION window are the right
+    numbers - you only ever see the ones that already passed them. Week 1 logged 30
+    recommendations against 7 bets, so this accrues evidence roughly four times
+    faster for the same weeks of waiting.
+
+    `model_probability` is read as logged rather than recomputed. The sheet recorded
+    what the screen believed at the moment it fired, which is exactly the quantity
+    being graded - recomputing it now would grade today's model against last week's
+    decision.
     """
-    settled = _settled_to_date(season)
-    if settled.empty:
+    if not L.RECOMMENDATIONS.exists():
         return pd.DataFrame()
-    settled = settled.dropna(subset=["projection", "actual", "line"])
-    settled = settled[settled.stat.isin(P.STAT_DISPERSION)]
-    if settled.empty:
+    recs = pd.read_csv(L.RECOMMENDATIONS)
+    recs = recs[recs.season == season]
+    if week is not None:
+        recs = recs[recs.week == week]
+    if recs.empty:
         return pd.DataFrame()
 
-    rows = []
-    for stat, group in settled.groupby("stat"):
-        proj_df = pd.DataFrame({stat: group.projection.to_numpy()}, index=group.index)
-        model_p = P.exceed_probability(proj_df, stat, group.line.to_numpy(), skip_volume_check=True)
-        cleared = (group.actual >= group.line).astype(float)
-        rows.append(pd.DataFrame({"model_probability": model_p, "cleared": cleared}))
-    combined = pd.concat(rows, ignore_index=True)
+    # The screen emits one rung per (player, stat) per sheet and a player plays once
+    # a week, so a duplicate means the same call was re-sent on a later sheet. The
+    # last one is the one that stood.
+    recs = recs.sort_values("ts_utc").drop_duplicates(
+        subset=["week", "player_id", "stat"], keep="last")
 
-    bins = pd.cut(combined.model_probability, n_bins, include_lowest=True)
-    table = combined.groupby(bins, observed=True).agg(
+    frames = []
+    for target_week, group in recs.groupby("week"):
+        actuals = S._actuals(season, int(target_week))
+        frames.append(group.merge(actuals, on=["player_id", "stat"], how="left"))
+    graded = pd.concat(frames, ignore_index=True).dropna(subset=["actual"])
+    if graded.empty:
+        return graded
+    graded["cleared"] = (graded.actual >= graded.line).astype(float)
+    return graded
+
+
+def screen_accuracy(season: int, week: int) -> dict:
+    """Did the week's calls actually happen, and was the model or the market closer?
+
+    Both comparisons matter and they are different questions. The clear rate says
+    whether the screen was right; the model-vs-market gap says whether the edge it
+    claimed was real, since a bet only makes money when the model is closer to the
+    truth than the price is.
+    """
+    graded = _graded_recommendations(season, week)
+    if graded.empty:
+        return {"n": 0}
+    actual_rate = float(graded.cleared.mean())
+    model_said = float(graded.model_probability.mean())
+    market_said = float(graded.implied_probability.mean())
+    return {
+        "n": len(graded),
+        "cleared": int(graded.cleared.sum()),
+        "actual_rate": actual_rate,
+        "model_said": model_said,
+        "market_said": market_said,
+        "closer": "model" if abs(model_said - actual_rate) < abs(market_said - actual_rate) else "market",
+    }
+
+
+def screen_calibration(season: int, n_bins: int = 5) -> pd.DataFrame:
+    """
+    Of the calls where the screen said roughly X% likely, did ~X% happen?
+
+    Across every recommendation this season, not just the backed ones. The previous
+    version binned bets only - a handful of rows, self-selected toward the model's
+    largest disagreements with the market, which is the sample most likely to be
+    overconfident and the least able to prove it either way.
+    """
+    graded = _graded_recommendations(season)
+    if graded.empty:
+        return pd.DataFrame()
+    bins = pd.cut(graded.model_probability, n_bins, include_lowest=True)
+    table = graded.groupby(bins, observed=True).agg(
         n=("cleared", "size"), predicted=("model_probability", "mean"),
         actual_rate=("cleared", "mean"),
     ).reset_index(names="bin")
@@ -213,12 +264,21 @@ def build_scorecard(season: int, week: int) -> str:
         lines.append("  nothing settled yet.")
     lines.append("")
 
-    calibration = calibration_to_date(season)
+    screen = screen_accuracy(season, week)
+    if screen["n"]:
+        lines.append(f"*Screen* - all {screen['n']} calls the sheet made, backed or not")
+        lines.append(f"  {screen['cleared']} cleared ({screen['actual_rate']:.0%})")
+        lines.append(f"  model said {screen['model_said']:.0%}, market said "
+                     f"{screen['market_said']:.0%} - {screen['closer']} was closer")
+        lines.append("")
+
+    calibration = screen_calibration(season)
     if calibration.empty:
-        lines.append("*Calibration*: not enough settled bets yet.")
+        lines.append("*Calibration*: no graded recommendations yet.")
     else:
-        lines.append("*Calibration* - when the model said X% likely, how often did")
-        lines.append("it happen? Bets only, so this is a small, self-selected sample.")
+        lines.append("*Calibration* - when the screen said X% likely, how often did")
+        lines.append("it happen? Every recommendation this season, not just the")
+        lines.append("ones backed with money.")
         for _, row in calibration.iterrows():
             lines.append(f"  {row.predicted:.0%} predicted -> {row.actual_rate:.0%} actual (n={int(row.n)})")
 

@@ -76,22 +76,23 @@ def test_clv_to_date_aggregates_settled_bets(tmp_path, monkeypatch):
     assert out["win_rate"] == pytest.approx(0.5)
 
 
-def test_calibration_to_date_empty_when_no_bets(tmp_path, monkeypatch):
-    monkeypatch.setattr(S, "BETS", tmp_path / "bets.csv")
-    assert C.calibration_to_date(2099).empty
+def test_screen_calibration_empty_when_nothing_recommended(tmp_path, monkeypatch):
+    monkeypatch.setattr(L, "RECOMMENDATIONS", tmp_path / "recommendations.csv")
+    assert C.screen_calibration(2099).empty
 
 
 def test_build_scorecard_handles_fully_empty_data(tmp_path, monkeypatch):
     """The real current state of the repo: no predictions logged, no bets placed
     yet. Must produce a readable message, not crash."""
     monkeypatch.setattr(L, "PREDICTIONS", tmp_path / "predictions.csv")
+    monkeypatch.setattr(L, "RECOMMENDATIONS", tmp_path / "recommendations.csv")
     monkeypatch.setattr(S, "BETS", tmp_path / "bets.csv")
 
     text = C.build_scorecard(2099, 1)
 
     assert "No graded predictions" in text
     assert "nothing settled yet" in text
-    assert "not enough settled bets" in text
+    assert "no graded recommendations yet" in text
 
 
 def test_most_recently_completed_week_matches_real_schedule():
@@ -143,3 +144,85 @@ def test_week_accuracy_grades_each_stat_only_for_players_whose_role_includes_it(
     accuracy = C.week_accuracy(season, week).set_index("stat")
     assert accuracy.n.nunique() > 1, "identical n across stats means the role filter is gone"
     assert accuracy.loc["pass_yd", "n"] < accuracy.loc["receptions", "n"]
+
+
+# Christian McCaffrey, 2025 week 5: 8 receptions, 82 receiving yards.
+def _recommendation(**over):
+    base = {"ts_utc": "2025-10-05T12:00:00+00:00", "season": REAL_SEASON,
+            "week": REAL_WEEK, "game_date": "2025-10-05", "slot": 1,
+            "player_id": REAL_PLAYER, "stat": "receptions", "venue": "kalshi",
+            "line": 5.0, "yes_ask": 0.45, "model_probability": 0.60,
+            "implied_probability": 0.44, "edge_at_ask": 0.15, "spread": 0.02,
+            "depth": 900.0}
+    base.update(over)
+    return base
+
+
+def test_screen_accuracy_grades_every_call_not_just_backed_ones(tmp_path, monkeypatch):
+    """bets.csv can never grade the screen - it only contains calls that were
+    backed, so it cannot say whether the screen's own bounds are right."""
+    monkeypatch.setattr(L, "RECOMMENDATIONS", tmp_path / "recommendations.csv")
+    _write(L.RECOMMENDATIONS, [
+        _recommendation(line=5.0),                            # 8 receptions -> cleared
+        _recommendation(stat="rec_yd", line=70.0, slot=2),    # 82 yards -> cleared
+        _recommendation(stat="rush_yd", line=500.0, slot=3),  # -> did not clear
+    ])
+
+    out = C.screen_accuracy(REAL_SEASON, REAL_WEEK)
+
+    assert out["n"] == 3
+    assert out["cleared"] == 2
+    assert out["actual_rate"] == pytest.approx(2 / 3)
+
+
+def test_screen_accuracy_reports_whether_model_or_market_was_closer(tmp_path, monkeypatch):
+    """The gap that decides whether an edge was real: a bet only pays when the model
+    is nearer the truth than the price is."""
+    monkeypatch.setattr(L, "RECOMMENDATIONS", tmp_path / "recommendations.csv")
+    # Both calls clear, so the actual rate is 100% - the model's 90% is nearer that
+    # than the market's 20%.
+    _write(L.RECOMMENDATIONS, [
+        _recommendation(line=1.0, model_probability=0.9, implied_probability=0.2),
+        _recommendation(stat="rec_yd", line=2.0, slot=2,
+                        model_probability=0.9, implied_probability=0.2),
+    ])
+    assert C.screen_accuracy(REAL_SEASON, REAL_WEEK)["closer"] == "model"
+
+    _write(L.RECOMMENDATIONS, [
+        _recommendation(line=99.0, model_probability=0.9, implied_probability=0.2),
+        _recommendation(stat="rec_yd", line=998.0, slot=2,
+                        model_probability=0.9, implied_probability=0.2),
+    ])
+    assert C.screen_accuracy(REAL_SEASON, REAL_WEEK)["closer"] == "market"
+
+
+def test_a_call_resent_on_a_later_sheet_is_counted_once(tmp_path, monkeypatch):
+    """A player plays once a week, so the same (player, stat) appearing on two
+    sheets is one call re-sent, not two. Double-counting would silently weight
+    whichever players happened to span several game days."""
+    monkeypatch.setattr(L, "RECOMMENDATIONS", tmp_path / "recommendations.csv")
+    _write(L.RECOMMENDATIONS, [
+        _recommendation(ts_utc="2025-10-01T12:00:00+00:00", line=5.0),
+        _recommendation(ts_utc="2025-10-04T12:00:00+00:00", line=6.0),
+    ])
+
+    out = C.screen_accuracy(REAL_SEASON, REAL_WEEK)
+
+    assert out["n"] == 1
+    assert out["cleared"] == 1, "the later sheet's line (6.0) is the one that stood"
+
+
+def test_screen_calibration_uses_the_probability_as_logged(tmp_path, monkeypatch):
+    """Recomputing it now would grade today's model against last week's decision."""
+    monkeypatch.setattr(L, "RECOMMENDATIONS", tmp_path / "recommendations.csv")
+    _write(L.RECOMMENDATIONS, [
+        _recommendation(line=5.0, model_probability=0.75),                     # cleared
+        _recommendation(stat="rush_yd", line=500.0, slot=2, model_probability=0.75),
+    ])
+
+    table = C.screen_calibration(REAL_SEASON, n_bins=1)
+
+    assert len(table) == 1
+    assert table.iloc[0].predicted == pytest.approx(0.75)
+    assert table.iloc[0].actual_rate == pytest.approx(0.5)
+    assert int(table.iloc[0].n) == 2
