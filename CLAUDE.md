@@ -653,8 +653,14 @@ captured lines (same reason: not regenerable).
   (`suggest_capture_by`) and nothing is captured between it and the game, so CLV is
   0.00 by construction. `settle.py` flags these `close_is_stale` and `scorecard.py`
   refuses to average them into a CLV number — a structural 0% reads as "no edge"
-  when it means "never measured". Fixing it needs a second Kalshi sweep near
-  kickoff, not a model change. Separately, `dk_capture.py` only sweeps
+  when it means "never measured". **Fixed by a second Kalshi sweep** at
+  `schedule_captures.CLOSING_SWEEP_LEAD` (30 min before kickoff), so Week 2 onward
+  has a real closing price — Week 1's bets can never be graded for CLV, since the
+  price that would have graded them was never captured. One limitation survives:
+  windows are keyed on each day's *earliest* kickoff, so a Sunday sweep at 12:30
+  closes the 1pm games well but is still ~4h early for the 4:25 block. Fixing that
+  needs per-kickoff windows, not just a second sweep. Separately, `dk_capture.py`
+  only sweeps
   `player_receptions`/`player_rush_attempts`/`player_pass_attempts` (see its
   `MARKETS`), so DraftKings CLV is only ever computable for `receptions` bets.
 
@@ -743,6 +749,20 @@ having to remember any of it").
   predictions, Telegram push) is isolated - one failing (e.g. DK's credit budget)
   does not block the others, and the window is still marked done rather than
   retried forever against a persistent error.
+  - **Two sweeps per window, not one.** The sweep at `suggest_capture_by` (~3h out)
+    is what the report and the bet are built from; a second, `kalshi_close`, fires
+    at `CLOSING_SWEEP_LEAD` (30 min before kickoff) and exists solely so CLV has a
+    price captured *after* the bet was placed. It carries its own marker, so it is
+    neither suppressed by the first sweep's nor does it re-send the report or
+    re-spend DraftKings credits. 30 min is a compromise: a full Kalshi sweep took
+    ~12 min in Week 1 and grows as more markets open, so T-30 finishes near T-18
+    while T-15 risks running past kickoff (harmless — closed markets drop out of
+    the sweep — but wasted).
+  - **A recorded bet syncs immediately**, from `telegram_commands.handle()`, not
+    just from inside a capture window. `sync_captured_data()` was only ever reached
+    during a window, so a wager placed after a week's last window sat on the droplet
+    alone for days — two of Week 1's seven did, and were missing from the repo while
+    the scorecard graded the other five.
   - **Landmine worth flagging:** `kickoff_windows()`'s timestamps are tz-naive and
     *assumed* Eastern (see `nfl_source.py`), while `datetime.now(UTC)` is tz-aware -
     comparing them directly either raises or, worse, silently compares the wrong

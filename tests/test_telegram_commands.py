@@ -22,7 +22,20 @@ def ledger(tmp_path, monkeypatch):
     monkeypatch.setattr(TC.L, "BETS", tmp_path / "bets.csv")
     monkeypatch.setattr(TC.L, "RECOMMENDATIONS", tmp_path / "recommendations.csv")
     monkeypatch.setattr(TC.S, "current_week", lambda now=None: (2026, 1))
+    # handle() syncs to git after recording a bet - stubbed so the suite never
+    # shells out to real git (or the network) against the real repo, same reason
+    # test_schedule_captures.py stubs it by default.
+    monkeypatch.setattr(TC.S, "sync_captured_data", lambda: synced.append(True))
     return tmp_path
+
+
+synced: list = []
+
+
+@pytest.fixture
+def sync_calls(ledger):
+    synced.clear()
+    return synced
 
 
 def _sheet(**over):
@@ -126,3 +139,22 @@ def test_offset_persists_so_cron_never_replays_a_wager(tmp_path, monkeypatch):
     assert TC._read_offset() is None
     TC._write_offset(42)
     assert TC._read_offset() == 42
+
+
+def test_recording_a_bet_syncs_it_immediately(sync_calls):
+    """A bet placed after a week's last kickoff window would otherwise sit on the
+    droplet until the next window opened - two of Week 1's seven did exactly that,
+    and were invisible to the scorecard that graded the other five."""
+    _sheet().to_csv(TC.L.RECOMMENDATIONS, index=False)
+    TC.handle("/bet 1 25", TS)
+    assert sync_calls == [True]
+
+
+def test_a_failed_sync_still_confirms_the_bet(ledger, monkeypatch):
+    """The bet is already on local disk by then. Reporting "could not record that"
+    because a push failed would be a lie, and would invite recording it twice."""
+    def _boom():
+        raise RuntimeError("network down")
+    monkeypatch.setattr(TC.S, "sync_captured_data", _boom)
+    _sheet().to_csv(TC.L.RECOMMENDATIONS, index=False)
+    assert "Recorded:" in TC.handle("/bet 1 25", TS)

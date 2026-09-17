@@ -178,6 +178,16 @@ def handle(text: str, message_ts: str) -> str:
         else:
             fields, described = _bet_from_words(parsed, season, week)
         L.record_bet(**fields, ts_utc=message_ts)
+        # Sync straight away rather than waiting for the next capture window.
+        # sync_captured_data() is otherwise only reached from inside a kickoff
+        # window, so a wager placed after a week's last window sat on this machine
+        # alone for days - two of Week 1's seven did exactly that. Best-effort: the
+        # bet is already durably on local disk, and failing to push it must never
+        # turn into "could not record that" on the phone.
+        try:
+            S.sync_captured_data()
+        except Exception as exc:
+            print(f"bet recorded but git sync failed: {type(exc).__name__}: {exc}")
         return (f"Recorded: {described} @ {fields['price']:g} "
                 f"for ${fields['stake']:g} ({fields['venue']}).")
     except Exception as exc:

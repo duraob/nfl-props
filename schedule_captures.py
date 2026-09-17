@@ -39,6 +39,21 @@ STATE_DIR = Path("data/scheduler_state")
 # Actions worth waking you up for when they fail - see _alert.
 ALERT_ACTIONS = {"predictions", "report"}
 
+# How close to kickoff the second ("closing") Kalshi sweep fires.
+#
+# Without it there is no closing line at all: the only sweep ran at
+# suggest_capture_by, ~3h out, the bet gets placed off that same sheet minutes
+# later, and nothing is captured in the hours remaining before kickoff. Every 2026
+# Week 1 bet priced against a snapshot taken *before* the bet was placed, making CLV
+# 0.00 by construction (settle.py flags these `close_is_stale`).
+#
+# 30 minutes is a compromise, not an ideal. Closer to kickoff is a better closing
+# price, but a full Kalshi sweep took ~12 min in Week 1 and grows as more markets
+# open - starting at T-30 finishes around T-18, while T-15 risks running past
+# kickoff. Running past is not harmful (closed markets simply drop out of the open
+# sweep, so no post-kickoff price can be recorded) but it wastes the sweep.
+CLOSING_SWEEP_LEAD = dt.timedelta(minutes=30)
+
 # kickoff_windows()'s timestamps are tz-naive and assumed Eastern (see
 # nfl_source.py's gametime note - unverified against an authoritative source, but
 # consistent across every game checked). `now` (tz-aware UTC) has to be converted
@@ -196,14 +211,19 @@ def run(now: dt.datetime | None = None) -> None:
         # kickoff - without re-running what already succeeded: re-sweeping
         # DraftKings every 15 minutes would spend the whole month's credit budget in
         # one afternoon (see dk_capture.py's budget note).
-        actions = (
+        actions = [
             ("kalshi", "Kalshi capture", K.capture),
             ("dk", "DraftKings capture", lambda: DK.capture(within_hours=6)),
             ("predictions", "log predictions",
              lambda: L.log_predictions(P.project(season, week))),
             ("report", "Telegram push",
              lambda: _push_report(season, week, str(row.game_date))),
-        )
+        ]
+        # A second sweep near kickoff, and the only one that produces a price the
+        # bet can honestly be graded against - see CLOSING_SWEEP_LEAD. Its own
+        # marker, so it is not skipped by the first sweep's.
+        if now_eastern >= row.earliest_kickoff - CLOSING_SWEEP_LEAD:
+            actions.append(("kalshi_close", "Kalshi closing sweep", K.capture))
         pending = [a for a in actions
                    if not _marker(season, week, row.game_date, a[0]).exists()]
         if not pending:

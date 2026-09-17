@@ -335,16 +335,41 @@ def test_apply_rookie_prior_rescales_only_no_history_rows_with_a_depth_chart_ent
     assert rookie.rec_yd == pytest.approx(35.0 * wr_tier1.e_targets / 4.5)
 
 
-def test_project_covers_no_history_players_for_an_upcoming_week():
+def test_project_covers_the_active_roster_for_the_current_week():
     """
-    The actual production gap this closes: ~400 of ~900 rostered players (every
-    rookie among them) previously vanished below MIN_GAMES with no projection at
-    all. project(2026, 1) should now include a meaningful share of them, always at
-    low confidence.
+    The actual production gap this closes: ~45% of rostered players (every rookie
+    among them) previously vanished below MIN_GAMES with no projection at all.
+
+    Asserted as a share of the active roster rather than an absolute count, and
+    against the *current* week rather than a hardcoded one. The previous version
+    did neither and rotted into a false alarm mid-season: it required >100
+    no-history players in project(2026, 1), a threshold set when 2026 Week 1 was
+    still upcoming and rosters were 90-man preseason ones. Regular-season rosters
+    are 53-man (~15.7 skill players per team, ~501 league-wide), and project() for
+    a *past* week reads today's roster, so players since cut no longer produce
+    placeholder rows. Both are correct behaviour and the old assertion called them
+    a regression.
+
+    The no-history count is still checked, but only for being non-empty and
+    correctly labelled - coverage is what the phase was about, and coverage is what
+    holds all season.
     """
-    proj = P.project(2026, 1)
+    import schedule_captures as SC
+
+    week_info = SC.current_week()
+    if week_info is None:
+        pytest.skip("deep offseason - no current week to project")
+    season, week = week_info
+
+    proj = P.project(season, week)
+    roster = src.rosters([season])
+
+    assert proj.team.nunique() == 32, "a team dropped out of the roster->schedule join"
+    assert len(proj) > 0.8 * len(roster), (
+        f"only {len(proj)} projections for {len(roster)} active roster players")
+
     no_history = proj[proj.games_played < P.MIN_GAMES]
-    assert len(no_history) > 100, f"only {len(no_history)} no-history players covered"
+    assert not no_history.empty, "no-history players are being dropped again"
     assert (no_history.confidence_yardage_label == "low").all()
     assert (no_history.e_targets + no_history.e_carries + no_history.e_attempts > 0).any()
 

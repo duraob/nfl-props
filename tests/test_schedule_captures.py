@@ -260,3 +260,58 @@ def test_run_syncs_after_a_due_window(working_repo, monkeypatch):
     log = subprocess.run(["git", "log", "--oneline", "-1"], cwd=working_repo,
                          capture_output=True, text=True, check=True).stdout
     assert "capture:" in log
+
+
+def test_no_closing_sweep_while_kickoff_is_still_far_off(tmp_path, monkeypatch):
+    """One sweep at suggest_capture_by, as before - the closing sweep must not fire
+    three hours out, or it is just the same snapshot twice."""
+    monkeypatch.setattr(SC, "STATE_DIR", tmp_path)
+    monkeypatch.setattr(SC, "current_week", lambda now: (2099, 1))
+    now = dt.datetime(2099, 9, 10, 17, 0, tzinfo=dt.UTC)
+    monkeypatch.setattr(SC.P, "kickoff_windows",
+                        lambda season, week: _fake_window(now, kickoff_offset_hours=3))
+    calls = []
+    _patch_actions(monkeypatch, calls)
+    SC.run(now)
+    assert calls.count("kalshi") == 1
+
+
+def test_closing_sweep_runs_again_near_kickoff(tmp_path, monkeypatch):
+    """
+    The second sweep is the only one that yields a price a bet can be graded
+    against. Without it every closing price predates the bet it prices, which is
+    what made 2026 Week 1 CLV 0.00 by construction (see settle.close_is_stale).
+
+    It carries its own marker, so the first sweep's marker does not suppress it and
+    it does not re-run the report or re-spend DraftKings credits.
+    """
+    monkeypatch.setattr(SC, "STATE_DIR", tmp_path)
+    monkeypatch.setattr(SC, "current_week", lambda now: (2099, 1))
+    calls = []
+    _patch_actions(monkeypatch, calls)
+
+    # First tick, three hours out: the ordinary sweep only.
+    early = dt.datetime(2099, 9, 10, 17, 0, tzinfo=dt.UTC)
+    monkeypatch.setattr(SC.P, "kickoff_windows",
+                        lambda season, week: _fake_window(early, kickoff_offset_hours=3,
+                                                          capture_offset_hours=-1))
+    SC.run(early)
+    assert calls.count("kalshi") == 1
+
+    # Second tick, twenty minutes out: sweeps again, and only Kalshi.
+    late = early + dt.timedelta(hours=2, minutes=40)
+    monkeypatch.setattr(
+        SC.P, "kickoff_windows",
+        lambda season, week: _fake_window(late, kickoff_offset_hours=0,
+                                          capture_offset_hours=-3).assign(
+            earliest_kickoff=[late.astimezone(SC._EASTERN).replace(tzinfo=None)
+                              + dt.timedelta(minutes=20)]),
+    )
+    SC.run(late)
+    assert calls.count("kalshi") == 2, "closing sweep did not fire"
+    assert calls.count("dk") == 1, "DraftKings re-swept - that spends credits twice"
+    assert calls.count("telegram") == 1, "report sent twice"
+
+    # And it is itself idempotent - a third tick inside the same window adds nothing.
+    SC.run(late)
+    assert calls.count("kalshi") == 2
