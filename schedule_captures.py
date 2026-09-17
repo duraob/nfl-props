@@ -126,19 +126,40 @@ def sync_captured_data() -> None:
     key with write access, or an HTTPS token) - see deploy/setup.sh's comments.
     Best-effort like every other action here: a git/network failure must not be
     treated as a capture failure, since the data is still safe on local disk either
-    way and will sync on the next successful run.
+    way and will sync on the next successful run. `run()` does alert on failure,
+    though - see there for why this one is not silent like the rest.
+
+    Rebases onto origin before pushing. Without that, one commit made anywhere else
+    (a fix pushed from a laptop) leaves this machine permanently diverged, and every
+    later push is rejected non-fast-forward. That is not hypothetical - it happened
+    after the 2026-09-10 capture and stranded a full week of Kalshi snapshots, bets
+    and recommendations here, visible to nobody. Rebase rather than merge because
+    this machine only ever commits appended CSV rows, never code, so replaying them
+    onto whatever origin has is always the right resolution.
     """
     changed = subprocess.run(
         ["git", "status", "--porcelain", "--", "data/odds_history"],
         capture_output=True, text=True, check=True,
     ).stdout.strip()
-    if not changed:
+    if changed:
+        subprocess.run(["git", "add", "data/odds_history"], check=True)
+        subprocess.run(
+            ["git", "commit", "-m", f"capture: {dt.datetime.now(dt.UTC):%Y-%m-%d %H:%M} UTC"],
+            check=True,
+        )
+
+    # Deliberately NOT gated on `changed`. A push that failed earlier leaves a
+    # commit sitting here with nothing new to add, so returning early on "no new
+    # rows" is precisely what turns one rejected push into a permanent outage.
+    subprocess.run(["git", "fetch", "origin", "main"], check=True)
+    ahead = subprocess.run(
+        ["git", "rev-list", "--count", "origin/main..HEAD"],
+        capture_output=True, text=True, check=True,
+    ).stdout.strip()
+    if ahead == "0":
         return
-    subprocess.run(["git", "add", "data/odds_history"], check=True)
-    subprocess.run(
-        ["git", "commit", "-m", f"capture: {dt.datetime.now(dt.UTC):%Y-%m-%d %H:%M} UTC"],
-        check=True,
-    )
+    print(f"  syncing {ahead} commit(s) to origin")
+    subprocess.run(["git", "pull", "--rebase", "origin", "main"], check=True)
     subprocess.run(["git", "push", "origin", "main"], check=True)
 
 
@@ -198,8 +219,13 @@ def run(now: dt.datetime | None = None) -> None:
                 _alert(season, week, row.game_date, action, label, exc)
 
         # Deliberately unmarkered: predictions logged on a later retry still need
-        # pushing, and the function no-ops when there is nothing new to commit.
-        _try("sync captured data to git", sync_captured_data)
+        # pushing, and the function no-ops when there is nothing to sync. Alerted on
+        # failure like predictions/report, and for the same reason - a sync that
+        # quietly stopped working looks exactly like one that is working, right up
+        # until the droplet dies with the only copy of the season's bets on it.
+        exc = _try("sync captured data to git", sync_captured_data)
+        if exc is not None:
+            _alert(season, week, row.game_date, "sync", "git sync", exc)
 
 
 if __name__ == "__main__":
